@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    h1 {
+        @apply text-6xl font-bold;
+    }
+
+    .base-text{
+        @apply text-[16px] leading-normal;
+    }
+}
