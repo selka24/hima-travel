@@ -8,8 +8,8 @@ interface SearchType {
 
 const searchTypes = ref<SearchType[]>([
     {title: 'Paketa', value: 1},
-    {title: 'Hotele', value: 2},
-    {title: 'Fluturime', value: 3},
+    // {title: 'Hotele', value: 2},
+    // {title: 'Fluturime', value: 3},
 ])
 
 const activeType = ref<number>(1);
@@ -22,18 +22,18 @@ const handleTypeChange = (value) => {
 
 <template>
     <div class="relative">
-        <div class="absolute left-12 -top-[40px] flex gap-x-1.5 z-20 h-10">
+        <div class="absolute left-12 -top-[40px] flex gap-x-1.5 z-20 h-11">
             <div v-for="type in searchTypes" :key="type.value"
                  @click="handleTypeChange(type.value)"
                  :class="`transition-all ease-in duration-150 text-sm cursor-pointer font-bold px-10 py-3.5 rounded-tl-xl rounded-tr-xl ${activeType === type.value ? 'bg-white text-primary' : 'bg-gray-light text-gray-medium'}`">
                 {{type.title}}
             </div>
         </div>
-        <div class="grid grid-cols-9 gap-2.5 pt-8 pb-12 px-10 bg-gradient-to-r rounded-[20px] from-white to-white/80 w-full h-[150px] backdrop-blur-[3px] relative z-10">
-            <travel-places class="col-span-5"/>
-            <travel-calendar class="col-span-2"/>
-            <travel-pasenger class="col-span-1"/>
-            <button-default class="col-span-1">Kërko</button-default>
+        <div class="grid sm:grid-cols-6 lg:grid-cols-9 gap-y-4 gap-x-2.5 pt-8 pb-12 px-10 bg-gradient-to-r rounded-[20px] from-white to-white/80 w-full backdrop-blur-[3px] relative z-10 shadow-lg shadow-gray-normal">
+            <travel-places class="sm:col-span-6 lg:col-span-5"/>
+            <travel-calendar class="sm:col-span-4 lg:col-span-2"/>
+            <travel-pasenger class="sm:col-span-1 lg:col-span-1"/>
+            <button-default class="col-span-1 min-h-[70px]">Kërko</button-default>
         </div>
     </div>
 </template>
