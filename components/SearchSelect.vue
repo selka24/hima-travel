@@ -14,6 +14,13 @@ interface Props {
 }
 const props = defineProps<Props>()
 
+const hideList = () => {
+    listState.value = false
+}
+const showList = () => {
+    listState.value = true
+}
+
 const filteredOptions = computed(() => {
     if(props.filter) {
         const search = props.modelValue.toLowerCase();
@@ -26,17 +33,11 @@ const filteredOptions = computed(() => {
 
 const handleInputFocus = (focus: boolean) => {
     if(focus){
+        showList();
         emit('focus')
     } else {
         emit('focusout')
     }
-}
-
-const hideList = () => {
-    listState.value = false
-}
-const showList = () => {
-    listState.value = true
 }
 
 const handleSelect = (option: Origin) => {
@@ -51,7 +52,6 @@ const handleSelect = (option: Origin) => {
                autocomplete="off"
                :class="[`base-input rounded-t-[10px]`, {'rounded-b-[0px]': listState}]"
                :value="modelValue"
-               @click="showList"
                @focus="handleInputFocus(true)"
                @focusout="handleInputFocus(false)"
                :placeholder="placeholder"
