@@ -48,6 +48,7 @@ const handleSelect = (option: Origin) => {
 <template>
     <div class="relative w-full" v-click-outside="hideList">
         <input type="text" :id="id"
+               autocomplete="off"
                :class="[`base-input rounded-t-[10px]`, {'rounded-b-[0px]': listState}]"
                :value="modelValue"
                @click="showList"
