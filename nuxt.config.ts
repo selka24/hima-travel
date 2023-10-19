@@ -9,11 +9,17 @@ export default defineNuxtConfig({
           href: 'https://rsms.me/inter/inter.css'
         }
       ]
-    }
+    },
+    rootId: 'selka24'
   },
   modules: [
     '@nuxtjs/tailwindcss',
     '@nuxt/image',
     'nuxt-icons',
-  ]
+  ],
+  runtimeConfig: {
+    public: {
+      apiBaseUrl: process.env.API_BASE_URL
+    }
+  }
 })

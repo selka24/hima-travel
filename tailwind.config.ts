@@ -1,7 +1,6 @@
 import type { Config } from 'tailwindcss';
 import defaultTheme from "tailwindcss/defaultTheme";
 export default <Partial<Config>>{
-  content: [],
   theme: {
     extend: {
       colors: {
@@ -31,7 +30,6 @@ export default <Partial<Config>>{
     // '2xl': '1536px',
       }
     },
-  },
-  plugins: [],
+  }
 }
 

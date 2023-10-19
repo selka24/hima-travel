@@ -1,10 +1,15 @@
 <script setup lang="ts">
 import TravelPlaces from "~/components/TravelPlaces.vue";
+import {useTrigger} from "~/composables/trigger";
 
 interface SearchType {
     title: string
     value: number
 }
+
+
+const {$api} = useNuxtApp();
+const activeType = ref<number>(1);
 
 const searchTypes = ref<SearchType[]>([
     {title: 'Paketa', value: 1},
@@ -12,12 +17,17 @@ const searchTypes = ref<SearchType[]>([
     // {title: 'Fluturime', value: 3},
 ])
 
-const activeType = ref<number>(1);
-
-const handleTypeChange = (value) => {
+//TODO remove handleTypeChange if no search types are added
+const handleTypeChange = (value: number) => {
     activeType.value = value
 }
 
+// const {toggleTrigger} = useTrigger()
+const handleGetOrigins = async () => {
+    const {data, pending, error} = await $api.origins.getOrigins();
+    alert(JSON.stringify(data))
+    console.log(data, 'datadatadatadata')
+}
 </script>
 
 <template>
@@ -33,7 +43,7 @@ const handleTypeChange = (value) => {
             <travel-places class="sm:col-span-6 lg:col-span-5"/>
             <travel-calendar class="sm:col-span-4 lg:col-span-2"/>
             <travel-pasenger class="sm:col-span-1 lg:col-span-1"/>
-            <button-default class="col-span-1 min-h-[70px]">Kërko</button-default>
+            <button-default @click="handleGetOrigins" class="col-span-1 min-h-[70px]">Kërko</button-default>
         </div>
     </div>
 </template>
