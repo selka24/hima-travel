@@ -21,5 +21,9 @@ export default defineNuxtConfig({
     public: {
       apiBaseUrl: process.env.API_BASE_URL
     }
+  },
+  image: {
+    quality: 60,
+    format: ['avif'],
   }
 })
