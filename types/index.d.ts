@@ -1,17 +1,6 @@
 export {  };
 
 declare global {
-    interface Package {
-        id: string | null
-        image: string
-        country: string
-        price: number
-        currency: string
-        description: string
-        logo: string
-        offers: number
-    }
-
     interface IBaseOrigin {
         id:	number
         name: string
@@ -29,14 +18,43 @@ declare global {
         }
     }
     interface Origin extends IBaseOrigin {
-        id:	number
-        name: string
-        description: string
-        city: string
-        country: string
-        created_at:	Date
-        updated_at:	Date
         destinations: Destination[]
+    }
+
+    interface SearchParams {
+        nights: number | null
+        checkin_date: string | null
+        origin_id: number | null
+        destination_id: number | null
+    }
+
+    interface Flight {
+        id: number
+        outbound_flight_id: number
+        inbound_flight_id: number
+        hotel_data_id: number
+        commission: string
+        total_price: string
+        created_at: Date
+        updated_at: Date
+    }
+
+    interface Hotel {
+        id: number
+        hotel_id: number
+        number_of_nights: number
+        package_config_id: number
+        check_in_date: Date
+        room_basis: string
+        room_details: string
+        price: string
+        created_at: Date
+        updated_at: Date
+    }
+
+    interface Package extends Flight {
+        package_config_id: number
+        hotel_data: Hotel
     }
 }
 

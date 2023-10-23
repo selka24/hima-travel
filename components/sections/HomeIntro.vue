@@ -12,7 +12,7 @@
                     </p>
                     <p>Zbuloni ofertat më të mira dhe rezervoni tuajat sot.</p>
                 </div>
-                <TravelSearch class="mt-[90px]"/>
+                <TravelSearch :show-types="true" class="mt-[90px]"/>
             </div>
         </div>
     </div>

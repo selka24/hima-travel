@@ -1,46 +1,18 @@
-<script setup lang="ts">
-const {$api} = useNuxtApp();
-const searchOrigin = ref<string>('');
-const searchDestination = ref<string>('');
-const originList = ref<Origin[]>([])
-const destinationList = ref<Destination[]>([])
-const handleGetOrigins = async () => {
-    if(!originList.value.length) {
-        const {data, error} = await $api.origins.getOrigins();
-        if(error.value) {
-            console.log(error, 'error error')
-            return;
-        }
-
-        const {value: {data: list} } = data
-        originList.value = list;
-    }
-}
-
-const handleOriginSelect = (origin: Origin) => {
-    console.log(origin, 'origin')
-    searchOrigin.value = origin.name;
-    destinationList.value = origin.destinations;
-}
-
-const handleDestinationSelect = (destination: Destination) => {
-    searchDestination.value = destination.name;
-}
-</script>
-
 <template>
-    <div class="flex gap-x-3 justify-center items-center">
-<!--        <input-skeleton @click="handleGetOrigins">-->
+    <div class="grid sm:grid-cols-11 gap-3">
             <search-select
-                @focus="handleGetOrigins"
+                class="sm:col-span-5"
+                v-model="originSearch"
                 name="origin"
                 :filter="true"
-                @select="handleOriginSelect"
-                :options="originList"
+                :selected="selectedOrigin"
+                :options="allOrigins"
                 placeholder="Nisja"
                 id="nisja"
-                display-key="name"
-                v-model="searchOrigin"
+                :filterKey="['name', 'country']"
+                @select="handleOriginSelect"
+                @focus="handleGetOrigins"
+                @focusout="handleOriginFocusOut"
             >
                 <template #option="{country, name}">
                     <div class="flex justify-between items-center">
@@ -49,19 +21,23 @@ const handleDestinationSelect = (destination: Destination) => {
                     </div>
                 </template>
             </search-select>
-        <div class="">
-            <nuxt-icon name="arrow" class="text-gray-normal [&>svg]:rotate-180"/>
-            <nuxt-icon name="arrow" class="text-primary"/>
+
+        <div class="mb-5 sm:mt-5 sm:mb-0 sm:col-span-1 flex flex-col justify-center sm:justify-start items-center">
+            <nuxt-icon name="arrow" class="text-primary [&>svg]:rotate-180"/>
+            <nuxt-icon name="arrow" class="text-gray-normal"/>
         </div>
         <search-select
-            :filter="true"
+            class="sm:col-span-5"
+            :selected="selectedDestination"
             name="destination"
             @select="handleDestinationSelect"
-            :options="destinationList"
-            placeholder="Mberritja"
+            :options="mainStore.allDestinations"
+            placeholder="Mbërritja"
             id="mberritja"
-            display-key="name"
-            v-model="searchDestination"
+            :error="selectedOrigin ? '' : 'Ju lutem zgjidhni nisjen!'"
+            :filterKey="['name', 'country']"
+            v-model="destinationSearch"
+            @focusout="handleDestinationFocusOut"
         >
             <template #option="{country, name}">
                 <div class="flex justify-between items-center">
@@ -72,6 +48,51 @@ const handleDestinationSelect = (destination: Destination) => {
         </search-select>
     </div>
 </template>
+<script setup lang="ts">
+const mainStore = useMainStore();
+const {handleQueryValidate} = useQueryValidator()
+
+const { selectedOrigin, selectedDestination, originSearch, destinationSearch, allOrigins } = storeToRefs(mainStore)
+const { actSetOrigin, actSetDestination } = mainStore
+
+// const searchOrigin = ref<string>('');
+// const searchDestination = ref<string>('');
+
+const handleGetOrigins = async () => {
+    if(!mainStore.allOrigins.length) {
+        const {data, error} = await useMyApiData('/origins');
+
+        if(!error.value) {
+            mainStore.allOrigins = data.value.data
+        }
+    }
+}
+
+await handleGetOrigins();
+const handleSetDestinations = () => {
+    if(selectedOrigin.value)
+        mainStore.allDestinations = selectedOrigin.value.destinations;
+}
+const handleOriginSelect = (origin: Origin) => {
+    actSetOrigin(origin);
+    originSearch.value = origin.name;
+    handleSetDestinations();
+}
+
+const handleDestinationSelect = (destination: Destination) => {
+    actSetDestination(destination);
+    destinationSearch.value = destination.name;
+}
+
+const handleOriginFocusOut = () => {
+    if(selectedOrigin.value)
+        originSearch.value = selectedOrigin.value.name;
+}
+const handleDestinationFocusOut = () => {
+    if(selectedDestination.value)
+        destinationSearch.value = selectedDestination.value.name;
+}
+</script>
 
 <style scoped>
 

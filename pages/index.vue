@@ -3,6 +3,8 @@ import HomeIntro from "~/components/sections/HomeIntro.vue";
 import OffersSection from "~/components/sections/OffersSection.vue";
 import WelcomSection from "~/components/sections/WelcomSection.vue";
 
+const {actResetParams} = useMainStore()
+
 useHead({
     title: 'Hima Travel Bileta Avioni',
     meta: [
@@ -10,6 +12,9 @@ useHead({
     ],
 })
 
+onMounted(() => {
+    actResetParams();
+})
 
 </script>
 

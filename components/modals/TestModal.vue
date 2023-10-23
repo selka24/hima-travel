@@ -3,9 +3,9 @@
 </script>
 
 <template>
-    <input-skeleton>
-        Pasagjerë
-    </input-skeleton>
+    <div>
+        TEST MODAL
+    </div>
 </template>
 
 <style scoped>

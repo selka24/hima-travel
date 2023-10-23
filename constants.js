@@ -11,3 +11,9 @@ export const pages = [
     {title: 'Udhëtime Turistike', link: ''},
     {title: 'Paketa Turistike', link: ''},
 ]
+
+export const headPages = [
+    {title: 'Destinacione', link: '/'},
+    {title: 'Bileta', link: '/'},
+    {title: 'Paketa', link: '/'},
+]
