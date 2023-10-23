@@ -50,6 +50,7 @@
 </template>
 <script setup lang="ts">
 const mainStore = useMainStore();
+const {$api} = useNuxtApp();
 const {handleQueryValidate} = useQueryValidator()
 
 const { selectedOrigin, selectedDestination, originSearch, destinationSearch, allOrigins } = storeToRefs(mainStore)
@@ -60,11 +61,13 @@ const { actSetOrigin, actSetDestination } = mainStore
 
 const handleGetOrigins = async () => {
     if(!mainStore.allOrigins.length) {
-        const {data, error} = await useMyApiData('/origins');
-
-        if(!error.value) {
-            mainStore.allOrigins = data.value.data
-        }
+        await $api.get('/origins')
+            .catch((e) => {
+                console.log(e, 'responsee')
+            })
+            .then((response) => {
+                mainStore.allOrigins = response?.data?.data
+            })
     }
 }
 
