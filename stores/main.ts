@@ -69,6 +69,16 @@ export const useMainStore = defineStore('main', () => {
         }
     }
 
+    const actGetOrigins = async () => {
+        await $api.get('/origins')
+            .catch((e) => {
+                console.log(e, 'responsee')
+            })
+            .then((response) => {
+                allOrigins.value = response?.data?.data
+            })
+    }
+
     return {
         allOrigins,
         allDestinations,
@@ -85,6 +95,7 @@ export const useMainStore = defineStore('main', () => {
         actSetDestination,
         actGetPackagesSearch,
         actResetParams,
+        actGetOrigins,
     }
 })
 

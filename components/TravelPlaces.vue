@@ -54,24 +54,18 @@ const {$api} = useNuxtApp();
 const {handleQueryValidate} = useQueryValidator()
 
 const { selectedOrigin, selectedDestination, originSearch, destinationSearch, allOrigins } = storeToRefs(mainStore)
-const { actSetOrigin, actSetDestination } = mainStore
+const { actSetOrigin, actSetDestination, actGetOrigins } = mainStore
 
 // const searchOrigin = ref<string>('');
 // const searchDestination = ref<string>('');
 
 const handleGetOrigins = async () => {
     if(!mainStore.allOrigins.length) {
-        await $api.get('/origins')
-            .catch((e) => {
-                console.log(e, 'responsee')
-            })
-            .then((response) => {
-                mainStore.allOrigins = response?.data?.data
-            })
+        await actGetOrigins();
     }
 }
 
-await handleGetOrigins();
+// await handleGetOrigins();
 const handleSetDestinations = () => {
     if(selectedOrigin.value)
         mainStore.allDestinations = selectedOrigin.value.destinations;

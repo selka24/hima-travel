@@ -49,14 +49,15 @@ const img = useImage();
 const {nights, checkin_date, origin_id, destination_id} = route.query
 
 console.log({nights, checkin_date, origin_id, destination_id})
-
-const setSearchValues = () => {
+const setSearchValues = async () => {
     console.log(errors.value, 'errrorrs');
     handleQueryValidate();
 
     if(invalid.value) {
         mainStore.loadingPackages = false;
     } else {
+        await mainStore.actGetOrigins();
+
         mainStore.selectedDate = validParams.checkin_date;
         mainStore.selectedNights = validParams.nights;
 
@@ -74,13 +75,15 @@ const setSearchValues = () => {
             mainStore.actSetDestination(destination || null)
             mainStore.destinationSearch = destination.name
         }
-        mainStore.actGetPackagesSearch();
+        await mainStore.actGetPackagesSearch();
     }
 }
 
-onMounted(() => {
-    setSearchValues();
-})
+// onMounted(() => {
+if(process.server){
+    await setSearchValues();
+}
+// })
 
 
 const backgroundStyles = computed(() => {
