@@ -1,8 +1,8 @@
 <template>
     <div>
-        <LazyLayoutHeader v-if="route.path !== '/'"/>
-        <NuxtPage/>
-        <Footer/>
+        <NuxtLayout>
+            <NuxtPage/>
+        </NuxtLayout>
 <!--        <composable-trigger-test/>-->
     </div>
 </template>

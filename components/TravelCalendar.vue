@@ -5,7 +5,7 @@
         </div>
         <transition name="slide-fade">
             <div v-if="show" class="absolute top-[80px] z-10">
-                <DatePicker v-model="mainStore.selectedDate" mode="date" color="red"/>
+                <DatePicker v-model="mainStore.selectedDate" mode="date" color="red" :min-date="new Date()"/>
             </div>
         </transition>
     </input-skeleton>

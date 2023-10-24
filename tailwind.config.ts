@@ -7,6 +7,7 @@ export default <Partial<Config>>{
         'primary': '#ED1B23',
         'secondary': '#16163F',
         'gray': {
+          lighter: '#f3f3f3',
           light: '#D8DDE0',
           normal: '#BBBFC2',
           medium: '#929292',

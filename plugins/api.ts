@@ -9,6 +9,7 @@ export default defineNuxtPlugin((nuxtApp) => {
             common: {},
         },
     });
+
     return {
         provide: {
             api: api,

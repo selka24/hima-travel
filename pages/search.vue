@@ -7,37 +7,51 @@
                 <TravelSearch class="max-w-screen-2xl w-full"/>
             </div>
         </div>
-        <div class="flex flex-col gap-10 max-w-screen-2xl w-full px-5 lg:px-10">
-            <ClientOnly>
-                <div class="flex flex-col">
-                    <div>Parameters are {{invalid ? 'invalid' : 'valid'}}</div>
-                    <div v-if="errors.length">
-                        ERRORS:
-                        <ul>
-                            <li class="text-primary" v-for="err in errors">
-                                {{err}}
-                            </li>
-                        </ul>
+        <div class="flex justify-center w-full px-5 lg:px-10">
+            <div class="flex flex-col gap-10 max-w-screen-2xl w-full mt-10">
+                <TellUs/>
+<!--                <div class="flex flex-col">-->
+<!--                    <div>Parameters are {{invalid ? 'invalid' : 'valid'}}</div>-->
+<!--                    <div v-if="errors.length">-->
+<!--                        ERRORS:-->
+<!--                        <ul>-->
+<!--                            <li class="text-primary" v-for="err in errors">-->
+<!--                                {{err}}-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </div>-->
+                <transition-group name="fade">
+                    <div v-if="mainStore.loadingPackages" class="flex flex-col gap-y-10">
+                        <PackageCardLoading v-for="idx in 4" :key="idx + 'load'"/>
                     </div>
-                </div>
-            </ClientOnly>
-            <div v-if="mainStore.loadingPackages">
-                Loading packages...
+                    <div v-else-if="mainStore.travelPackages" class="flex flex-col gap-y-10">
+                        <div v-for="travelPackage in mainStore.travelPackages" :key="travelPackage.id">
+                            <PackageCard :package="travelPackage"/>
+                        </div>
+                        <client-only>
+                            <json-viewer
+                                :value="mainStore.travelPackages"
+                                :expand-depth=5
+                                copyable
+                                boxed
+                                sort></json-viewer>
+                        </client-only>
+                    </div>
+                    <h1 v-else>
+                        There are no packages
+                    </h1>
+                </transition-group>
             </div>
-            <div v-else-if="mainStore.travelPackages">
-                <div v-for="travelPackage in mainStore.travelPackages">
-                    id: {{travelPackage.id}} ---- eur: {{travelPackage.total_price}}
-                </div>
-            </div>
-            <h1 v-else>
-                There are no packages
-            </h1>
-
         </div>
     </div>
 </template>
 <script setup>
 import {useQueryValidator} from "~/composables/queryValidator.js";
+import JsonViewer from 'vue-json-viewer'
+import PackageCardLoading from "~/components/cards/PackageCardLoading.vue";
+import PackageCard from "~/components/cards/PackageCard.vue";
+import TellUs from "~/components/sections/TellUs.vue";
 
 const {errors, invalid, validParams, handleQueryValidate} = useQueryValidator()
 
@@ -81,6 +95,7 @@ const setSearchValues = async () => {
 
 // onMounted(() => {
 if(process.server){
+    console.log('getting from server the packages')
     await setSearchValues();
 }
 // })

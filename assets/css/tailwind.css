@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+    html {
+        @apply bg-gray-lighter;
+    }
+
     h1 {
         @apply text-[62px] font-bold;
     }

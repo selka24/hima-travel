@@ -5,6 +5,10 @@ import WelcomSection from "~/components/sections/WelcomSection.vue";
 
 const {actResetParams} = useMainStore()
 
+definePageMeta({
+    layout: 'home'
+})
+
 useHead({
     title: 'Hima Travel Bileta Avioni',
     meta: [
@@ -12,10 +16,7 @@ useHead({
     ],
 })
 
-onMounted(() => {
-    actResetParams();
-})
-
+actResetParams();
 </script>
 
 <template>

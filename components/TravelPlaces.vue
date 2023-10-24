@@ -22,9 +22,9 @@
                 </template>
             </search-select>
 
-        <div class="mb-5 sm:mt-5 sm:mb-0 sm:col-span-1 flex flex-col justify-center sm:justify-start items-center">
-            <nuxt-icon name="arrow" class="text-primary [&>svg]:rotate-180"/>
-            <nuxt-icon name="arrow" class="text-gray-normal"/>
+        <div class="mb-5 sm:mt-3 sm:mb-0 sm:col-span-1 flex flex-col justify-center sm:justify-start items-center">
+            <nuxt-icon name="arrow" class="text-primary text-2xl [&>svg]:rotate-180"/>
+            <nuxt-icon name="arrow" class="text-gray-normal text-2xl"/>
         </div>
         <search-select
             class="sm:col-span-5"

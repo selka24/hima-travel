@@ -15,9 +15,9 @@ const queryInt = [
 ]
 export const useQueryValidator = () => {
     const route = useRoute();
-    const handleQueryValidate = () => {
+    const handleQueryValidate = (values) => {
         errors.value = [];
-        console.log('handleQueryValidate handleQueryValidate')
+        // console.log('handleQueryValidate handleQueryValidate')
         queryInt.forEach(param => {
             if(!route.query[param]) {
                 errors.value.push(`${param} has no value`)
@@ -30,7 +30,7 @@ export const useQueryValidator = () => {
             checkin_date,
             origin_id,
             destination_id
-        } = route.query
+        } = (values || route.query)
 
         if(!errors.value.length) {
             validParams.checkin_date = new Date(checkin_date);

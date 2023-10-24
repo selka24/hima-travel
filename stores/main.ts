@@ -1,8 +1,10 @@
 import {format} from 'date-fns'
 export const useMainStore = defineStore('main', () => {
-    const {$api} = useNuxtApp();
+    const {$api, $testApi} = useNuxtApp();
 
     //state
+    const testRes = ref<any>(null)
+
     const allOrigins = ref<Origin[]>([])
     const allDestinations = ref<Destination[]>([])
 
@@ -54,12 +56,13 @@ export const useMainStore = defineStore('main', () => {
             loadingPackages.value = true;
             await $api.post('/packages/search', getSearchParams.value)
                 .then((response) => {
-                    console.log(response, 'responseee')
+                    // console.log(response, 'responseee')
                     travelPackages.value = response.data.data
                 }).catch((e) => {
                     if(e.response){
-                        if(e.status === 404) {
-                            travelPackages.value = null;
+                        travelPackages.value = null;
+                        if(e.respopnse?.status === 404) {
+                            console.log('No package found')
                         } else {
                             console.log(e, 'errrorrr')
                         }
@@ -72,7 +75,7 @@ export const useMainStore = defineStore('main', () => {
     const actGetOrigins = async () => {
         await $api.get('/origins')
             .catch((e) => {
-                console.log(e, 'responsee')
+                console.log(e, 'errorrr')
             })
             .then((response) => {
                 allOrigins.value = response?.data?.data
@@ -81,6 +84,7 @@ export const useMainStore = defineStore('main', () => {
 
     return {
         allOrigins,
+        testRes,
         allDestinations,
         selectedOrigin,
         selectedDestination,
