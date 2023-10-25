@@ -32,7 +32,8 @@ export default defineNuxtConfig({
     }
   },
   css:[
-      '~/assets/css/transitions.css'
+      '~/assets/css/transitions.css',
+      '~/assets/css/main.css'
   ],
   runtimeConfig: {
     public: {

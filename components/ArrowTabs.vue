@@ -22,7 +22,6 @@ const handleTabChange = (idx: number) => {
                 </div>
             </div>
         </div>
-
     </div>
 </template>
 
@@ -33,6 +32,7 @@ const handleTabChange = (idx: number) => {
 }
 
 .triangle {
+    border-radius: 0 5px 0 5px;
     background: white;
     border: 2px solid #ED1B23;
     border-width: 0px 0px 2px 2px;

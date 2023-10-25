@@ -1,6 +1,6 @@
 <template>
     <input-skeleton :class="['relative', {'!rounded-b-[0]': show}]" @click="showNights" v-click-outside="hideNights">
-        <div>
+        <div class="min-w-max">
             {{ displayNights(mainStore.selectedNights) || 'Netët' }}
         </div>
         <transition name="slide-fade">

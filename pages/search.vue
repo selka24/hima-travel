@@ -1,13 +1,14 @@
 <template>
     <div class="flex flex-col justify-center items-center">
-        <div class="relative bg-right-bottom bg-cover pt-28 pb-10 px-5 lg:px-10 w-full" :style="backgroundStyles">
+        <div class="relative bg-right-bottom bg-cover pt-24 pb-10 px-5 lg:px-10 w-full" :style="backgroundStyles">
 <!--            <nuxt-img format="webp"  width="1920" height="1080" class="w-full h-full object-cover absolute top-0 left-0 z-0"  src="/images/bg-image.png" />-->
             <div class="bg-gradient-to-r from-black/20 absolute w-full h-full left-0 top-0 z-0"/>
             <div class="flex justify-center">
-                <TravelSearch class="max-w-screen-2xl w-full"/>
+                <TravelSearch class="max-w-page w-full"/>
             </div>
         </div>
-        <div class="flex justify-center w-full px-5 lg:px-10">
+        <div class="flex flex-col items-center justify-center w-full px-5 lg:px-10">
+            <SearchFilters class="max-w-page"/>
             <div class="flex flex-col gap-10 max-w-screen-2xl w-full mt-10">
                 <TellUs/>
 <!--                <div class="flex flex-col">-->
@@ -29,13 +30,15 @@
                         <div v-for="travelPackage in mainStore.travelPackages" :key="travelPackage.id">
                             <PackageCard :package="travelPackage"/>
                         </div>
+                        <div class="flex w-full justify-center">
+                            <LazyPagination :per-page="4" :count="20"/>
+                        </div>
                         <client-only>
                             <json-viewer
                                 :value="mainStore.travelPackages"
                                 :expand-depth=5
                                 copyable
-                                boxed
-                                sort></json-viewer>
+                                boxed></json-viewer>
                         </client-only>
                     </div>
                     <h1 v-else>

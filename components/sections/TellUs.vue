@@ -1,11 +1,13 @@
 <script setup lang="ts">
+    import {useTriggerModal} from "~/composables/triggerModal";
 
+    const {toggleTrigger} = useTriggerModal();
 </script>
 
 <template>
-    <div class="border-gray-normal border-[1px] rounded-[30px] flex gap-1 px-14 bg-white py-4">
+    <div class="border-gray-normal border rounded-[30px] flex gap-1 px-14 bg-white py-4">
         <div>The results are not good?</div>
-        <nuxt-link to="/" class="underline text-primary">Tell us!</nuxt-link>
+        <div class="cursor-pointer underline text-primary" @click="toggleTrigger">Tell us!</div>
     </div>
 </template>
 

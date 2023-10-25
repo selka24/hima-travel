@@ -1,13 +1,16 @@
 <template>
     <div class="relative">
         <LazySearchTypes v-if="showTypes"/>
-        <div class="grid sm:grid-cols-6 lg:grid-cols-9 gap-y-4 gap-x-2.5 pt-8 px-10 bg-gradient-to-r rounded-[20px] from-white/70 to-white/20 w-full backdrop-blur-[3px] relative z-20 ">
+        <div class="grid sm:grid-cols-6 lg:grid-cols-9 gap-y-4 gap-x-2.5 pt-8 px-10 bg-gradient-to-r rounded-[20px] from-white/90 to-white/80 w-full backdrop-blur-[3px] relative z-20 ">
             <travel-places class="sm:col-span-6 lg:col-span-5"/>
             <travel-calendar class="sm:col-span-4 lg:col-span-2"/>
             <travel-nights class="sm:col-span-1 lg:col-span-1"/>
             <div class="col-span-1 relative">
-                <tooltip class="min-w-max" :trigger="showErrorMessage" :timeout="1000" theme="error" message="Plotesoni te gjitha fushat!"/>
-                <button-default @click="handlePackageSearch" class="w-full h-[70px] mb-12">Kërko</button-default>
+                <tooltip class="min-w-max" :triggerModal="showErrorMessage" :timeout="1000" theme="error" message="Plotesoni te gjitha fushat!"/>
+                <button-default @click="handlePackageSearch" class="w-full h-[70px] justify-center items-center mb-12 flex gap-3">
+                    <nuxt-icon name="search" class="text-lg" filled/>
+                    <div>Kërko</div>
+                </button-default>
             </div>
         </div>
     </div>
