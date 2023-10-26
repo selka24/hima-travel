@@ -14,16 +14,16 @@
 </script>
 
 <template>
-<div class="flex justify-between items-center w-full">
-    <div class="flex items-center">
-        <div>Rendit sipas:</div>
-        <Dropdown :options="sortOptions" @option-changed="handleSortChange" :selected="currSort">
+<div class="flex gap-y-10 flex-wrap justify-between items-center w-full">
+    <div class="flex items-center justify-between w-[300px]">
+        <div class="min-w-max">Rendit sipas:</div>
+        <Dropdown class="w-full" :options="sortOptions" @option-changed="handleSortChange" :selected="currSort">
             <template #default="{option}">
                 {{option.title}}
             </template>
         </Dropdown>
     </div>
-    <div class="flex">
+    <div class="flex items-center">
         <div class="mr-2">Çmimet:</div>
         <Toggle v-model="priceTotal" :options="['Për person', 'Totali']"/>
     </div>

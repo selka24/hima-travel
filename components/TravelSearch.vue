@@ -6,7 +6,7 @@
             <travel-calendar class="sm:col-span-4 lg:col-span-2"/>
             <travel-nights class="sm:col-span-1 lg:col-span-1"/>
             <div class="col-span-1 relative">
-                <tooltip class="min-w-max" :triggerModal="showErrorMessage" :timeout="1000" theme="error" message="Plotesoni te gjitha fushat!"/>
+                <tooltip class="min-w-max" :trigger="showErrorMessage" :timeout="1000" theme="error" message="Plotesoni te gjitha fushat!"/>
                 <button-default @click="handlePackageSearch" class="w-full h-[70px] justify-center items-center mb-12 flex gap-3">
                     <nuxt-icon name="search" class="text-lg" filled/>
                     <div>Kërko</div>

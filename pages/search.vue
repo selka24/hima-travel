@@ -8,7 +8,7 @@
             </div>
         </div>
         <div class="flex flex-col items-center justify-center w-full px-5 lg:px-10">
-            <SearchFilters class="max-w-page"/>
+            <SearchFilters class="max-w-page mt-11"/>
             <div class="flex flex-col gap-10 max-w-screen-2xl w-full mt-10">
                 <TellUs/>
 <!--                <div class="flex flex-col">-->
@@ -27,7 +27,7 @@
                         <PackageCardLoading v-for="idx in 4" :key="idx + 'load'"/>
                     </div>
                     <div v-else-if="mainStore.travelPackages" class="flex flex-col gap-y-10">
-                        <div v-for="travelPackage in mainStore.travelPackages" :key="travelPackage.id">
+                        <div v-for="travelPackage in mainStore.travelPackages" :key="travelPackage.id" class="relative">
                             <PackageCard :package="travelPackage"/>
                         </div>
                         <div class="flex w-full justify-center">

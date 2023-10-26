@@ -1,5 +1,5 @@
 <template>
-    <input-skeleton class="relative" v-click-outside="hideCalendar" @click="showCalendar">
+    <input-skeleton class="relative cursor-pointer" v-click-outside="hideCalendar" @click="showCalendar">
         <div>
             {{ mainStore.selectedDate?.toDateString() || 'Data e nisjes'}}
         </div>
