@@ -1,5 +1,5 @@
 <script setup lang="ts">
-defineProps(['tabs', 'activeTab'])
+defineProps(['tabs', 'activeTab', 'bgTriangle'])
 const emit = defineEmits(['tabChange'])
 const handleTabChange = (idx: number) => {
     emit('tabChange', idx);
@@ -16,7 +16,7 @@ const handleTabChange = (idx: number) => {
                 <div class="relative">
                     <div class="line">
                         <transition name="fade">
-                            <div v-if="activeTab === idx" class="triangle"></div>
+                            <div v-if="activeTab === idx" :class="['triangle', `${bgTriangle ? bgTriangle : 'bg-white'}`]"></div>
                         </transition>
                     </div>
                 </div>
@@ -33,7 +33,6 @@ const handleTabChange = (idx: number) => {
 
 .triangle {
     border-radius: 0 5px 0 5px;
-    background: white;
     border: 2px solid #ED1B23;
     border-width: 0px 0px 2px 2px;
     transform: translateX(-50%) rotate(-45deg);

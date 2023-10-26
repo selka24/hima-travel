@@ -1,35 +1,57 @@
 <script setup lang="ts">
     const props = defineProps(['options', 'currentSlide']);
+    const emit = defineEmits(['slideChange'])
     const slide = ref(0)
     const goingBack = ref(false);
+
+    const lastSlide = (props.options.length - 1);
     const handleSlideChange = (slideNo: number) => {
-        goingBack.value = (slideNo < slide.value);
-        if(slideNo + 1 > props.options.length){
-            slide.value = 0;
+        let slideTo;
+        console.log({slideNo, 'slide.value': slide.value})
+        if(slideNo > lastSlide){
+            slideTo = 0;
         } else if(slideNo < 0) {
-            slide.value = props.options.length - 1
+            slideTo = lastSlide
         } else {
-            slide.value = slideNo;
+            slideTo = slideNo;
+        }
+        if (hasParentSlide.value)
+            emit('slideChange', slideTo);
+        else
+            slide.value = slideTo;
+    }
+
+    const handleGoingBack = (newValue: number, oldValue: number) => {
+        if(newValue === 0 && oldValue === lastSlide){
+            goingBack.value = false;
+        } else if(oldValue === 0 && newValue === lastSlide) {
+            goingBack.value = true;
+        } else {
+            goingBack.value = (newValue < oldValue);
         }
     }
 
-    const currentOptions = computed(() => {
-        return [props.options[slide.value]];
+    const hasParentSlide = computed(() => {
+        return props.currentSlide !== undefined;
     })
 
-    watch(() => props.currentSlide, (val) => {
-        handleSlideChange(val)
+    const currSlideNo = computed(() => {
+        return hasParentSlide.value ? props.currentSlide : slide.value;
+    }, {
+        onTrigger({newValue, oldValue}) {
+            handleGoingBack(newValue, oldValue);
+        }
     })
 </script>
 
 <template>
     <div class="w-full h-full overflow-hidden relative">
         <div class="absolute w-full px-4 z-10 flex top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 items-center justify-between">
-            <div @click="handleSlideChange(slide - 1)"
+            <div @click="handleSlideChange(currSlideNo - 1)"
                  class="cursor-pointer flex items-center justify-center bg-white/80 rounded-full p-2">
                 <nuxt-icon name="chevron-down-solid" class="text-2xl [&>*:first-child]:rotate-90" filled/>
             </div>
-            <div @click="handleSlideChange(slide + 1)"
+            <div @click="handleSlideChange(currSlideNo + 1)"
                  class="cursor-pointer flex items-center justify-center bg-white/80 rounded-full p-2">
                 <nuxt-icon name="chevron-down-solid" class="text-2xl [&>*:first-child]:-rotate-90 text-primary" filled/>
             </div>
@@ -37,15 +59,13 @@
         <div class="relative w-full h-full">
             <transition-group tag="div" :name="goingBack ? 'slideback' : 'slide'">
                 <div v-for="(opt, idx) in options"
-                     v-show="idx === slide"
+                     v-show="idx === currSlideNo"
                      class="w-full h-full absolute"
                      :key="idx">
                     <slot name="option" :option="opt" class="w-full h-full bg-primary"></slot>
                 </div>
             </transition-group>
         </div>
-<!--        <slot name="option" v-bind:options="currentOptions">{{currentOptions}}</slot>-->
-
     </div>
 </template>
 

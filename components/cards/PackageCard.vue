@@ -1,33 +1,11 @@
-<script setup lang="ts">
-    const props = defineProps<{ package: Package }>();
-
-    const tabs = ['Akomodimi', 'Hoteli', 'Fluturimi'];
-    const activeTab = ref(0);
-
-    const handleTabChange = (tab: number) => {
-        activeTab.value = tab;
-    }
-
-    const icons = ['calendar', 'suitcase', 'backpack', 'bed', 'food', 'info']
-
-    const sampleInfo = [
-        '5 Netë, e Mar, 20 Shtator 2022',
-        'Valixhe deri në 22 kg',
-        'Çanë shpine deri në 22 kg',
-        '1 x Dhomë dyshe',
-        'Mëngjesi i përfshirë',
-        'Info',
-    ]
-</script>
-
 <template>
     <div class="grid grid-cols-12 border-2 border-gray-normal rounded-[30px] bg-white">
-        <div class="relative p-7 col-span-12 md:col-span-9 lg:col-span-8 xl:col-span-5 md:bg-gray-lighter/30 xl:bg-none">
-            <div class="absolute z-[10] bg-primary rounded-[20px_0] text-white font-bold py-4 px-2 text-center w-40">All inclusive</div>
-            <div class="w-full h-full min-h-[384px] rounded-[20px] overflow-hidden">
-                <Carousel :options="['bed.png', 'sunbed.png', 'beach.png']">
+        <div class="p-7 col-span-12 md:col-span-9 lg:col-span-8 xl:col-span-5 md:bg-gray-lighter/30 xl:bg-transparent">
+            <div class="relative w-full h-full min-h-[384px] rounded-[20px] overflow-hidden">
+                <CornerInfo/>
+                <Carousel :options="['paris.png', 'bed.png', 'sunbed.png', 'beach.png']">
                     <template #option="{option}">
-                        <nuxt-img class="w-full h-full object-cover" :src="`/package-sample/${option}`" :alt="option"/>
+                        <nuxt-img loading="lazy" format="webp" class="w-full h-full object-cover" :src="`/package-sample/${option}`" :alt="option"/>
                     </template>
                 </Carousel>
             </div>
@@ -51,6 +29,28 @@
         </div>
     </div>
 </template>
+<script setup lang="ts">
+import CornerInfo from "~/components/CornerInfo.vue";
+
+const props = defineProps<{ package: Package }>();
+
+const tabs = ['Akomodimi', 'Hoteli', 'Fluturimi'];
+const sampleInfo = [
+    '5 Netë, e Mar, 20 Shtator 2022',
+    'Valixhe deri në 22 kg',
+    'Çanë shpine deri në 22 kg',
+    '1 x Dhomë dyshe',
+    'Mëngjesi i përfshirë',
+    'Info',
+]
+const activeTab = ref(0);
+
+const handleTabChange = (tab: number) => {
+    activeTab.value = tab;
+}
+
+const icons = ['calendar', 'suitcase', 'backpack', 'bed', 'food', 'info']
+</script>
 
 <style scoped>
 

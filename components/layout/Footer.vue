@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import {contactInfo, pages} from "~/constants";
+    import {contactInfo, pages, socialNetworks} from "~/constants";
 </script>
 
 <template>
@@ -29,9 +29,10 @@
                 </div>
                 <div class="flex flex-col gap-7">
                     <div class="text-primary font-bold text-xl">Na ndiqni</div>
-                    <div v-for="menu in pages">
-                        {{menu.title}}
-                    </div>
+                    <a v-for="net in socialNetworks" :href="net.link"  target="_blank" class="flex min-w-max gap-1.5">
+                        <nuxt-icon :name="net.title" filled class="text-2xl"/>
+                        <div>{{net.title}}</div>
+                    </a>
                 </div>
             </div>
         </div>

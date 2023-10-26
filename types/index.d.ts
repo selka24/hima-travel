@@ -7,8 +7,8 @@ declare global {
         description: string
         city: string
         country: string
-        created_at:	Date
-        updated_at:	Date
+        created_at:	Date | string
+        updated_at:	Date | string
     }
 
     interface Destination extends IBaseOrigin {
@@ -35,8 +35,8 @@ declare global {
         hotel_data_id: number
         commission: string
         total_price: string
-        created_at: Date
-        updated_at: Date
+        created_at: Date | string
+        updated_at: Date | string
     }
 
     interface Hotel {
@@ -44,12 +44,12 @@ declare global {
         hotel_id: number
         number_of_nights: number
         package_config_id: number
-        check_in_date: Date
+        check_in_date: Date | string
         room_basis: string
         room_details: string
         price: string
-        created_at: Date
-        updated_at: Date
+        created_at: Date | string
+        updated_at: Date | string
     }
 
     interface Package extends Flight {

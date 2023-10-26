@@ -5,6 +5,30 @@ export const useMainStore = defineStore('main', () => {
     //state
     const testRes = ref<any>(null)
 
+    const currTravelPackage = ref<Package>({
+        id:7200,
+        outbound_flight_id:1069,
+        inbound_flight_id:1074,
+        hotel_data_id:7200,
+        commission:"80.00",
+        total_price:"266.81",
+        created_at:"2023-10-26T01:45:19.000000Z",
+        updated_at:"2023-10-26T01:45:19.000000Z",
+        package_config_id:8,
+        hotel_data:{
+            id:7200,
+            hotel_id:67006,
+            check_in_date:"2024-01-14",
+            number_of_nights:2,
+            room_basis:"RO",
+            room_details:"['standard double room (twin beds)']",
+            price:"169.00",
+            package_config_id:8,
+            created_at:"2023-10-26T01:45:19.000000Z",
+            updated_at:"2023-10-26T01:45:19.000000Z",
+        }
+    })
+
     const allOrigins = ref<Origin[]>([])
     const allDestinations = ref<Destination[]>([])
 
@@ -56,7 +80,6 @@ export const useMainStore = defineStore('main', () => {
             loadingPackages.value = true;
             await $api.post('/packages/search', getSearchParams.value)
                 .then((response) => {
-                    // console.log(response, 'responseee')
                     travelPackages.value = response.data.data
                 }).catch((e) => {
                     if(e.response){
@@ -86,6 +109,7 @@ export const useMainStore = defineStore('main', () => {
         allOrigins,
         testRes,
         allDestinations,
+        currTravelPackage,
         selectedOrigin,
         selectedDestination,
         selectedDate,

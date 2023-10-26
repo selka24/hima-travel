@@ -17,3 +17,10 @@ export const headPages = [
     {title: 'Bileta', link: '/'},
     {title: 'Paketa', link: '/'},
 ]
+
+export const socialNetworks = [
+    {title: 'facebook', link: 'https://www.facebook.com/HimaTravelTours/?locale=sq_AL'},
+    {title: 'instagram', link: 'https://www.instagram.com/agjensi_udhetimi_hima_travel'},
+    {title: 'twitter', link: 'https://twitter.com/himatravel'},
+    {title: 'youtube', link: 'https://www.youtube.com'},
+]
