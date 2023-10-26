@@ -25,7 +25,9 @@
                 <div class="mb-2 text-lg text-gray-normal">Për person</div>
                 <div class="font-bold text-[36px] min-w-max lg:text-[55px]">{{ package?.total_price }} €</div>
             </div>
-            <button-default class="h-[70px] max-w-[260px] w-full sm:mb-14 font-normal">Më shumë</button-default>
+            <nuxt-link to="/package">
+                <button-default class="h-[70px] max-w-[260px] w-full sm:mb-14 font-normal">Më shumë</button-default>
+            </nuxt-link>
         </div>
     </div>
 </template>

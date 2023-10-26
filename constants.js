@@ -15,7 +15,7 @@ export const pages = [
 export const headPages = [
     {title: 'Destinacione', link: '/'},
     {title: 'Bileta', link: '/'},
-    {title: 'Paketa', link: '/'},
+    {title: 'Paketa', link: '/package'},
 ]
 
 export const socialNetworks = [
