@@ -28,7 +28,7 @@ declare global {
         destination_id: number | null
     }
 
-    interface Flight {
+    interface BasePackage {
         id: number
         outbound_flight_id: number
         inbound_flight_id: number
@@ -52,9 +52,64 @@ declare global {
         updated_at: Date | string
     }
 
-    interface Package extends Flight {
+    interface Package extends BasePackage {
         package_config_id: number
         hotel_data: Hotel
+    }
+
+    interface HotelPhoto {
+        id: number
+        hotel_id: number
+        file_path: string
+        created_at: string
+        updated_at: string
+    }
+
+    interface FullHotel extends Hotel {
+        hotel: {
+            id: number
+            hotel_id: number
+            name: string
+            address: string
+            phone: string
+            fax: string
+            stars: number
+            stars_id: number
+            longitude: string
+            latitude: string
+            is_apartment: number
+            giata_code: string
+            city_id: number
+            city: string
+            iso_code: string
+            country: string
+            country_id: number
+            destination_id: number
+            hotel_photos: HotelPhoto[]
+            created_at: string
+            updated_at: string
+        }
+    }
+
+    interface Flight {
+        id: number
+        origin: string
+        destination: string
+        departure: string
+        arrival: string
+        price: string
+        airline: string
+        extra_data: string
+        created_at: null | string
+        updated_at: null | string
+        package_config_id: number
+    }
+
+    interface FullPackage extends BasePackage {
+        package_config_id: number
+        hotel_data: FullHotel
+        outbound_flight: Flight
+        inbound_flight: Flight
     }
 }
 

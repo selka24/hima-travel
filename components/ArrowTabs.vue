@@ -12,7 +12,11 @@ const handleTabChange = (idx: number) => {
         <div class="flex">
             <div v-for="(tab, idx) in tabs" :key="idx + 'tab'"
                  :class="['relative text-lg font-bold', ( activeTab === idx ? 'text-primary': 'text-gray-hard'), (idx === 0 ? 'flex-1' : 'flex-1')]">
-                <div class="text-center cursor-pointer" @click="handleTabChange(idx)">{{tab}}</div>
+                <div class="text-center cursor-pointer" @click="handleTabChange(idx)">
+                    <slot :tab="tab">
+                        {{tab}}
+                    </slot>
+                </div>
                 <div class="relative">
                     <div class="line">
                         <transition name="fade">

@@ -54,6 +54,7 @@ import JsonViewer from 'vue-json-viewer'
 import PackageCardLoading from "~/components/cards/PackageCardLoading.vue";
 import PackageCard from "~/components/cards/PackageCard.vue";
 import TellUs from "~/components/sections/TellUs.vue";
+import {main} from "@popperjs/core";
 
 const {errors, invalid, validParams, handleQueryValidate} = useQueryValidator()
 
@@ -96,6 +97,15 @@ const setSearchValues = async () => {
 if(process.server){
     await setSearchValues();
 }
+
+onMounted(() => {
+    if(mainStore.loadingPackages) {
+        handleQueryValidate();
+        if(invalid.value){
+            mainStore.loadingPackages = false;
+        }
+    }
+})
 
 
 const backgroundStyles = computed(() => {

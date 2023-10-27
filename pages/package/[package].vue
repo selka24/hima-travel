@@ -1,40 +1,57 @@
 <template>
     <div class="flex w-full justify-center mt-24 px-5 lg:px-10">
         <div class="flex flex-col max-w-screen-lg w-full">
+
+            <client-only>
+                <json-viewer
+                    :value="currTravelPackage"
+                    :expand-depth=5
+                    copyable
+                    boxed></json-viewer>
+            </client-only>
             <div class="text-3xl font-bold mb-10">
-                Udhëtimi juaj drejt Parisit
+                Udhëtimi juaj drejt Parisit - {{params?.package}}
             </div>
             <div class="grid grid-cols-9 mb-4 gap-7">
-                <div class="col-span-6">
-                    <div class="rounded-[20px] overflow-hidden w-full min-h-[500px] h-full">
+                <div class="flex flex-col col-span-9 md:col-span-6">
+                    <div class="rounded-[20px] overflow-hidden min-h-[500px] mb-4">
                         <Carousel @slide-change="handleSlideChange"
+                                  :slide-classes="['w-full h-full']"
                                   :current-slide="currImg"
                                   :options="packageImages">
                             <template #option="{option}">
-                                <nuxt-img loading="lazy" format="webp" class="w-full h-full object-cover" :src="`/package-sample/${option}`" :alt="option"/>
+                                <nuxt-img width="700" height="500" loading="lazy" format="webp" class="w-full h-full object-cover" :src="option" :alt="'hotel photo'"/>
                             </template>
                         </Carousel>
                     </div>
+                    <SmallPictures
+                        class=""
+                        :images="packageImages"
+                        @image-change="handleSlideChange"
+                        :curr-image="currImg"
+                    />
                 </div>
-                <div class="col-span-3">
-                    <InfoCard class="h-full"/>
+                <div class="col-span-9 md:col-span-3">
+                    <InfoCard class="h-full max-h-[500px]"/>
                 </div>
-            </div>
-            <div class="grid grid-cols-9">
-                <SmallPictures
-                    class="col-span-5"
-                    :images="packageImages"
-                    @image-change="handleSlideChange"
-                    :curr-image="currImg"
-                />
             </div>
             <div class="mt-16 grid grid-cols-9">
                 <ArrowTabs @tab-change="handleTabChange"
                            :tabs="tabs"
                            bg-triangle="bg-gray-lighter"
                            :active-tab="activeTab"
-                           class="mb-16 col-span-5"/>
-                <div class="col-span-9 flex flex-wrap justify-between gap-y-10">
+                           class="mb-16 col-span-9 md:col-span-5">
+                    <template #default="{tab}">
+                        <div class="flex justify-center">
+                            <div class="hidden sm:flex items-center gap-2">
+                                <nuxt-icon :name="tab.icon"/>
+                                {{tab.title}}
+                            </div>
+                            <nuxt-icon :name="tab.icon" class="block sm:hidden mb-2"/>
+                        </div>
+                    </template>
+                </ArrowTabs>
+                <div class="col-span-9 flex flex-wrap gap-x-4 justify-between gap-y-10">
                     <div v-for="ind in 3" :key="ind + 'ind'" class="flex flex-col gap-y-3.5">
                         <div v-for="(icon, idx) in icons" class="flex gap-4 items-center">
                             <nuxt-icon :name="icon" filled class="text-2xl"/>
@@ -58,7 +75,7 @@
                             loading="lazy"
                             width="100%"
                             height="100%"
-                            :src="`https://maps.google.com/maps?q=${'41.32361513150092'},${'19.804568153028498'}&hl=en&z=15&amp;output=embed`"
+                            :src="`https://maps.google.com/maps?q=${place}&hl=en&z=15&amp;output=embed`"
                         ></iframe>
                     </client-only>
                 </div>
@@ -79,17 +96,39 @@ import SmallPictures from "~/components/SmallPictures.vue";
 import InfoCard from "~/components/cards/InfoCard.vue";
 import ZbuloBoten from "~/components/sections/ZbuloBoten.vue";
 import BookCard from "~/components/cards/BookCard.vue";
+import JsonViewer from "vue-json-viewer/vue-json-viewer";
 
 const mainStore = useMainStore();
-const packageImages = ['paris.png', 'bed.png', 'sunbed.png', 'beach.png'];
 const {currTravelPackage} = toRefs(mainStore);
+const runtimeConfig = useRuntimeConfig()
+const {params} = useRoute();
 
 const currImg = ref(0);
 const handleSlideChange = (slide: number) => {
     currImg.value = slide;
 }
+
+const hotel = computed(() => {
+    return currTravelPackage.value.hotel_data.hotel
+})
+
+const packageImages = mainStore.getPackageImages(currTravelPackage.value)
+
+// const coordinates = computed(() => {
+//     return [hotel.value.latitude, hotel.value.longitude]
+// })
+
+const place = computed(() => {
+    return `${hotel.value.name.replace(/\s+/g, '+')}+${hotel.value.address.replace(/\s+/g, '+')}`
+})
+
 const icons = ['calendar', 'suitcase', 'backpack', 'bed', 'food', 'info']
-const tabs = ['Udhëtimi', 'Hoteli', 'Location', 'Dhoma'];
+const tabs = [
+    {title: 'Udhëtimi', icon: 'backpack'},
+    {title: 'Hoteli', icon: 'food'},
+    {title: 'Location', icon: 'suitcase'},
+    {title: 'Dhoma', icon: 'bed'},
+];
 const sampleInfo = [
     '5 Netë, e Mar, 20 Shtator 2022',
     'Valixhe deri në 22 kg',
@@ -101,6 +140,12 @@ const sampleInfo = [
 const activeTab = ref(0);
 const handleTabChange = (tab: number) => {
     activeTab.value = tab;
+}
+
+if(process.server){
+    if(params?.package){
+        await mainStore.actGetPackageById(params.package);
+    }
 }
 </script>
 

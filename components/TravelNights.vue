@@ -14,13 +14,11 @@
 </template>
 <script setup lang="ts">
 const mainStore = useMainStore();
+const {displayNights} = useUtils();
 const maxNights = 10;
 
 const show = ref(false);
-const displayNights = (nights: number) => {
-    if(!nights) return '';
-    return nights + (nights > 1 ? ' Netë' : ' Natë')
-}
+
 const toggleNights = () => {
     show.value = !show.value;
     console.log('toggle Nights ', (show.value ? 'opened' : 'closed'))

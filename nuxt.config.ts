@@ -37,11 +37,13 @@ export default defineNuxtConfig({
   ],
   runtimeConfig: {
     public: {
-      apiBaseUrl: process.env.API_BASE_URL
+      apiBaseUrl: process.env.API_BASE_URL,
+      storageUrl: process.env.STORAGE_URL
     }
   },
   image: {
     format: ['webp'],
     quality: 70,
+    domains: ['http://biletaautobusi.com'],
   }
 })
