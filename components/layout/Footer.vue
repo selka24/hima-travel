@@ -3,8 +3,8 @@
 </script>
 
 <template>
-    <div class="flex justify-center mt-72 px-5 lg:px-10">
-        <div class="max-w-page grid grid-cols-4 lg:grid-cols-6 h-[500px] w-full">
+    <div class="flex justify-center mt-72 px-5 pb-14 pt-20 lg:px-10 bg-white">
+        <div class="max-w-page grid grid-cols-4 lg:grid-cols-6 w-full">
             <div class="hidden lg:block col-span-2">
                 <nuxt-img format="webp"  src="/images/red-logo.png"  width="140" height="56" class="max-w-[222px] w-full"/>
                 <div class="text-xl font-bold mt-10">

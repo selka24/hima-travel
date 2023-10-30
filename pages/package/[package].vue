@@ -1,14 +1,13 @@
 <template>
     <div class="flex w-full justify-center mt-24 px-5 lg:px-10">
-        <div class="flex flex-col max-w-screen-lg w-full">
-
-            <client-only>
-                <json-viewer
-                    :value="currTravelPackage"
-                    :expand-depth=5
-                    copyable
-                    boxed></json-viewer>
-            </client-only>
+        <div class="flex flex-col max-w-screen-lg w-full" v-if="!mainStore.loadingCurrPackage && mainStore.currTravelPackage">
+<!--            <client-only>-->
+<!--                <json-viewer-->
+<!--                    :value="currTravelPackage"-->
+<!--                    :expand-depth=5-->
+<!--                    copyable-->
+<!--                    boxed></json-viewer>-->
+<!--            </client-only>-->
             <div class="text-3xl font-bold mb-10">
                 Udhëtimi juaj drejt Parisit - {{params?.package}}
             </div>
@@ -21,6 +20,9 @@
                                   :options="packageImages">
                             <template #option="{option}">
                                 <nuxt-img width="700" height="500" loading="lazy" format="webp" class="w-full h-full object-cover" :src="option" :alt="'hotel photo'"/>
+                            </template>
+                            <template #empty>
+                                Nuk ka imazhe per kete hotel
                             </template>
                         </Carousel>
                     </div>
@@ -89,6 +91,16 @@
                 <BookCard/>
             </div>
         </div>
+        <div v-else-if="mainStore.loadingPackages" class="mt-10 flex justify-center items-center">
+            <div class="text-center text-secondary text-5xl font-semibold leading-loose">
+                LOADING...
+            </div>
+        </div>
+        <div v-else class="mt-10 flex justify-center items-center">
+            <div class="text-center text-secondary text-5xl font-semibold leading-loose">
+               Kjo pakete nuk ekziston
+            </div>
+        </div>
     </div>
 </template>
 <script setup lang="ts">
@@ -96,14 +108,15 @@ import SmallPictures from "~/components/SmallPictures.vue";
 import InfoCard from "~/components/cards/InfoCard.vue";
 import ZbuloBoten from "~/components/sections/ZbuloBoten.vue";
 import BookCard from "~/components/cards/BookCard.vue";
-import JsonViewer from "vue-json-viewer/vue-json-viewer";
+// import JsonViewer from "vue-json-viewer/vue-json-viewer";
 
 const mainStore = useMainStore();
 const {currTravelPackage} = toRefs(mainStore);
 const runtimeConfig = useRuntimeConfig()
 const {params} = useRoute();
-
+const activeTab = ref(0);
 const currImg = ref(0);
+
 const handleSlideChange = (slide: number) => {
     currImg.value = slide;
 }
@@ -137,16 +150,28 @@ const sampleInfo = [
     'Mëngjesi i përfshirë',
     'Info',
 ]
-const activeTab = ref(0);
 const handleTabChange = (tab: number) => {
     activeTab.value = tab;
 }
 
-if(process.server){
+const getPackage = async () => {
     if(params?.package){
         await mainStore.actGetPackageById(params.package);
     }
 }
+
+if(process.server){
+    if(params?.package){
+        await getPackage();
+        mainStore.fetchedPackageFromServer = true
+    }
+}
+
+onMounted(() => {
+    if(!mainStore.fetchedPackageFromServer){
+        getPackage();
+    }
+})
 </script>
 
 <style scoped>

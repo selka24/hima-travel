@@ -10,39 +10,33 @@
             <SearchFilters class="max-w-page mt-11"/>
             <div class="flex flex-col gap-10 max-w-screen-2xl w-full mt-10">
                 <TellUs/>
-<!--                <div class="flex flex-col">-->
-<!--                    <div>Parameters are {{invalid ? 'invalid' : 'valid'}}</div>-->
-<!--                    <div v-if="errors.length">-->
-<!--                        ERRORS:-->
-<!--                        <ul>-->
-<!--                            <li class="text-primary" v-for="err in errors">-->
-<!--                                {{err}}-->
-<!--                            </li>-->
-<!--                        </ul>-->
-<!--                    </div>-->
-<!--                </div>-->
                 <transition-group name="fade">
                     <div v-if="mainStore.loadingPackages" class="flex flex-col gap-y-10">
-                        <PackageCardLoading v-for="idx in 4" :key="idx + 'load'"/>
+                        <LazyCardsPackageCardLoading v-for="idx in 4" :key="idx + 'load'"/>
                     </div>
                     <div v-else-if="mainStore.travelPackages" class="flex flex-col gap-y-10">
                         <div v-for="travelPackage in mainStore.travelPackages" :key="travelPackage.id" class="relative">
-                            <PackageCard :package="travelPackage"/>
+                            <LazyCardsPackageCard :package="travelPackage"/>
                         </div>
                         <div class="flex w-full justify-center">
                             <LazyPagination :per-page="4" :count="20"/>
                         </div>
-                        <client-only>
-                            <json-viewer
-                                :value="mainStore.travelPackages"
-                                :expand-depth=5
-                                copyable
-                                boxed></json-viewer>
-                        </client-only>
+<!--                        <client-only>-->
+<!--                            <json-viewer-->
+<!--                                :value="mainStore.travelPackages"-->
+<!--                                :expand-depth=5-->
+<!--                                copyable-->
+<!--                                boxed></json-viewer>-->
+<!--                        </client-only>-->
                     </div>
-                    <h1 v-else>
-                        There are no packages
-                    </h1>
+                    <div v-else class="mt-10 flex justify-center items-center">
+                        <div class="text-center text-secondary text-5xl font-semibold leading-loose">
+                            Nuk u gjend asnje pakete udhetimi!
+                            <br>
+                            Provoni te ndryshoni filtrat!
+                        </div>
+                    </div>
+
                 </transition-group>
             </div>
         </div>
@@ -50,29 +44,29 @@
 </template>
 <script setup>
 import {useQueryValidator} from "~/composables/queryValidator.js";
-import JsonViewer from 'vue-json-viewer'
-import PackageCardLoading from "~/components/cards/PackageCardLoading.vue";
-import PackageCard from "~/components/cards/PackageCard.vue";
+// import JsonViewer from 'vue-json-viewer'
 import TellUs from "~/components/sections/TellUs.vue";
-import {main} from "@popperjs/core";
+const mainStore = useMainStore();
 
-const {errors, invalid, validParams, handleQueryValidate} = useQueryValidator()
 
+
+const {invalid, validParams, handleQueryValidate} = useQueryValidator()
 const route = useRoute();
 
-const mainStore = useMainStore();
 const img = useImage();
 
 const {nights, checkin_date, origin_id, destination_id} = route.query
 
-console.log({nights, checkin_date, origin_id, destination_id})
 const setSearchValues = async () => {
     handleQueryValidate();
 
     if(invalid.value) {
         mainStore.loadingPackages = false;
     } else {
-        await mainStore.actGetOrigins();
+        if(!mainStore.allOrigins.length){
+            console.log('getting dataaa origin')
+            await mainStore.actGetOrigins();
+        }
 
         mainStore.selectedDate = validParams.checkin_date;
         mainStore.selectedNights = validParams.nights;
@@ -95,16 +89,28 @@ const setSearchValues = async () => {
 }
 
 if(process.server){
+    //get the data from server and set fromServer to true to prevent double data fetch on mounted
+    console.log('serveriiiiiiiiiiiiiiiiiii')
+    mainStore.fromServer = true;
+    await mainStore.actGetOrigins();
     await setSearchValues();
+
 }
 
+onBeforeUnmount(() => {
+    //set to true to prevent double mount for the children component
+    //when loading value changes when navigating back to search page
+    mainStore.loadingPackages = true;
+})
+
 onMounted(() => {
-    if(mainStore.loadingPackages) {
-        handleQueryValidate();
-        if(invalid.value){
-            mainStore.loadingPackages = false;
-        }
+    console.log('mounteeed search', mainStore.fromServer)
+    if(!mainStore.fromServer){
+        setSearchValues();
     }
+    //set from server to false in order to fetch data
+    //when mounting the search page from client side and not from server
+    mainStore.fromServer = false;
 })
 
 
@@ -113,6 +119,9 @@ const backgroundStyles = computed(() => {
     return { backgroundImage: `url('${imgUrl}')` }
 })
 
+watch(() => route.fullPath, () => {
+    setSearchValues();
+})
 </script>
 
 <style scoped>

@@ -21,7 +21,6 @@ const show = ref(false);
 
 const toggleNights = () => {
     show.value = !show.value;
-    console.log('toggle Nights ', (show.value ? 'opened' : 'closed'))
 }
 const hideNights = () => {
     show.value = false;

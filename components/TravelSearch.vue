@@ -30,9 +30,9 @@ const handlePackageSearch = async () => {
     if(!mainStore.getSearchParams){
         showErrorMessage.value++;
     } else {
-        // if(useRoute().path === '/search') {
+        if(useRoute().path !== '/search') {
             await actGetPackagesSearch();
-        // }
+        }
         console.log('teest')
         router.push({path: '/search', query: mainStore.getSearchParams})
     }

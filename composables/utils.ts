@@ -1,4 +1,4 @@
-import { format } from 'date-fns';
+import { format, formatDuration } from 'date-fns';
 import { sq } from 'date-fns/locale';
 
 export const useUtils = () => {
@@ -27,23 +27,29 @@ export const useUtils = () => {
             locale: sq
         })
     }
+    const formatDurationSQ = (duration: any, options: string[] = ['hours', 'minutes']) => {
+        return formatDuration(duration, {
+            format: options,
+            locale: sq
+        })
+    }
 
     const roomBasisInfo = (code: string) => {
         switch (code) {
             case 'BB':
-                return 'Mengjes i Perfshire';
+                return 'Mëngjesi i përfshirë';
             case 'CB':
-                return 'Mengjes Kontinental';
+                return 'Mengjes kontinental';
             case 'AI':
                 return 'All Inclusive';
             case 'FB':
-                return 'Full Board';
+                return 'Full board';
             case 'HB':
-                return 'Half Board';
+                return 'Half board';
             case 'RO':
-                return 'Pa Ushqim';
+                return 'Pa ushqim';
             case 'BD':
-                return 'Darka e perfshire';
+                return 'Darka e përfshirë';
             default:
                 return `DEV-rast i ri: ${code}`;
         }
@@ -54,6 +60,7 @@ export const useUtils = () => {
         multipleSearchFilter,
         displayNights,
         formatDateSQ,
+        formatDurationSQ,
         roomBasisInfo
     }
 }

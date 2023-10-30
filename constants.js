@@ -24,3 +24,4 @@ export const socialNetworks = [
     {title: 'twitter', link: 'https://twitter.com/himatravel'},
     {title: 'youtube', link: 'https://www.youtube.com'},
 ]
+

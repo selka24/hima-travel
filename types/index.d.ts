@@ -95,8 +95,8 @@ declare global {
         id: number
         origin: string
         destination: string
-        departure: string
-        arrival: string
+        departure: string | Date
+        arrival: string | Date
         price: string
         airline: string
         extra_data: string
