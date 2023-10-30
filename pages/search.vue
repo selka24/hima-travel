@@ -36,7 +36,6 @@
                             Provoni te ndryshoni filtrat!
                         </div>
                     </div>
-
                 </transition-group>
             </div>
         </div>

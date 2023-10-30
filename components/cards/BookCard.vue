@@ -21,6 +21,7 @@
     </div>
 </template>
 <script setup lang="ts">
+const {sendWhatsappMessage} = useUtils();
 const icons = ['user', 'moon', 'calendar', 'food', 'suitcase', 'backpack', 'bed']
 const sampleInfo = [
     '2 Adults',
@@ -32,17 +33,7 @@ const sampleInfo = [
     '1 x Dhomë dyshe',
 ]
 
-const sendWhatsappMessage = () => {
-    const number = '355696696144';
-    const info = ['Udhetime', 'Mar, 20 Shtator 2023', '2','http://localhost:3000/package']
-    const link = `https://api.whatsapp.com/send/?phone=${number}&text=`
-    let message = `Pershendetje%0a
-        Dua %20te%20 prenotoj %20paketen:%20${info[0]}%0a
-        Data:%20 ${info[1]}%0a
-        Numri%20 personave:%20${info[2]}%0a
-        Linku%20 pakets:%20${info[3]}`
-    window.open(link + message.replace(/\s+/g, ''), "_blank");
-}
+
 
 </script>
 

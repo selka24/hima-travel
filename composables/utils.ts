@@ -56,11 +56,24 @@ export const useUtils = () => {
 
     }
 
+    const sendWhatsappMessage = () => {
+        const number = '355696696144';
+        const info = ['Udhetime', 'Mar,%20 20 %20 Shtator %20 2023', '2','http://localhost:3000/package']
+        const link = `https://api.whatsapp.com/send/?phone=${number}&text=`
+        let message = `Pershendetje%0a
+        Dua %20te%20 prenotoj %20paketen:%20${info[0]}%0a
+        Data:%20 ${info[1]}%0a
+        Numri%20 personave:%20${info[2]}%0a
+        Linku%20 pakets:%20${info[3]}`
+        window.open(link + message.replace(/\s+/g, ''), "_blank");
+    }
+
     return {
         multipleSearchFilter,
         displayNights,
         formatDateSQ,
         formatDurationSQ,
+        sendWhatsappMessage,
         roomBasisInfo
     }
 }
