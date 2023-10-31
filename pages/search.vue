@@ -102,9 +102,9 @@ const setSearchValues = async () => {
 if(process.server){
     //get the data from server and set fromServer to true to prevent double data fetch on mounted
     console.log('serveriiiiiiiiiiiiiiiiiii')
-    mainStore.fromServer = true;
+    // mainStore.fromServer = true;
     await mainStore.actGetOrigins();
-    await setSearchValues();
+    // await setSearchValues();
 
 }
 
