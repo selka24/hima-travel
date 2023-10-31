@@ -4,6 +4,9 @@
 
 <template>
     <div class="flex justify-center mt-72 px-5 pb-14 pt-20 lg:px-10 bg-white">
+        <DevOnly>
+            <div class="fixed rounded-full bg-green-600 p-3 text-white top-3 z-[9999]">DEV MODE</div>
+        </DevOnly>
         <div class="max-w-page flex justify-between w-full">
             <div class="hidden md:block">
                 <nuxt-img format="webp"  src="/images/red-logo.png"  width="140" height="56" class="max-w-[222px] w-full"/>
