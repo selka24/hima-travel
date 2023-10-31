@@ -172,12 +172,12 @@ const getPackage = async () => {
     }
 }
 
-if(process.server){
-    if(params?.package){
-        await getPackage();
-        mainStore.fetchedPackageFromServer = true
-    }
-}
+// if(process.server){
+//     if(params?.package){
+//         await getPackage();
+//         mainStore.fetchedPackageFromServer = true
+//     }
+// }
 
 onMounted(() => {
     if(!mainStore.fetchedPackageFromServer){
