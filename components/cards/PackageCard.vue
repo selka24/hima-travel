@@ -28,7 +28,7 @@
                     <div :key="packagePrice" class="font-bold text-[36px] min-w-max lg:text-[55px]">{{ packagePrice }} €</div>
                 </transition>
             </div>
-            <nuxt-link :to="`/package/${package.id}`" class="max-w-[260px] w-full">
+            <nuxt-link :to="{path: '/package', query: {package: package.id}}" class="max-w-[260px] w-full">
                 <button-default class="h-[70px] w-full sm:mb-14 font-normal">Më shumë</button-default>
             </nuxt-link>
         </div>

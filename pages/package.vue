@@ -9,12 +9,12 @@
 <!--                    boxed></json-viewer>-->
 <!--            </client-only>-->
             <div class="text-3xl font-bold mb-10">
-                Udhëtimi juaj drejt Parisit - {{params?.package}}
+                Udhëtimi juaj drejt Parisit - {{query?.package}}
             </div>
             <div class="grid grid-cols-9 mb-4 gap-7">
                 <div v-if="expandImg" class="fixed top-0 bottom-0 right-0 left-0 bg-gray-normal/80 z-[500] backdrop-blur-[5px]">
                 </div>
-                <div :class="['transition-all ease-in duration-300 flex flex-col col-span-9 md:col-span-6', {'fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 h-[80vh] scale-100 z-[600] w-full max-w-page' : expandImg}]">
+                <div :class="['flex flex-col col-span-9 md:col-span-6', {'fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 h-[80vh] scale-100 z-[600] w-full max-w-page' : expandImg}]">
                     <div @click="toggleExpand"
                          v-if="expandImg"
                          class="absolute right-0 -top-11 sm:-right-9 sm:-top-9 cursor-pointer flex items-center justify-center bg-white/80 rounded-full p-2">
@@ -120,7 +120,7 @@ import BookCard from "~/components/cards/BookCard.vue";
 const mainStore = useMainStore();
 const {currTravelPackage} = toRefs(mainStore);
 const runtimeConfig = useRuntimeConfig()
-const {params} = useRoute();
+const {query} = useRoute();
 const activeTab = ref(0);
 const currImg = ref(0);
 const expandImg = ref(false)
@@ -137,14 +137,14 @@ const toggleExpand = () => {
     expandImg.value = !expandImg.value
 }
 
-const packageImages = mainStore.getPackageImages(currTravelPackage.value)
+const packageImages = computed(() => mainStore.getPackageImages(currTravelPackage.value))
 
 // const coordinates = computed(() => {
 //     return [hotel.value.latitude, hotel.value.longitude]
 // })
 
 const place = computed(() => {
-    return `${hotel.value.name.replace(/\s+/g, '+')}+${hotel.value.address.replace(/\s+/g, '+')}`
+    return `${hotel.value?.name.replace(/\s+/g, '+')}+${hotel.value?.address.replace(/\s+/g, '+')}`
 })
 
 const icons = ['calendar', 'suitcase', 'backpack', 'bed', 'food', 'info']
@@ -167,8 +167,8 @@ const handleTabChange = (tab: number) => {
 }
 
 const getPackage = async () => {
-    if(params?.package){
-        await mainStore.actGetPackageById(params.package);
+    if(query?.package){
+        await mainStore.actGetPackageById(query.package);
     }
 }
 

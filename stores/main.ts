@@ -40,7 +40,7 @@ export const useMainStore = defineStore('main', () => {
     })
 
     const getPackageImages = computed(() => {
-        return (pckg: FullPackage) => pckg?.hotel_data.hotel.hotel_photos.map(x => `${runtimeConfig.public.storageUrl}/${x.file_path}`) || [];
+        return (pckg: FullPackage | null) => pckg?.hotel_data.hotel.hotel_photos.map(x => `${runtimeConfig.public.storageUrl}/${x.file_path}`) || [];
     })
 
 
