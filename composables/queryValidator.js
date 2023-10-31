@@ -36,28 +36,28 @@ export const useQueryValidator = () => {
             validParams.checkin_date = new Date(checkin_date);
 
             if(isNaN(validParams.checkin_date)){
-                errors.value.push(`Data nuk eshte korrekte`);
+                errors.value.push(`Data nuk eshte korrekte - (${checkin_date})`);
             }
 
             try {
                 validParams.nights = JSON.parse(nights);
                 if(isNaN(validParams.nights)) throw new Error('nights invalid')
             } catch (e) {
-                errors.value.push(`Netet e fjetjes nuk jane korrekte`);
+                errors.value.push(`Netet e fjetjes nuk jane korrekte - (${nights})`);
             }
 
             try {
                 validParams.origin_id = JSON.parse(origin_id);
                 if(isNaN(validParams.origin_id)) throw new Error('origin_id invalid')
             } catch (e) {
-                errors.value.push(`Nisja nuk eshte korrekte`)
+                errors.value.push(`Nisja nuk eshte korrekte - (${origin_id})`)
             }
 
             try {
                 validParams.destination_id = JSON.parse(destination_id);
                 if(isNaN(validParams.destination_id)) throw new Error('destination_id invalid')
             } catch (e) {
-                errors.value.push(`Mberritja nuk eshte korrekte`)
+                errors.value.push(`Mberritja nuk eshte korrekte - (${destination_id})`)
             }
         }
         invalid.value = !!errors.value.length;

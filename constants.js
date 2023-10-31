@@ -13,8 +13,7 @@ export const pages = [
 ]
 
 export const headPages = [
-    {title: 'Destinacione', link: '/'},
-    {title: 'Bileta', link: '/'},
+    {title: 'Rekomandime', link: '/recommend'},
     {title: 'Paketa', link: '/search'},
 ]
 

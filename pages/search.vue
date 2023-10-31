@@ -30,10 +30,21 @@
 <!--                        </client-only>-->
                     </div>
                     <div v-else class="mt-10 flex justify-center items-center">
-                        <div class="text-center text-secondary text-5xl font-semibold leading-loose">
-                            Nuk u gjend asnje pakete udhetimi!
-                            <br>
-                            Provoni te ndryshoni filtrat!
+                        <div class="text-center text-secondary font-semibold">
+                            <div v-if="errors.length" class="flex flex-col gap-5 text-3xl text-primary text-left">
+                                <div v-for="error in errors">
+                                    {{error}}!
+                                </div>
+
+                                <div class="mt-5 text-secondary">
+                                    Kontrolloni parametrat e kerkimit
+                                </div>
+                            </div>
+                            <div v-else class="text-5xl leading-loose">
+                                Nuk u gjend asnje pakete udhetimi!
+                                <br>
+                                Provoni te ndryshoni parametrat e kerkimit.
+                            </div>
                         </div>
                     </div>
                 </transition-group>
@@ -49,7 +60,7 @@ const mainStore = useMainStore();
 
 
 
-const {invalid, validParams, handleQueryValidate} = useQueryValidator()
+const {invalid, validParams, handleQueryValidate, errors} = useQueryValidator()
 const route = useRoute();
 
 const img = useImage();
@@ -61,6 +72,7 @@ const setSearchValues = async () => {
 
     if(invalid.value) {
         mainStore.loadingPackages = false;
+        console.log('invalid search')
     } else {
         if(!mainStore.allOrigins.length){
             console.log('getting dataaa origin')

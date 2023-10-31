@@ -50,11 +50,11 @@ watch(() => props.activeTab, (newValue, oldValue) => {
 }
 .slideback-arrow-enter-from {
     transform: translate(-100%, 0);
-    opacity: 0;
+    //opacity: 0;
 }
 .slideback-arrow-leave-to {
     transform: translate(100%, 0);
-    opacity: 0;
+    //opacity: 0;
 }
 
 
@@ -65,11 +65,11 @@ watch(() => props.activeTab, (newValue, oldValue) => {
 }
 .slide-arrow-enter-from {
     transform: translate(100%, 0);
-    opacity: 0;
+    //opacity: 0;
 }
 .slide-arrow-leave-to {
     transform: translate(-100%, 0);
-    opacity: 0;
+    //opacity: 0;
 }
 
 .line {

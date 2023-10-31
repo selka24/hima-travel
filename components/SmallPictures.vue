@@ -1,9 +1,9 @@
 <template>
-    <div class="smallPics flex gap-5 overflow-hidden overflow-x-scroll">
+    <div class="smallPics flex gap-5 overflow-hidden overflow-x-scroll min-w-[120px] min-h-[120px]">
         <div v-for="(img, idx) in images"
              :key="img"
              @click="handleImageSelect(idx)"
-             :class="[{'border-2 border-primary' : idx === currImage},'cursor-pointer rounded-[20px] min-w-[120px] min-h-[120px] overflow-hidden']">
+             :class="[{'border-2 border-primary' : idx === currImage},'cursor-pointer rounded-[20px] overflow-hidden']">
             <nuxt-img class="w-full h-full" format="webp" :src="img" width="120" height="120"/>
         </div>
     </div>

@@ -12,14 +12,21 @@
                 Udhëtimi juaj drejt Parisit - {{params?.package}}
             </div>
             <div class="grid grid-cols-9 mb-4 gap-7">
-                <div class="flex flex-col col-span-9 md:col-span-6">
-                    <div class="rounded-[20px] overflow-hidden min-h-[500px] mb-4">
+                <div v-if="expandImg" class="fixed top-0 bottom-0 right-0 left-0 bg-gray-normal/80 z-[500] backdrop-blur-[5px]">
+                </div>
+                <div :class="['transition-all ease-in duration-300 flex flex-col col-span-9 md:col-span-6', {'fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 h-[80vh] scale-100 z-[600] w-full max-w-page' : expandImg}]">
+                    <div @click="toggleExpand"
+                         v-if="expandImg"
+                         class="absolute right-0 -top-11 sm:-right-9 sm:-top-9 cursor-pointer flex items-center justify-center bg-white/80 rounded-full p-2">
+                        <nuxt-icon name="close" class="text-xl" filled/>
+                    </div>
+                    <div class="rounded-[20px] overflow-hidden min-h-[500px] h-full mb-4 relative">
                         <Carousel @slide-change="handleSlideChange"
                                   :slide-classes="['w-full h-full']"
                                   :current-slide="currImg"
                                   :options="packageImages">
                             <template #option="{option}">
-                                <nuxt-img width="700" height="500" loading="lazy" format="webp" class="w-full h-full object-cover" :src="option" :alt="'hotel photo'"/>
+                                <nuxt-img @click="() => {if(!expandImg) expandImg = true}" width="700" height="500" loading="lazy" format="webp" :class="['w-full h-full object-cover', {'cursor-pointer': !expandImg}]" :src="option" :alt="'hotel photo'"/>
                             </template>
                             <template #empty>
                                 Nuk ka imazhe per kete hotel
@@ -116,14 +123,19 @@ const runtimeConfig = useRuntimeConfig()
 const {params} = useRoute();
 const activeTab = ref(0);
 const currImg = ref(0);
+const expandImg = ref(false)
 
 const handleSlideChange = (slide: number) => {
     currImg.value = slide;
 }
 
 const hotel = computed(() => {
-    return currTravelPackage.value.hotel_data.hotel
+    return currTravelPackage.value?.hotel_data.hotel
 })
+
+const toggleExpand = () => {
+    expandImg.value = !expandImg.value
+}
 
 const packageImages = mainStore.getPackageImages(currTravelPackage.value)
 
