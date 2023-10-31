@@ -4,16 +4,23 @@ import OffersSection from "~/components/sections/OffersSection.vue";
 import WelcomSection from "~/components/sections/WelcomSection.vue";
 
 const {actResetParams} = useMainStore()
-
+const runtimeConfig = useRuntimeConfig()
 definePageMeta({
     layout: 'home'
 })
 
-useHead({
+useSeoMeta({
     title: 'Hima Travel Bileta Avioni',
-    meta: [
-        { name: 'description', content: 'Agjensi Turistike Hima Travel. E Njohur si Agjensi Udhetimesh qe nga 2011 ofron Udhetime me Guide dhe Individuale' }
-    ],
+    ogTitle: 'Hima Travel Bileta Avioni',
+    description: 'Agjensi Turistike Hima Travel. E Njohur si Agjensi Udhetimesh qe nga 2011 ofron Udhetime me Guide dhe Individuale',
+    ogDescription: 'Agjensi Turistike Hima Travel. E Njohur si Agjensi Udhetimesh qe nga 2011 ofron Udhetime me Guide dhe Individuale',
+    ogType: 'website',
+    ogLocale: 'en_US',
+    ogSiteName: 'Bileta Avioni Hima Travel',
+    ogImage: () => `${runtimeConfig.public.prodUrl}/images/red-logo.png`,
+    ogImageWidth: '140',
+    ogImageHeight: '56',
+    ogImageType: 'image/png'
 })
 
 actResetParams();
