@@ -1,6 +1,7 @@
 <template>
     <ArrowTabs @tab-change="handleTabChange"
                :tabs="tabs"
+               :bgTriangle="bgTriangle"
                :active-tab="activeTab"
                class="mb-10"
     />
@@ -23,7 +24,7 @@
 import {intervalToDuration} from "date-fns";
 
 const {roomBasisInfo, formatDateSQ, formatDurationSQ, displayNights} = useUtils();
-const props = defineProps<{ package: FullPackage }>();
+const props = defineProps<{ package: FullPackage, bgTriangle?: string }>();
 const tabs = ['Të përfshira', 'Hoteli', 'Fluturimi'];
 
 const hotel_data = props.package.hotel_data

@@ -5,7 +5,8 @@
 <template>
     <div class="bg-white relative p-7 text-secondary rounded-[30px] border border-gray-normal">
         <div class="relative rounded-[10px] overflow-hidden">
-            <nuxt-img src="images/roma.png" width="383" height="441"/>
+            <nuxt-img src="images/roma.png" width="383" height="400"/>
+            <div class="font-bold text-5xl absolute-center text-white">ROME</div>
         </div>
         <div class="mt-7 items-center flex justify-between">
             <div>
@@ -34,7 +35,7 @@
                 </div>
             </div>
         </div>
-        <div class="flex gap-2 mb-20">
+        <div class="flex gap-2 mb-10">
             <span class="text-[#55C7F8]">Ofert Skadon:</span>
             <span class="text-primary">8 Ore / 20 Minuta / 54 Sekonda</span>
         </div>

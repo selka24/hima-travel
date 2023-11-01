@@ -1,15 +1,15 @@
 <template>
     <div class="flex w-full justify-center mt-24 px-5 lg:px-10">
         <div class="flex flex-col max-w-screen-lg w-full" v-if="!mainStore.loadingCurrPackage && mainStore.currTravelPackage">
-<!--            <client-only>-->
-<!--                <json-viewer-->
-<!--                    :value="currTravelPackage"-->
-<!--                    :expand-depth=5-->
-<!--                    copyable-->
-<!--                    boxed></json-viewer>-->
-<!--            </client-only>-->
+            <client-only>
+                <json-viewer
+                    :value="currTravelPackage"
+                    :expand-depth=5
+                    copyable
+                    boxed></json-viewer>
+            </client-only>
             <div class="text-3xl font-bold mb-10">
-                Udhëtimi juaj drejt Parisit - {{query?.package}}
+                HOTEL {{hotel?.name}}
             </div>
             <div class="grid grid-cols-9 mb-4 gap-7">
                 <div v-if="expandImg" class="fixed top-0 bottom-0 right-0 left-0 bg-gray-normal/80 z-[500] backdrop-blur-[5px]">
@@ -45,28 +45,8 @@
                 </div>
             </div>
             <div class="mt-16 grid grid-cols-9">
-                <ArrowTabs @tab-change="handleTabChange"
-                           :tabs="tabs"
-                           bg-triangle="bg-gray-lighter"
-                           :active-tab="activeTab"
-                           class="mb-16 col-span-9 md:col-span-5">
-                    <template #default="{tab}">
-                        <div class="flex justify-center">
-                            <div class="hidden sm:flex items-center gap-2">
-                                <nuxt-icon :name="tab.icon"/>
-                                {{tab.title}}
-                            </div>
-                            <nuxt-icon :name="tab.icon" class="block sm:hidden mb-2"/>
-                        </div>
-                    </template>
-                </ArrowTabs>
-                <div class="col-span-9 flex flex-wrap gap-x-4 justify-between gap-y-10">
-                    <div v-for="ind in 3" :key="ind + 'ind'" class="flex flex-col gap-y-3.5">
-                        <div v-for="(icon, idx) in icons" class="flex gap-4 items-center">
-                            <nuxt-icon :name="icon" filled class="text-2xl"/>
-                            <div class="font-bold">{{ sampleInfo[idx] }}</div>
-                        </div>
-                    </div>
+                <div class="col-span-9 md:col-span-6">
+                    <InfoTabs bgTriangle="bg-gray-lighter" :package="mainStore.currTravelPackage"/>
                 </div>
             </div>
             <ZbuloBoten class="mt-28"/>
@@ -98,7 +78,7 @@
                 <BookCard/>
             </div>
         </div>
-        <div v-else-if="mainStore.loadingPackages" class="mt-10 flex justify-center items-center">
+        <div v-else-if="mainStore.loadingCurrPackage" class="mt-10 flex justify-center items-center">
             <div class="text-center text-secondary text-5xl font-semibold leading-loose">
                 LOADING...
             </div>
@@ -115,13 +95,12 @@ import SmallPictures from "~/components/SmallPictures.vue";
 import InfoCard from "~/components/cards/InfoCard.vue";
 import ZbuloBoten from "~/components/sections/ZbuloBoten.vue";
 import BookCard from "~/components/cards/BookCard.vue";
-// import JsonViewer from "vue-json-viewer/vue-json-viewer";
+import InfoTabs from "~/components/package/InfoTabs.vue";
+import JsonViewer from 'vue-json-viewer';
 
 const mainStore = useMainStore();
 const {currTravelPackage} = toRefs(mainStore);
-const runtimeConfig = useRuntimeConfig()
 const {query} = useRoute();
-const activeTab = ref(0);
 const currImg = ref(0);
 const expandImg = ref(false)
 
@@ -147,24 +126,6 @@ const place = computed(() => {
     return `${hotel.value?.name.replace(/\s+/g, '+')}+${hotel.value?.address.replace(/\s+/g, '+')}`
 })
 
-const icons = ['calendar', 'suitcase', 'backpack', 'bed', 'food', 'info']
-const tabs = [
-    {title: 'Udhëtimi', icon: 'backpack'},
-    {title: 'Hoteli', icon: 'food'},
-    {title: 'Location', icon: 'suitcase'},
-    {title: 'Dhoma', icon: 'bed'},
-];
-const sampleInfo = [
-    '5 Netë, e Mar, 20 Shtator 2022',
-    'Valixhe deri në 22 kg',
-    'Çanë shpine deri në 22 kg',
-    '1 x Dhomë dyshe',
-    'Mëngjesi i përfshirë',
-    'Info',
-]
-const handleTabChange = (tab: number) => {
-    activeTab.value = tab;
-}
 
 const getPackage = async () => {
     if(query?.package){
@@ -172,17 +133,8 @@ const getPackage = async () => {
     }
 }
 
-// if(process.server){
-//     if(params?.package){
-//         await getPackage();
-//         mainStore.fetchedPackageFromServer = true
-//     }
-// }
-
 onMounted(() => {
-    if(!mainStore.fetchedPackageFromServer){
-        getPackage();
-    }
+    getPackage();
 })
 </script>
 

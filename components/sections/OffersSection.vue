@@ -2,7 +2,7 @@
 import PreviewCard from "~/components/cards/PreviewCard.vue";
 
 const samplePackage: Package = {
-    id: null,
+    id: -1,
     image: 'roma.png',
     country: 'Roma',
     price: 299,
@@ -11,7 +11,6 @@ const samplePackage: Package = {
     logo: 'roma',
     offers: 6
 }
-
 </script>
 
 <template>
@@ -23,7 +22,10 @@ const samplePackage: Package = {
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-3 gap-y-28 mt-20 max-w-page">
             <preview-card v-for="idx in 9" :key="idx + 'prw-card'" :travel-package="samplePackage"/>
         </div>
-        <nuxt-link to="/" class="mt-44 font-normal border border-primary px-36 py-5 rounded-[10px]">VIEW ALL DEALS</nuxt-link>
+        <nuxt-link to="/inspiration"
+                   class="mt-44 font-normal border border-primary px-36 py-5 rounded-[10px]">
+            VIEW ALL DEALS
+        </nuxt-link>
     </div>
 </template>
 

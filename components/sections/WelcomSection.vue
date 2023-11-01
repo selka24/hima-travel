@@ -1,7 +1,3 @@
-<script setup lang="ts">
-
-</script>
-
 <template>
     <div class="flex justify-center px-5 lg:px-10">
         <div class="grid grid-cols-1 xl:grid-cols-2 max-w-page w-full gap-20">
@@ -24,7 +20,3 @@
         </div>
     </div>
 </template>
-
-<style scoped>
-
-</style>

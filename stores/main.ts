@@ -2,10 +2,8 @@ import {format} from 'date-fns'
 export const useMainStore = defineStore('main', () => {
     const {$api, $testApi} = useNuxtApp();
     const runtimeConfig = useRuntimeConfig();
+
     //state
-    const testRes = ref<any>(null)
-    const fromServer = ref(false);
-    const fetchedPackageFromServer = ref(false);
 
     const currTravelPackage = ref<FullPackage | null>(null);
     const loadingCurrPackage = ref(true);
@@ -94,6 +92,7 @@ export const useMainStore = defineStore('main', () => {
             .catch((e) => {
                 console.log(e, 'get by id errorrr')
             })
+        console.log('finished get package')
         loadingCurrPackage.value = false;
     }
 
@@ -109,9 +108,6 @@ export const useMainStore = defineStore('main', () => {
 
     return {
         allOrigins,
-        testRes,
-        fromServer,
-        fetchedPackageFromServer,
         allDestinations,
         currTravelPackage,
         loadingCurrPackage,

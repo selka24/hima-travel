@@ -100,12 +100,7 @@ const setSearchValues = async () => {
 }
 
 if(process.server){
-    //get the data from server and set fromServer to true to prevent double data fetch on mounted
-    console.log('serveriiiiiiiiiiiiiiiiiii')
-    // mainStore.fromServer = true;
     await mainStore.actGetOrigins();
-    // await setSearchValues();
-
 }
 
 onBeforeUnmount(() => {
@@ -115,13 +110,7 @@ onBeforeUnmount(() => {
 })
 
 onMounted(() => {
-    console.log('mounteeed search', mainStore.fromServer)
-    if(!mainStore.fromServer){
-        setSearchValues();
-    }
-    //set from server to false in order to fetch data
-    //when mounting the search page from client side and not from server
-    mainStore.fromServer = false;
+    setSearchValues();
 })
 
 

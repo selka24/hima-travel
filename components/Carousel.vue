@@ -45,7 +45,7 @@
 
 <template>
     <div :class="['overflow-hidden relative', ...(slideClasses || ['w-[500px]', 'h-[500px]']), {'border-2 rounded-[20px]': !options.length}]">
-        <div v-if="options.length && !noControls" class="w-full absolute px-4 z-10 flex top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 items-center justify-between">
+        <div v-if="options.length && !noControls" class="w-full px-4 z-10 flex absolute-center items-center justify-between">
             <div @click="handleSlideChange(currSlideNo - 1)"
                  class="cursor-pointer flex items-center justify-center bg-white/80 rounded-full p-2">
                 <nuxt-icon name="chevron-down-solid" class="text-2xl [&>*:first-child]:rotate-90" filled/>

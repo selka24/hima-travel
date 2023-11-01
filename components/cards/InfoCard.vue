@@ -1,10 +1,12 @@
 <template>
     <div class="px-7 pb-7 relative flex flex-col justify-center sm:flex-row gap-0 sm:gap-5 md:gap-0 sm:justify-between md:flex-col items-center md:justify-center border border-gray-normal bg-white rounded-[30px]">
-        <CornerInfo/>
+        <CornerInfo>
+            {{roomBasisInfo(mainStore.currTravelPackage.hotel_data.room_basis)}}
+        </CornerInfo>
         <div class="flex flex-grow max-w-max mt-24 flex-col gap-y-5 w-full">
-            <div v-for="(info, idx) in sampleInfo" class="flex gap-3" :key="idx + 'info'">
-                <nuxt-icon :name="icons[idx]" class="text-2xl" filled />
-                <div>{{info}}</div>
+            <div v-for="(info, idx) in packageInfo" class="flex gap-3" :key="idx + 'info'">
+                <nuxt-icon :name="info.icon" class="text-2xl" filled />
+                <div>{{info.value}}</div>
             </div>
         </div>
         <div class="flex flex-col items-center mt-16 sm:mt-0 max-w-full sm:max-w-[260px] md:max-w-full w-full h-full md:h-auto">
@@ -15,7 +17,7 @@
     </div>
 </template>
 <script setup lang="ts">
-const {sendWhatsappMessage} = useUtils();
+const {sendWhatsappMessage, displayNights, roomBasisInfo, formatDateSQ} = useUtils();
 
 const icons = ['user', 'moon', 'calendar', 'food']
 const sampleInfo = [
@@ -25,6 +27,16 @@ const sampleInfo = [
     'Mëngjesi i përfshirë',
 ]
 const mainStore = useMainStore();
+
+const packageInfo = computed(() => {
+    if(!mainStore.currTravelPackage) return [];
+    return [
+        {icon: 'user', value: '2 të rritur'},
+        {icon: 'calendar', value: `E ${formatDateSQ(new Date(mainStore.currTravelPackage.hotel_data.check_in_date), 'iiii, d LLLL yyyy')}`},
+        {icon: 'moon', value: displayNights(mainStore.currTravelPackage.hotel_data.number_of_nights)},
+        {icon: 'food', value: roomBasisInfo(mainStore.currTravelPackage.hotel_data.room_basis)},
+    ]
+})
 
 const price = computed(() => {
     return mainStore.currTravelPackage?.total_price || 'Null';

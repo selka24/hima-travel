@@ -21,20 +21,27 @@ import TravelNights from "~/components/TravelNights.vue";
 
 defineProps(['showTypes'])
 
-const mainStore = useMainStore()
-const {actGetPackagesSearch} = mainStore;
+const mainStore = useMainStore();
 const router = useRouter();
+const route = useRoute();
 const showErrorMessage = ref(0)
 
-const handlePackageSearch = async () => {
+const handlePackageSearch = () => {
     if(!mainStore.getSearchParams){
         showErrorMessage.value++;
     } else {
-        if(useRoute().path !== '/search') {
-            await actGetPackagesSearch();
+        //refresh param is used to trigger the search page route watcher to get
+        //packages when search params are not changed,
+        //acting like a refresh
+        const {refresh} = route.query;
+        let refreshValue = Number(refresh);
+        if(!isNaN(refreshValue)){
+            refreshValue = refreshValue + 1;
+        } else {
+            refreshValue = 0;
         }
-        console.log('teest')
-        router.push({path: '/search', query: mainStore.getSearchParams})
+
+        router.push({path: '/search', query: {...mainStore.getSearchParams, refresh: refreshValue}})
     }
 }
 </script>
