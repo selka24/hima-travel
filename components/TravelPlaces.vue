@@ -32,11 +32,12 @@
             name="destination"
             @select="handleDestinationSelect"
             :options="mainStore.allDestinations"
-            placeholder="Mbërritja"
+            :placeholder="selectedDestination?.name || 'Mbërritja'"
             id="mberritja"
             :error="selectedOrigin ? '' : 'Ju lutem zgjidhni nisjen!'"
             :filterKey="['name', 'country']"
             v-model="destinationSearch"
+            @focus="handleDestFocus"
             @focusout="handleDestinationFocusOut"
         >
             <template #option="{country, name}">
@@ -63,6 +64,7 @@ const handleGetOrigins = async () => {
     if(!mainStore.allOrigins.length) {
         await actGetOrigins();
     }
+
 }
 
 // await handleGetOrigins();
@@ -85,9 +87,15 @@ const handleOriginFocusOut = () => {
     if(selectedOrigin.value)
         originSearch.value = selectedOrigin.value.name;
 }
+
+const handleDestFocus = () => {
+    destinationSearch.value = ''
+}
 const handleDestinationFocusOut = () => {
     if(selectedDestination.value)
         destinationSearch.value = selectedDestination.value.name;
+    else
+        destinationSearch.value = '';
 }
 </script>
 

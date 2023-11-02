@@ -1,16 +1,3 @@
-<script setup lang="ts">
-    const mainStore = useMainStore()
-    const sortOptions = [
-        {title: 'Rekomandimit', value: 1},
-        {title: 'Çmimi më i ulët', value: 2},
-        {title: 'Çmimi më i lartë', value: 3},
-    ]
-    const handleSortChange = (sort: {title: string, value: number}) => {
-        mainStore.selectedSort = sort;
-    }
-
-</script>
-
 <template>
 <div class="flex gap-y-10 flex-wrap justify-between items-center w-full">
     <div class="flex items-center justify-between w-[300px]">
@@ -27,7 +14,15 @@
     </div>
 </div>
 </template>
+<script setup lang="ts">
+const mainStore = useMainStore()
+const sortOptions = [
+    {title: 'Rekomandimit', value: 1},
+    {title: 'Çmimi më i ulët', value: 2},
+    {title: 'Çmimi më i lartë', value: 3},
+]
+const handleSortChange = (sort: {title: string, value: number}) => {
+    mainStore.selectedSort = sort;
+}
 
-<style scoped>
-
-</style>
+</script>

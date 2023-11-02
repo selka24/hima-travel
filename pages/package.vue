@@ -128,8 +128,11 @@ const place = computed(() => {
 
 
 const getPackage = async () => {
-    if(query?.package){
+    if(query?.package && !isNaN(Number(query.package))){
         await mainStore.actGetPackageById(query.package);
+    } else {
+        mainStore.loadingCurrPackage = false;
+        console.error('Invalid package id parameter')
     }
 }
 
