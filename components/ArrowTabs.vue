@@ -1,29 +1,8 @@
-<script setup lang="ts">
-const props = defineProps(['tabs', 'activeTab', 'bgTriangle'])
-const emit = defineEmits(['tabChange'])
-const transitionName = ref('slide-arrow')
-const handleTabChange = (idx: number) => {
-    emit('tabChange', idx);
-}
-
-watch(() => props.activeTab, (newValue, oldValue) => {
-    const lastOption = props.tabs.length - 1;
-    if(newValue === 0 && oldValue === lastOption){
-        transitionName.value = 'slideback-arrow';
-    } else if(oldValue === 0 && newValue === lastOption) {
-        transitionName.value = 'slide-arrow';
-    } else {
-        transitionName.value = (newValue < oldValue) ? 'slide-arrow' : 'slideback-arrow';
-    }
-})
-
-</script>
-
 <template>
         <div class="flex">
             <div v-for="(tab, idx) in tabs" :key="idx + 'tab'"
-                 :class="['relative text-lg font-bold', ( activeTab === idx ? 'text-primary': 'text-gray-hard'), (idx === 0 ? 'flex-1' : 'flex-1')]">
-                <div class="text-center cursor-pointer" @click="handleTabChange(idx)">
+                 :class="['relative w-full text-lg font-bold', ( activeTab === idx ? 'text-primary': 'text-gray-hard')]">
+                <div class="flex justify-center cursor-pointer mb-2" @click="handleTabChange(idx)">
                     <slot :tab="tab">
                         {{tab}}
                     </slot>
@@ -40,36 +19,54 @@ watch(() => props.activeTab, (newValue, oldValue) => {
             </div>
         </div>
 </template>
+<script setup lang="ts">
+const props = defineProps(['tabs', 'activeTab', 'bgTriangle'])
+const emit = defineEmits(['tabChange'])
+const transitionName = ref('slide-arrow')
+const handleTabChange = (idx: number | string) => {
+    emit('tabChange', Number(idx));
+}
 
+watch(() => props.activeTab, (newValue, oldValue) => {
+    const lastOption = props.tabs.length - 1;
+    if(newValue === 0 && oldValue === lastOption){
+        transitionName.value = 'slideback-arrow';
+    } else if(oldValue === 0 && newValue === lastOption) {
+        transitionName.value = 'slide-arrow';
+    } else {
+        transitionName.value = (newValue < oldValue) ? 'slide-arrow' : 'slideback-arrow';
+    }
+})
+
+</script>
 <style scoped>
 
 .slideback-arrow-leave-active,
 .slideback-arrow-enter-active {
-    transition: all 1s;
-    transition: ;
+    transition: all 0.7s;
 }
 .slideback-arrow-enter-from {
     transform: translate(-100%, 0);
-    //opacity: 0;
+    opacity: 0;
 }
 .slideback-arrow-leave-to {
     transform: translate(100%, 0);
-    //opacity: 0;
+    opacity: 0;
 }
 
 
 
 .slide-arrow-leave-active,
 .slide-arrow-enter-active {
-    transition: all 1s;
+    transition: all 0.7s;
 }
 .slide-arrow-enter-from {
     transform: translate(100%, 0);
-    //opacity: 0;
+    opacity: 0;
 }
 .slide-arrow-leave-to {
     transform: translate(-100%, 0);
-    //opacity: 0;
+    opacity: 0;
 }
 
 .line {

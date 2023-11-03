@@ -5,7 +5,7 @@
 <template>
     <div class="bg-white relative p-7 text-secondary rounded-[30px] border border-gray-normal">
         <div class="relative rounded-[10px] overflow-hidden">
-            <nuxt-img src="images/roma.png" width="383" height="400"/>
+            <nuxt-img src="images/roma.png" width="383" height="400" class="w-full"/>
             <div class="font-bold text-5xl absolute-center text-white">ROME</div>
         </div>
         <div class="mt-7 items-center flex justify-between">

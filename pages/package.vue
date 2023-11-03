@@ -45,7 +45,7 @@
                 </div>
             </div>
             <div class="mt-16 grid grid-cols-9">
-                <div class="col-span-9 md:col-span-6">
+                <div class="col-span-9 md:col-span-6 overflow-hidden">
                     <InfoTabs bgTriangle="bg-gray-lighter" :package="mainStore.currTravelPackage"/>
                 </div>
             </div>

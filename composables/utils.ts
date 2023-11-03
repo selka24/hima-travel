@@ -34,6 +34,21 @@ export const useUtils = () => {
         })
     }
 
+    const isInViewport = (el: HTMLElement) => {
+        const rect = el.getBoundingClientRect();
+
+        // returns true or false based on whether the element is in viewport
+        const isInView = (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+
+        );
+
+        return isInView;
+    }
+
     const roomBasisInfo = (code: string) => {
         switch (code) {
             case 'BB':
@@ -70,6 +85,7 @@ export const useUtils = () => {
 
     return {
         multipleSearchFilter,
+        isInViewport,
         displayNights,
         formatDateSQ,
         formatDurationSQ,

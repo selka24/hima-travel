@@ -57,7 +57,7 @@
 
 .slide-leave-active,
 .slide-enter-active {
-    transition: all 1s;
+    transition: all 0.7s;
 }
 .slide-enter-from {
     transform: translate(100%, 0);
@@ -70,7 +70,7 @@
 
 .slideback-leave-active,
 .slideback-enter-active {
-    transition: all 1s;
+    transition: all 0.7s;
 }
 .slideback-enter-from {
     transform: translate(-100%, 0);

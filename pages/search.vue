@@ -6,7 +6,7 @@
                 <TravelSearch class="max-w-page w-full"/>
             </div>
         </div>
-        <div class="flex flex-col items-center justify-center w-full px-5 lg:px-10">
+        <div id="resultsSection" class="flex flex-col items-center justify-center w-full px-5 lg:px-10">
             <SearchFilters class="max-w-page mt-11"/>
             <div class="flex flex-col gap-10 max-w-screen-2xl w-full mt-10">
                 <TellUs/>
@@ -59,7 +59,7 @@ import TellUs from "~/components/sections/TellUs.vue";
 const mainStore = useMainStore();
 
 
-
+const {isInViewport} = useUtils();
 const {invalid, validParams, handleQueryValidate, errors} = useQueryValidator()
 const route = useRoute();
 
@@ -96,6 +96,14 @@ const setSearchValues = async () => {
             mainStore.destinationSearch = destination.name
         }
         await mainStore.actGetPackagesSearch();
+    }
+
+    const resSect = document.getElementById('resultsSection')
+
+    if(!isInViewport(resSect)){
+        resSect.scrollIntoView({
+            behavior: 'smooth'
+        })
     }
 }
 

@@ -3,8 +3,15 @@
                :tabs="tabs"
                :bgTriangle="bgTriangle"
                :active-tab="activeTab"
-               class="mb-10"
-    />
+               class="mb-10">
+        <template #default="{tab}">
+            <div class="hidden sm:flex items-center gap-3 ">
+                <nuxt-icon :name="tab.icon" class="text-xl hidden md:block"/>
+                {{tab.title}}
+            </div>
+            <nuxt-icon class="block sm:hidden text-xl" :name="tab.icon" />
+        </template>
+    </ArrowTabs>
     <Carousel :slide-classes="['w-full h-full min-h-[230px]']"
               :no-controls="true"
               :current-slide="activeTab"
@@ -25,7 +32,11 @@ import {intervalToDuration} from "date-fns";
 
 const {roomBasisInfo, formatDateSQ, formatDurationSQ, displayNights} = useUtils();
 const props = defineProps<{ package: FullPackage, bgTriangle?: string }>();
-const tabs = ['Të përfshira', 'Hoteli', 'Fluturimi'];
+const tabs = [
+    {title: 'Të përfshira', icon: 'info'},
+    {title: 'Hoteli', icon: 'bed'},
+    {title: 'Fluturimi', icon: 'plane-departure'},
+];
 
 const hotel_data = props.package.hotel_data
 const roomBasis = roomBasisInfo(hotel_data.room_basis);

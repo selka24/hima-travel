@@ -3,9 +3,9 @@
         <div class="font-bold text-[22px] mb-10">Rezervo udhëtimin tënd tani</div>
         <div class="grid grid-cols-6">
             <div class="col-span-6 sm:col-span-3 md:col-span-4 flex flex-col lg:max-h-[170px] gap-y-5 flex-wrap">
-                <div v-for="(info, idx) in sampleInfo" class="flex gap-3" :key="idx + 'bookinfo'">
-                    <nuxt-icon :name="icons[idx]" class="text-2xl" filled />
-                    <div>{{info}}</div>
+                <div v-for="(info, idx) in bookCardInfo" class="flex gap-3" :key="idx + 'bookinfo'">
+                    <nuxt-icon :name="info.icon" class="text-2xl" filled />
+                    <div>{{info.value}}</div>
                 </div>
             </div>
             <div class="col-span-6 sm:col-span-3 md:col-span-2 flex justify-end">
@@ -14,24 +14,34 @@
                         <div class="text-lg font-bold">Për person</div>
                         <div class="font-bold text-[36px] min-w-max sm:text-[55px]">399 €</div>
                     </div>
-                    <button-default class="h-[70px] w-[260px] font-normal" @click="sendWhatsappMessage">Vazhdo</button-default>
+                    <button-default
+                        class="h-[70px] w-[260px] font-normal"
+                        @click="sendWhatsappMessage">
+                        Vazhdo
+                    </button-default>
                 </div>
             </div>
         </div>
     </div>
 </template>
 <script setup lang="ts">
-const {sendWhatsappMessage} = useUtils();
-const icons = ['user', 'moon', 'calendar', 'food', 'suitcase', 'backpack', 'bed']
-const sampleInfo = [
-    '2 Adults',
-    '7 Netë',
-    'Friday 20 Shtator 2023',
-    'Mëngjesi i përfshirë',
-    'Valixhe deri në 22 kg',
-    'Çanë shpine deri në 22 kg',
-    '1 x Dhomë dyshe',
-]
+const {sendWhatsappMessage, displayNights, roomBasisInfo, formatDateSQ} = useUtils();
+const mainStore = useMainStore();
+const hotel_data = computed(() => {
+    return mainStore.currTravelPackage?.hotel_data
+})
+
+const bookCardInfo = computed(() => {
+    if(!hotel_data.value) return [];
+    return [
+        {icon: 'user', value: '2 të rritur'},
+        {icon: 'moon', value: displayNights(hotel_data.value.number_of_nights)},
+        {icon: 'calendar', value: `E ${formatDateSQ(new Date(hotel_data.value.check_in_date), 'iiii, d LLLL yyyy')}`},
+        {icon: 'backpack', value: 'Bagazh krahu 10 kg'},
+        {icon: 'bed', value: JSON.parse(hotel_data.value.room_details)[0]},
+        {icon: 'food', value:  roomBasisInfo(hotel_data.value.room_basis)},
+    ];
+})
 
 
 

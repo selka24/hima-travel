@@ -10,6 +10,13 @@ export default defineNuxtPlugin((nuxtApp) => {
         },
     });
 
+    api.interceptors.response.use(
+        (response) => {
+            return response?.data || {data: null};
+        },
+        (error) => error
+    )
+
     return {
         provide: {
             api: api,

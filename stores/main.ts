@@ -65,7 +65,7 @@ export const useMainStore = defineStore('main', () => {
             loadingPackages.value = true;
             await $api.post('/packages/search', getSearchParams.value)
                 .then((response) => {
-                    travelPackages.value = response.data.data
+                    travelPackages.value = response.data
                 }).catch((e) => {
                     if(e.response){
                         travelPackages.value = null;
@@ -84,10 +84,10 @@ export const useMainStore = defineStore('main', () => {
         loadingCurrPackage.value = true;
         await $api.get(`/packages/${id}`)
             .then((response) => {
-                console.log('get by id response', response.data?.data.id)
-                if(response?.data?.data){
-                    currTravelPackage.value = response.data?.data;
-                }
+                console.log('get by id response', response)
+                // if(response?.data){
+                    currTravelPackage.value = response.data;
+                // }
             })
             .catch((e) => {
                 console.log(e, 'get by id errorrr')
@@ -102,7 +102,7 @@ export const useMainStore = defineStore('main', () => {
                 console.log(e, 'errorrr')
             })
             .then((response) => {
-                allOrigins.value = response?.data?.data
+                allOrigins.value = response?.data
             })
     }
 
