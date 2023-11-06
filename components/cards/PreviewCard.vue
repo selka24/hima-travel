@@ -1,30 +1,34 @@
 <script setup lang="ts">
-    const props = defineProps<{
-        travelPackage: Package
-    }>()
+    const props = defineProps<{travelPackage: TravelOffer}>();
 </script>
 
 <template>
     <div class="border border-gray-normal rounded-[30px] p-7 relative">
         <div class="relative group overflow-hidden rounded-[10px]  text-5xl text-white font-bold ">
-            <nuxt-img format="webp"  class="transition-all ease-in duration-300 group-hover:scale-110 object-cover w-full min-h-[442px]" width="385" height="442" :src="`/images/${travelPackage.image}`" alt="roma preview"/>
+            <nuxt-img format="webp"
+                      class="transition-all ease-in duration-300 group-hover:scale-110 object-cover w-full min-h-[442px]"
+                      width="385"
+                      height="442"
+                      :src="`/images/${'roma.png'}`"
+                      alt="roma preview"
+            />
             <div class="flex flex-col justify-end items-center transition-all ease-in duration-300 opacity-0 group-hover:opacity-100 absolute w-full h-full bg-primary/70  backdrop-blur-[1px] top-0 rounded-[10px]">
-                <nuxt-icon :name="travelPackage.logo" filled class="text-[150px] mb-8"/>
+                <nuxt-icon :name="'roma'" filled class="text-[150px] mb-8"/>
                 <div class="mb-40">
-                    {{travelPackage.offers}} OFERTA
+                    {{travelPackage.packages_count}} OFERTA
                 </div>
             </div>
             <div class="transition-all ease-in duration-300 uppercase absolute bottom-1/2 left-1/2 -translate-x-1/2 group-hover:bottom-24">
-                {{travelPackage.country}}
+                {{travelPackage.city}}
             </div>
         </div>
         <div class="flex mt-11 items-center">
             <div>
-                <div class="text-2xl font-bold">{{travelPackage.country}}</div>
-                <div class="text-gray-normal">{{travelPackage.offers}} Oferta</div>
+                <div class="text-2xl font-bold">{{travelPackage.city}}</div>
+                <div class="text-gray-normal">{{travelPackage.packages_count}} Oferta</div>
             </div>
             <div class="ml-auto text-right">
-                <div class="text-5xl font-bold">{{travelPackage.price}}€</div>
+                <div class="text-5xl font-bold">{{travelPackage.packages_min_total_price || 'null'}}€</div>
                 <div class="text-gray-normal">personi</div>
             </div>
         </div>

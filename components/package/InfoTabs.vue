@@ -46,7 +46,6 @@ const getFlightInfo = (flight: Flight) => {
     const data = JSON.parse(flight.extra_data);
     const departure = new Date(flight.departure);
     const arrival = new Date(flight.arrival);
-    console.log({departure, arrival})
     const duration = formatDurationSQ(intervalToDuration({start: departure, end: arrival}));
     return {
         places: `${data.legs[0].origin.name} ${flight.origin} -> ${data.legs[0].destination.name} ${flight.destination}`,
@@ -96,10 +95,6 @@ const tabsContent = computed(() => {
 const handleTabChange = (tab: number) => {
     activeTab.value = tab;
 }
-
-onMounted(() => {
-    console.log('mounteedd infotabs')
-})
 </script>
 <style scoped>
 

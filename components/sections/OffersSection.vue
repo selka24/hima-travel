@@ -1,16 +1,17 @@
 <script setup lang="ts">
 import PreviewCard from "~/components/cards/PreviewCard.vue";
+const mainStore = useMainStore()
 
-const samplePackage: Package = {
-    id: -1,
-    image: 'roma.png',
-    country: 'Roma',
-    price: 299,
-    currency: 'eur',
-    description: 'Oferta për Paketa Turistike - Pushime në Romë Itali 2023',
-    logo: 'roma',
-    offers: 6
+if(process.server){
+    await mainStore.actGetHomeDestinations();
 }
+
+onMounted(() => {
+    if(!mainStore.fromServer) mainStore.actGetHomeDestinations();
+    mainStore.fromServer = true;
+})
+
+
 </script>
 
 <template>
@@ -20,7 +21,7 @@ const samplePackage: Package = {
             <div class="text-primary text-4xl ml-7 font-bold">Tirana</div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-3 gap-y-28 mt-20 max-w-page">
-            <preview-card v-for="idx in 9" :key="idx + 'prw-card'" :travel-package="samplePackage"/>
+            <preview-card v-for="offer in mainStore.destinationOffers" :key="offer.id + 'prw-card'" :travel-package="offer"/>
         </div>
         <nuxt-link to="/inspiration"
                    class="mt-44 font-normal border border-primary px-36 py-5 rounded-[10px]">

@@ -4,7 +4,4 @@
     </div>
 </template>
 <script setup>
-onMounted(() => {
-    console.log('corner infoo')
-})
 </script>

@@ -4,7 +4,7 @@ export const useMainStore = defineStore('main', () => {
     const runtimeConfig = useRuntimeConfig();
 
     //state
-
+    const fromServer = ref(true)
     const currTravelPackage = ref<FullPackage | null>(null);
     const loadingCurrPackage = ref(true);
 
@@ -23,6 +23,7 @@ export const useMainStore = defineStore('main', () => {
 
     const travelPackages = ref<FullPackage[] | null>(null);
     const loadingPackages = ref(true);
+    const destinationOffers = ref<TravelOffer[]>([])
 
     //getters
     const getSearchParams = computed(() => {
@@ -38,7 +39,7 @@ export const useMainStore = defineStore('main', () => {
     })
 
     const getPackageImages = computed(() => {
-        return (pckg: FullPackage | null) => pckg?.hotel_data.hotel.hotel_photos.map(x => `${runtimeConfig.public.storageUrl}/${x.file_path}`) || [];
+        return (pckg: FullPackage | null) => pckg?.hotel_data.hotel?.hotel_photos.map(x => `${runtimeConfig.public.storageUrl}/${x.file_path}`) || [];
     })
 
 
@@ -63,19 +64,26 @@ export const useMainStore = defineStore('main', () => {
     const actGetPackagesSearch = async () => {
         if(getSearchParams.value) {
             loadingPackages.value = true;
-            await $api.post('/packages/search', getSearchParams.value)
-                .then((response) => {
-                    travelPackages.value = response.data
-                }).catch((e) => {
-                    if(e.response){
-                        travelPackages.value = null;
-                        if(e.response?.status === 404) {
-                            console.log('No package found')
-                        } else {
-                            console.error(e, 'errrorrr')
-                        }
+            await $api.post('/packages/search', {
+                ...getSearchParams.value,
+                per_page: 1,
+                page: 1
+            }).then((response) => {
+                if(response.data){
+                    const {data, total, current_page} = response.data
+                    console.log(data, 'dataaaa')
+                    travelPackages.value = data;
+                }
+            }).catch((e) => {
+                if(e.response){
+                    travelPackages.value = null;
+                    if(e.response?.status === 404) {
+                        console.log('No package found')
+                    } else {
+                        console.error(e, 'errrorrr')
                     }
-                })
+                }
+            })
             loadingPackages.value = false;
         }
     }
@@ -106,29 +114,43 @@ export const useMainStore = defineStore('main', () => {
             })
     }
 
+    const actGetHomeDestinations = async () => {
+        await $api.get('/destinations')
+            .then((response) => {
+                console.log('response', response)
+                destinationOffers.value = response.data
+            })
+            .catch((e) => {
+
+            })
+    }
+
     return {
-        allOrigins,
         allDestinations,
+        allOrigins,
         currTravelPackage,
-        loadingCurrPackage,
-        selectedOrigin,
-        selectedDestination,
-        selectedDate,
-        selectedNights,
-        selectedSort,
-        priceMode,
-        originSearch,
+        destinationOffers,
         destinationSearch,
-        travelPackages,
-        loadingPackages,
-        getSearchParams,
+        fromServer,
         getPackageImages,
-        actSetOrigin,
+        getSearchParams,
+        loadingCurrPackage,
+        loadingPackages,
+        originSearch,
+        priceMode,
+        selectedDate,
+        selectedDestination,
+        selectedNights,
+        selectedOrigin,
+        selectedSort,
+        travelPackages,
+        actGetHomeDestinations,
+        actGetOrigins,
         actGetPackageById,
-        actSetDestination,
         actGetPackagesSearch,
         actResetParams,
-        actGetOrigins,
+        actSetDestination,
+        actSetOrigin,
     }
 })
 

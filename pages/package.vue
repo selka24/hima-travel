@@ -26,7 +26,14 @@
                                   :current-slide="currImg"
                                   :options="packageImages">
                             <template #option="{option}">
-                                <nuxt-img @click="() => {if(!expandImg) expandImg = true}" width="700" height="500" loading="lazy" format="webp" :class="['w-full h-full object-cover', {'cursor-pointer': !expandImg}]" :src="option" :alt="'hotel photo'"/>
+                                <nuxt-img @click="() => {if(!expandImg) expandImg = true}"
+                                          width="700" height="500"
+                                          loading="lazy"
+                                          format="webp"
+                                          :class="['w-full h-full object-cover', {'cursor-pointer': !expandImg}]"
+                                          :src="option"
+                                          :alt="'hotel photo'"
+                                />
                             </template>
                             <template #empty>
                                 Nuk ka imazhe per kete hotel

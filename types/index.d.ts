@@ -17,6 +17,12 @@ declare global {
             destination_id: number
         }
     }
+
+    interface TravelOffer extends IBaseOrigin{
+        show_in_homepage: number
+        packages_count: number
+        packages_min_total_price: string | null
+    }
     interface Origin extends IBaseOrigin {
         destinations: Destination[]
     }

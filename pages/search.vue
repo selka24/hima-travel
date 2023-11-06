@@ -1,12 +1,12 @@
 <template>
     <div class="flex flex-col justify-center items-center">
-        <div class="relative bg-right-bottom bg-cover pt-24 pb-10 px-5 lg:px-10 w-full" :style="backgroundStyles">
+        <div class="relative bg-right-bottom bg-cover pt-24 pb-10 px-5 lg:px-10 w-full min-h-[286px]" :style="backgroundStyles">
             <div class="bg-gradient-to-r from-black/20 absolute w-full h-full left-0 top-0 z-0"/>
             <div class="flex justify-center">
                 <TravelSearch class="max-w-page w-full"/>
             </div>
         </div>
-        <div id="resultsSection" class="flex flex-col items-center justify-center w-full px-5 lg:px-10">
+        <div id="resultsSection" ref="resultsSection" class="flex flex-col items-center justify-center w-full px-5 lg:px-10">
             <SearchFilters class="max-w-page mt-11"/>
             <div class="flex flex-col gap-10 max-w-screen-2xl w-full mt-10">
                 <TellUs/>
@@ -57,6 +57,7 @@ import {useQueryValidator} from "~/composables/queryValidator.js";
 // import JsonViewer from 'vue-json-viewer'
 import TellUs from "~/components/sections/TellUs.vue";
 const mainStore = useMainStore();
+const resultsSection = ref(null)
 
 
 const {isInViewport} = useUtils();
@@ -66,6 +67,15 @@ const route = useRoute();
 const img = useImage();
 
 const {nights, checkin_date, origin_id, destination_id} = route.query
+
+
+const scrollToResults = () => {
+    if (!isInViewport(resultsSection.value)) {
+        resultsSection.value.scrollIntoView({
+            behavior: 'smooth'
+        })
+    }
+}
 
 const setSearchValues = async () => {
     handleQueryValidate();
@@ -97,14 +107,7 @@ const setSearchValues = async () => {
         }
         await mainStore.actGetPackagesSearch();
     }
-
-    const resSect = document.getElementById('resultsSection')
-
-    if(!isInViewport(resSect)){
-        resSect.scrollIntoView({
-            behavior: 'smooth'
-        })
-    }
+    scrollToResults();
 }
 
 if(process.server){
@@ -129,6 +132,20 @@ const backgroundStyles = computed(() => {
 
 watch(() => route.fullPath, () => {
     setSearchValues();
+})
+
+
+definePageMeta({
+    layoutTransition: {
+        name: 'page',
+        mode: 'out-in',
+        onEnter: () => {
+            //scroll to the results when transition finishes
+            const el = document.getElementById('resultsSection');
+            if (el.getBoundingClientRect().top !== 0)
+                el.scrollIntoView({behavior: 'smooth'});
+        },
+    }
 })
 </script>
 
