@@ -44,5 +44,6 @@ export default defineNuxtConfig({
   },
   image: {
     domains: ['http://biletaautobusi.com'],
+    quality: 70
   }
 })

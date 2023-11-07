@@ -20,6 +20,8 @@ export const useMainStore = defineStore('main', () => {
     const selectedDate = ref<Date | null>(null);
     const selectedNights =  ref<number | null>(null);
     const selectedSort = ref<{title: string, value: number}>({title: 'Rekomandimit', value: 1});
+    const selectedPage = ref(1);
+    const searchTotal = ref(0);
     const priceMode = ref(false);
 
     const travelPackages = ref<FullPackage[] | null>(null);
@@ -28,12 +30,13 @@ export const useMainStore = defineStore('main', () => {
 
     //getters
     const getSearchParams = computed(() => {
-        if(selectedNights.value && selectedOrigin.value && selectedDestination.value && selectedDate.value) {
+        if(selectedNights.value && selectedOrigin.value && selectedDestination.value && selectedDate.value && selectedPage.value) {
             return {
                 nights: selectedNights.value,
                 checkin_date: format(selectedDate.value, 'yyyy-MM-dd'),
                 origin_id: selectedOrigin.value.id,
-                destination_id: selectedDestination.value.id
+                destination_id: selectedDestination.value.id,
+                page: selectedPage.value
             }
         }
         return undefined;
@@ -53,6 +56,7 @@ export const useMainStore = defineStore('main', () => {
         selectedOrigin.value = null;
         selectedDate.value = null;
         selectedNights.value = null;
+        selectedPage.value = 1;
     }
     const actSetOrigin = (origin: Origin) => {
         selectedOrigin.value = origin;
@@ -65,24 +69,24 @@ export const useMainStore = defineStore('main', () => {
     const actGetPackagesSearch = async () => {
         if(getSearchParams.value) {
             loadingPackages.value = true;
-            await $api.post('/packages/search', {
-                ...getSearchParams.value,
-            }).then((response) => {
-                if(response.data){
-                    const {data, total, current_page} = response.data
-                    console.log(data, 'dataaaa')
-                    travelPackages.value = data;
-                }
-            }).catch((e) => {
-                travelPackages.value = null;
-                if(e.response){
-                    if(e.response?.status === 404) {
-                        console.log('No package found')
-                    } else {
-                        console.error(e, 'errrorrr')
+            await $api.post('/packages/search', getSearchParams.value)
+                .then((response) => {
+                    if(response.data){
+                        const {data, total, current_page} = response.data
+                        travelPackages.value = data;
+                        selectedPage.value = current_page;
+                        searchTotal.value = total;
                     }
-                }
-            })
+                }).catch((e) => {
+                    travelPackages.value = null;
+                    if(e.response){
+                        if(e.response?.status === 404) {
+                            console.log('No package found')
+                        } else {
+                            console.error(e, 'errrorrr')
+                        }
+                    }
+                })
             loadingPackages.value = false;
         }
     }
@@ -148,10 +152,12 @@ export const useMainStore = defineStore('main', () => {
         loadingPackages,
         originSearch,
         priceMode,
+        searchTotal,
         selectedDate,
         selectedDestination,
         selectedNights,
         selectedOrigin,
+        selectedPage,
         selectedSort,
         travelPackages,
         actGetHomeDestinations,

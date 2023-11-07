@@ -5,6 +5,7 @@ const validParams = reactive({
     checkin_date: null,
     origin_id: null,
     destination_id: null,
+    page: 1
 })
 
 const queryInt = [
@@ -12,6 +13,7 @@ const queryInt = [
     'checkin_date',
     'origin_id',
     'destination_id',
+    'page'
 ]
 export const useQueryValidator = () => {
     const route = useRoute();
@@ -19,7 +21,7 @@ export const useQueryValidator = () => {
         errors.value = [];
         // console.log('handleQueryValidate handleQueryValidate')
         queryInt.forEach(param => {
-            if(!route.query[param]) {
+            if(!route.query[param] && param !== 'page') {
                 errors.value.push(`${param} has no value`)
             }
         })
@@ -29,7 +31,8 @@ export const useQueryValidator = () => {
             nights,
             checkin_date,
             origin_id,
-            destination_id
+            destination_id,
+            page
         } = (values || route.query)
 
         if(!errors.value.length) {
@@ -44,6 +47,14 @@ export const useQueryValidator = () => {
                 if(isNaN(validParams.nights)) throw new Error('nights invalid')
             } catch (e) {
                 errors.value.push(`Netet e fjetjes nuk jane korrekte - (${nights})`);
+            }
+
+            try {
+                validParams.page = JSON.parse(page);
+                if(isNaN(validParams.page)) throw new Error('nights invalid')
+            } catch (e) {
+                validParams.page = 1;
+                console.error(`Numri i faqes nuk eshte korrekt - (${page})`);
             }
 
             try {

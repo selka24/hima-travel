@@ -7,8 +7,8 @@
 
     interface IPagination {
         current_page: number
-        per_page: number
-        total: number
+        per_page?: number
+        total?: number
         next_page_url: number | null
         prev_page_url: number | null
     }

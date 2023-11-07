@@ -41,7 +41,7 @@ const handlePackageSearch = () => {
             refreshValue = 0;
         }
 
-        router.push({path: '/search', query: {...mainStore.getSearchParams, refresh: refreshValue}})
+        router.push({path: '/search', query: {...mainStore.getSearchParams, refresh: refreshValue, page: 1}})
     }
 }
 </script>

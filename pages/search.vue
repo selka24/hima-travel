@@ -19,7 +19,7 @@
                             <LazyCardsPackageCard :package="travelPackage"/>
                         </div>
                         <div class="flex w-full justify-center">
-                            <LazyPagination :per-page="4" :count="20"/>
+                            <LazyPagination :per-page="10" :count="mainStore.searchTotal" :curr-page="mainStore.selectedPage" @page-changed="handlePageChanged"/>
                         </div>
 <!--                        <client-only>-->
 <!--                            <json-viewer-->
@@ -63,6 +63,7 @@ const resultsSection = ref(null)
 const {isInViewport} = useUtils();
 const {invalid, validParams, handleQueryValidate, errors} = useQueryValidator()
 const route = useRoute();
+const router = useRouter();
 
 const img = useImage();
 
@@ -75,6 +76,12 @@ const scrollToResults = () => {
             behavior: 'smooth'
         })
     }
+}
+
+const handlePageChanged = (page) => {
+    console.log(page, 'pageee')
+    mainStore.selectedPage = page;
+    router.push({path: '/search', query: {...mainStore.getSearchParams, page}})
 }
 
 const setSearchValues = async () => {
@@ -91,6 +98,7 @@ const setSearchValues = async () => {
 
         mainStore.selectedDate = validParams.checkin_date;
         mainStore.selectedNights = validParams.nights;
+        mainStore.selectedPage = validParams.page;
 
         const origin = mainStore.allOrigins.find(o => o.id === validParams.origin_id);
         if(origin){
