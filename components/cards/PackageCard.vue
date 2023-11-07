@@ -7,7 +7,7 @@
                 </CornerInfo>
                 <Carousel :slide-classes="['w-full h-full']" :options="packageImages">
                     <template #option="{option}">
-                        <nuxt-img loading="lazy" format="webp" class="w-full h-full object-cover" :src="option" :alt="option"/>
+                        <nuxt-img loading="lazy" format="webp" class="bg-gray-light w-full h-full object-cover" :src="option" :alt="option"/>
                     </template>
                     <template #empty>
                         Nuk ka imazhe per këtë hotel

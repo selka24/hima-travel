@@ -30,7 +30,7 @@
                                           width="700" height="500"
                                           loading="lazy"
                                           format="webp"
-                                          :class="['w-full h-full object-cover', {'cursor-pointer': !expandImg}]"
+                                          :class="['bg-gray-light w-full h-full object-cover', {'cursor-pointer': !expandImg}]"
                                           :src="option"
                                           :alt="'hotel photo'"
                                 />
