@@ -4,11 +4,12 @@ const mainStore = useMainStore()
 
 if(process.server){
     await mainStore.actGetHomeDestinations();
+    mainStore.fromServer = true;
 }
 
 onMounted(() => {
     if(!mainStore.fromServer) mainStore.actGetHomeDestinations();
-    mainStore.fromServer = true;
+    mainStore.fromServer = false;
 })
 
 

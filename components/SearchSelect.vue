@@ -8,7 +8,7 @@
                :placeholder="placeholder"
                @input="(e) => emit('update:modelValue', e.currentTarget.value)">
         <transition name="slide-fade">
-            <div v-show="listState" :class="`absolute w-full z-10 pb-2.5 bg-white shadow-[0_0_5px_0] shadow-gray-normal rounded-b-[10px]`">
+            <div v-show="listState" :class="`absolute w-full z-10 pb-2.5 bg-white shadow-[0_0_5px_0] shadow-gray-normal rounded-b-[10px] overflow-hidden max-h-[250px] overflow-y-auto`">
                 <div v-for="(option, idx) in filteredOptions" @click="handleSelect(option)" class="hover:bg-secondary/20 cursor-pointer">
                     <div class="px-5 py-2.5">
                         <slot class="cursor-pointer" name="option" v-bind="option">

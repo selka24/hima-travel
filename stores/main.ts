@@ -4,7 +4,7 @@ export const useMainStore = defineStore('main', () => {
     const runtimeConfig = useRuntimeConfig();
 
     //state
-    const fromServer = ref(true)
+    const fromServer = ref(false)
     const currTravelPackage = ref<FullPackage | null>(null);
     const loadingCurrPackage = ref(true);
 
@@ -66,8 +66,6 @@ export const useMainStore = defineStore('main', () => {
             loadingPackages.value = true;
             await $api.post('/packages/search', {
                 ...getSearchParams.value,
-                per_page: 1,
-                page: 1
             }).then((response) => {
                 if(response.data){
                     const {data, total, current_page} = response.data
@@ -75,8 +73,8 @@ export const useMainStore = defineStore('main', () => {
                     travelPackages.value = data;
                 }
             }).catch((e) => {
+                travelPackages.value = null;
                 if(e.response){
-                    travelPackages.value = null;
                     if(e.response?.status === 404) {
                         console.log('No package found')
                     } else {

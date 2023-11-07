@@ -14,7 +14,9 @@ export default defineNuxtPlugin((nuxtApp) => {
         (response) => {
             return response?.data || {data: null};
         },
-        (error) => error
+        (error) => {
+            return Promise.reject(error);
+        }
     )
 
     return {
