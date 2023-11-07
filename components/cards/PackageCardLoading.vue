@@ -8,12 +8,12 @@
             <div class="animate-pulse bg-gray-light w-full h-full min-h-[384px] rounded-[20px] transition-all"></div>
         </div>
         <div class="p-7 col-span-12 sm:col-span-8 md:order-last md:col-span-11 lg:col-span-10 xl:order-none xl:col-span-4 flex flex-col">
-            <div class="rounded-xl h-9 font-bold w-2/3 animate-pulse bg-gray-light mb-10"></div>
+            <div class="rounded-xl h-9 w-2/3 animate-pulse bg-gray-light mb-10"></div>
             <div class="h-10 w-full bg-gray-light animate-pulse mb-10 rounded-xl"></div>
             <div class="flex flex-col gap-y-3.5">
                 <div v-for="idx in 6" class="flex gap-4 items-center">
                     <div class="w-6 h-6 bg-gray-light animate-pulse rounded-lg"></div>
-                    <div class="h-5 bg-gray-light animate-pulse rounded-lg text-transparent w-full"></div>
+                    <div class="h-5 bg-gray-light animate-pulse rounded-lg w-full"></div>
                 </div>
             </div>
         </div>

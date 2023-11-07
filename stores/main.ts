@@ -2,6 +2,7 @@ import {format} from 'date-fns'
 export const useMainStore = defineStore('main', () => {
     const {$api, $testApi} = useNuxtApp();
     const runtimeConfig = useRuntimeConfig();
+    const {buildStorageUrl} = useUtils()
 
     //state
     const fromServer = ref(false)
@@ -39,7 +40,7 @@ export const useMainStore = defineStore('main', () => {
     })
 
     const getPackageImages = computed(() => {
-        return (pckg: FullPackage | null) => pckg?.hotel_data.hotel?.hotel_photos.map(x => `${runtimeConfig.public.storageUrl}/${x.file_path}`) || [];
+        return (pckg: FullPackage | null) => pckg?.hotel_data.hotel?.hotel_photos.map(x => buildStorageUrl(x.file_path)) || [];
     })
 
 
@@ -123,6 +124,17 @@ export const useMainStore = defineStore('main', () => {
             })
     }
 
+    const actGetInspiration = async () => {
+        await $api.get('/destinations/all')
+            .then((response) => {
+                console.log('response', response)
+                destinationOffers.value = response.data
+            })
+            .catch((e) => {
+                destinationOffers.value = [];
+            })
+    }
+
     return {
         allDestinations,
         allOrigins,
@@ -144,6 +156,7 @@ export const useMainStore = defineStore('main', () => {
         travelPackages,
         actGetHomeDestinations,
         actGetOrigins,
+        actGetInspiration,
         actGetPackageById,
         actGetPackagesSearch,
         actResetParams,

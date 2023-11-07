@@ -18,10 +18,18 @@ declare global {
         }
     }
 
+    interface DestinationPhoto {
+        id: number
+        destination_id: number
+        file_path: string
+        created_at: string
+        updated_at: string
+    }
     interface TravelOffer extends IBaseOrigin{
         show_in_homepage: number
         packages_count: number
         packages_min_total_price: string | null
+        destination_photos?: DestinationPhoto[]
     }
     interface Origin extends IBaseOrigin {
         destinations: Destination[]

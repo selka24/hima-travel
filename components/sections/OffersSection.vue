@@ -2,14 +2,15 @@
 import PreviewCard from "~/components/cards/PreviewCard.vue";
 const mainStore = useMainStore()
 
-if(process.server){
-    await mainStore.actGetHomeDestinations();
-    mainStore.fromServer = true;
-}
+// if(process.server){
+//     await mainStore.actGetHomeDestinations();
+//     mainStore.fromServer = true;
+// }
 
 onMounted(() => {
-    if(!mainStore.fromServer) mainStore.actGetHomeDestinations();
-    mainStore.fromServer = false;
+    // if(!mainStore.fromServer)
+        mainStore.actGetHomeDestinations();
+    // mainStore.fromServer = false;
 })
 
 

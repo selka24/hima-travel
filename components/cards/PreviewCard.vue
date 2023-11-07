@@ -1,17 +1,21 @@
 <script setup lang="ts">
     const props = defineProps<{travelPackage: TravelOffer}>();
+    const {buildStorageUrl} = useUtils()
 </script>
 
 <template>
     <div class="border border-gray-normal rounded-[30px] p-7 relative">
         <div class="relative group overflow-hidden rounded-[10px]  text-5xl text-white font-bold ">
             <nuxt-img format="webp"
+                      v-if="travelPackage.destination_photos?.length"
                       class="transition-all ease-in duration-300 group-hover:scale-110 object-cover w-full min-h-[442px]"
                       width="385"
                       height="442"
-                      :src="`/images/${'roma.png'}`"
+                      :src="buildStorageUrl(travelPackage.destination_photos[0].file_path)"
                       alt="roma preview"
             />
+            <div v-else class="bg-gray-normal w-full h-[442px] flex items-center justify-center">
+            </div>
             <div class="flex flex-col justify-end items-center transition-all ease-in duration-300 opacity-0 group-hover:opacity-100 absolute w-full h-full bg-primary/70  backdrop-blur-[1px] top-0 rounded-[10px]">
                 <nuxt-icon :name="'roma'" filled class="text-[150px] mb-8"/>
                 <div class="mb-40">

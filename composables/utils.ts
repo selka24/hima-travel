@@ -1,7 +1,9 @@
 import { format, formatDuration } from 'date-fns';
 import { sq } from 'date-fns/locale';
-
 export const useUtils = () => {
+
+    const runtimeConfig = useRuntimeConfig()
+
     const multipleSearchFilter = (array: any[], filterKeys: string | string[], keyword: string) => {
         const checkIdx = (option: string) => option.toLowerCase().indexOf(keyword);
         return array.filter(opt => {
@@ -75,12 +77,17 @@ export const useUtils = () => {
         window.open(link + message.replace(/\s+/g, ''), "_blank");
     }
 
+    const buildStorageUrl = (file_path: string) => {
+        return `${runtimeConfig.public.storageUrl}/${file_path}`
+    }
+
     return {
         multipleSearchFilter,
         isInViewport,
         displayNights,
         formatDateSQ,
         formatDurationSQ,
+        buildStorageUrl,
         sendWhatsappMessage,
         roomBasisInfo
     }
