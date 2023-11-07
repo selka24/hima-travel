@@ -12,7 +12,7 @@
                 <TellUs/>
                 <transition-group name="fade">
                     <div v-if="mainStore.loadingPackages" class="flex flex-col gap-y-10">
-                        <LazyCardsPackageCardLoading v-for="idx in 4" :key="idx + 'load'"/>
+                        <LazyCardsPackageCardLoading v-for="idx in 10" :key="idx + 'load'"/>
                     </div>
                     <div v-else-if="mainStore.travelPackages" class="flex flex-col gap-y-10">
                         <div v-for="travelPackage in mainStore.travelPackages" :key="travelPackage.id" class="relative">
