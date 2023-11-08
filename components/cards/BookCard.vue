@@ -12,7 +12,7 @@
                 <div class="flex flex-col xs:flex-row items-center w-full sm:w-auto gap-x-5 pt-10 sm:pt-0 justify-between sm:flex-col sm:justify-center">
                     <div class="flex flex-col items-center">
                         <div class="text-lg font-bold">Për person</div>
-                        <div class="font-bold text-[36px] min-w-max sm:text-[55px]">399 €</div>
+                        <div class="font-bold text-[36px] min-w-max sm:text-[55px]">{{ pricePP }} €</div>
                     </div>
                     <button-default
                         class="h-[70px] w-[260px] font-normal"
@@ -29,6 +29,13 @@ const {sendWhatsappMessage, displayNights, roomBasisInfo, formatDateSQ} = useUti
 const mainStore = useMainStore();
 const hotel_data = computed(() => {
     return mainStore.currTravelPackage?.hotel_data
+})
+
+const pricePP = computed(() => {
+    if(mainStore.currTravelPackage?.total_price){
+        return Number(mainStore.currTravelPackage.total_price) / 2;
+    }
+    return 'null'
 })
 
 const bookCardInfo = computed(() => {

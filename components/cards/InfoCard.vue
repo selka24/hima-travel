@@ -39,7 +39,10 @@ const packageInfo = computed(() => {
 })
 
 const price = computed(() => {
-    return mainStore.currTravelPackage?.total_price || 'Null';
+    if(mainStore.currTravelPackage?.total_price){
+        return Number(mainStore.currTravelPackage.total_price) / 2;
+    }
+    return 'null';
 })
 
 </script>
