@@ -118,9 +118,6 @@ const setSearchValues = async () => {
     scrollToResults();
 }
 
-if(process.server){
-    await mainStore.actGetOrigins();
-}
 
 onBeforeUnmount(() => {
     //set to true to prevent double mount for the children component

@@ -8,4 +8,9 @@
 </template>
 <script setup lang="ts">
 import ModalWrapper from "~/components/layout/ModalWrapper.vue";
+const mainStore = useMainStore();
+
+if(process.server){
+    await mainStore.actGetOrigins();
+}
 </script>

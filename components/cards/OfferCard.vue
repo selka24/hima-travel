@@ -1,6 +1,7 @@
 <script setup lang="ts">
-    const props = defineProps<{package: RecommendPackage}>();
-    const {buildStorageUrl, formatDateSQ} = useUtils()
+    const props = defineProps<{package: RecommendPackage, date: string}>();
+    const {buildStorageUrl, formatDateSQ} = useUtils();
+    const mainStore = useMainStore()
     const hotel = computed(() => {
         return props.package.hotel_data.hotel;
     })
@@ -14,6 +15,9 @@
         return null;
     })
 
+    const origin = computed(() => {
+        return mainStore.allOrigins ? mainStore.allOrigins[0].id : -1;
+    })
 </script>
 
 <template>
@@ -49,7 +53,7 @@
                 </div>
             </div>
         </div>
-        <nuxt-link :to="`/package?package=${package.id}`">
+        <nuxt-link :to="`/search?origin_id=${origin}&destination_id=${package.hotel_data.hotel.destination_id}&nights=${package.hotel_data.number_of_nights}&checkin_date=${date}&page=1`">
             <button-default class="uppercase px-8 py-4 font-normal absolute left-1/2 -translate-x-1/2">më shumë</button-default>
         </nuxt-link>
     </div>
