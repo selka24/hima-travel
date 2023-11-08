@@ -11,7 +11,8 @@ export default defineNuxtConfig({
       ]
     },
     rootId: 'selka24',
-    layoutTransition: { name: 'page', mode: 'out-in' }
+    layoutTransition: { name: 'page', mode: 'out-in' },
+    pageTransition: { name: 'page', mode: 'out-in' },
   },
   modules: [
     '@nuxtjs/tailwindcss',

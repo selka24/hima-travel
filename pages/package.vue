@@ -1,13 +1,15 @@
 <template>
     <div class="flex w-full justify-center mt-24 px-5 lg:px-10">
         <div class="flex flex-col max-w-screen-lg w-full" v-if="!mainStore.loadingCurrPackage && mainStore.currTravelPackage">
-            <client-only>
-                <json-viewer
-                    :value="currTravelPackage"
-                    :expand-depth=5
-                    copyable
-                    boxed></json-viewer>
-            </client-only>
+<!--                <client-only>-->
+<!--                    <dev-only>-->
+<!--                        <json-viewer-->
+<!--                            :value="currTravelPackage"-->
+<!--                            :expand-depth=5-->
+<!--                            copyable-->
+<!--                            boxed></json-viewer>-->
+<!--                    </dev-only>-->
+<!--                </client-only>-->
             <div class="text-3xl font-bold mb-10">
                 HOTEL {{hotel?.name}}
             </div>
@@ -103,7 +105,7 @@ import InfoCard from "~/components/cards/InfoCard.vue";
 import ZbuloBoten from "~/components/sections/ZbuloBoten.vue";
 import BookCard from "~/components/cards/BookCard.vue";
 import InfoTabs from "~/components/package/InfoTabs.vue";
-import JsonViewer from 'vue-json-viewer';
+// import JsonViewer from 'vue-json-viewer';
 
 const mainStore = useMainStore();
 const {currTravelPackage} = toRefs(mainStore);
