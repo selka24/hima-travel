@@ -125,5 +125,10 @@ declare global {
         outbound_flight: Flight
         inbound_flight: Flight
     }
+
+    interface RecommendPackage extends BasePackage{
+        hotel_data: FullHotel
+        laravel_through_key: number
+    }
 }
 

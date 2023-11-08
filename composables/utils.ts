@@ -24,8 +24,9 @@ export const useUtils = () => {
         return nights + (nights > 1 ? ' Netë' : ' Natë')
     }
 
-    const formatDateSQ = (date: Date | number, formatStr: string = 'PP') => {
-        return format(date, formatStr, {
+    const formatDateSQ = (date: Date | number | string, formatStr: string = 'PP') => {
+
+        return format(new Date(date), formatStr, {
             locale: sq
         })
     }

@@ -27,7 +27,7 @@ export const useMainStore = defineStore('main', () => {
     const travelPackages = ref<FullPackage[] | null>(null);
     const loadingPackages = ref(true);
     const destinationOffers = ref<TravelOffer[]>([])
-
+    const destinationPackages = ref<{[key: string]: RecommendPackage}>()
     //getters
     const getSearchParams = computed(() => {
         if(selectedNights.value && selectedOrigin.value && selectedDestination.value && selectedDate.value && selectedPage.value) {
@@ -139,11 +139,22 @@ export const useMainStore = defineStore('main', () => {
             })
     }
 
+    const actGetDestinationPackages = async (destinationID: number) => {
+        await $api.get(`destinations/${destinationID}/packages`)
+            .then((response) => {
+                console.log('package', response.data);
+                destinationPackages.value = response.data;
+            }).catch((e) => {
+                console.log('destination packages', e)
+            })
+    }
+
     return {
         allDestinations,
         allOrigins,
         currTravelPackage,
         destinationOffers,
+        destinationPackages,
         destinationSearch,
         fromServer,
         getPackageImages,
@@ -160,6 +171,7 @@ export const useMainStore = defineStore('main', () => {
         selectedPage,
         selectedSort,
         travelPackages,
+        actGetDestinationPackages,
         actGetHomeDestinations,
         actGetOrigins,
         actGetInspiration,
