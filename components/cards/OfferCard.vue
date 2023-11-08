@@ -19,7 +19,7 @@
 <template>
     <div class="bg-white relative p-7 text-secondary rounded-[30px] border border-gray-normal">
         <div class="relative rounded-[10px] overflow-hidden">
-            <nuxt-img alt="hotel-photo" loading="lazy" v-if="hotelPhoto" :src="hotelPhoto" width="383" height="400" class="w-full"/>
+            <nuxt-img alt="hotel-photo" loading="lazy" v-if="hotelPhoto" :src="hotelPhoto" width="383" height="400" class="w-full min-h-[400px]"/>
             <div class="font-bold text-5xl absolute-center text-white">{{ hotel.city }}</div>
         </div>
         <div class="mt-7 items-center flex justify-between">
