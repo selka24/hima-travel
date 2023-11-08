@@ -1,5 +1,5 @@
 <template>
-    <div class="flex w-full justify-center mt-24 px-5 lg:px-10">
+    <div class="flex w-full justify-center mt-24 px-7 lg:px-10">
         <div class="flex flex-col max-w-screen-lg w-full" v-if="!mainStore.loadingCurrPackage && mainStore.currTravelPackage">
 <!--                <client-only>-->
 <!--                    <dev-only>-->
