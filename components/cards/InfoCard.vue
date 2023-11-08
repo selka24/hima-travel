@@ -12,7 +12,7 @@
         <div class="flex flex-col items-center mt-16 sm:mt-0 max-w-full sm:max-w-[260px] md:max-w-full w-full h-full md:h-auto">
             <div class="text-lg font-bold mt-auto md:mt-0">Për person</div>
             <div class="font-bold text-[36px] min-w-max lg:text-[55px]">{{ price }} €</div>
-            <button-default class="h-[70px] w-full font-normal mt-auto md:mt-0" @click="sendWhatsappMessage">Vazhdo</button-default>
+            <button-default class="h-[70px] w-full font-normal mt-auto md:mt-0" @click="handleWhatsappMessage">Vazhdo</button-default>
         </div>
     </div>
 </template>
@@ -44,6 +44,10 @@ const price = computed(() => {
     }
     return 'null';
 })
+
+const handleWhatsappMessage = () =>{
+    if (mainStore.currTravelPackage) sendWhatsappMessage(mainStore.currTravelPackage);
+}
 
 </script>
 

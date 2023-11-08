@@ -16,7 +16,7 @@
                     </div>
                     <button-default
                         class="h-[70px] w-[260px] font-normal"
-                        @click="sendWhatsappMessage">
+                        @click="handleWhatsappMessage">
                         Vazhdo
                     </button-default>
                 </div>
@@ -50,7 +50,11 @@ const bookCardInfo = computed(() => {
     ];
 })
 
-
+const handleWhatsappMessage = () => {
+    if(mainStore.currTravelPackage){
+        sendWhatsappMessage(mainStore.currTravelPackage)
+    }
+}
 
 </script>
 
