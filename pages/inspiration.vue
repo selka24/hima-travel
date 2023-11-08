@@ -19,7 +19,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="flex justify-center">
+    <div class="flex justify-center px-5 lg:px-10">
         <div class="max-w-page w-full">
             <section class="flex justify-center items-end mt-24 mb-16">
                 <div class="text-3xl">

@@ -1,6 +1,6 @@
 <template>
     <div class="grid grid-cols-12 border-2 border-gray-normal rounded-[30px] bg-white">
-        <div class="p-7 col-span-12 md:col-span-9 lg:col-span-8 xl:col-span-5 md:bg-gray-lighter/30 xl:bg-transparent">
+        <div class="p-5 sm:p-7 col-span-12 md:col-span-9 lg:col-span-8 xl:col-span-5 md:bg-gray-lighter/30 xl:bg-transparent">
             <div class="relative w-full h-full min-h-[384px] rounded-[20px] overflow-hidden">
                 <CornerInfo>
                     {{roomBasis}}
@@ -15,7 +15,7 @@
                 </Carousel>
             </div>
         </div>
-        <div class="overflow-hidden p-7 col-span-12 sm:col-span-8 md:order-last md:col-span-11 lg:col-span-10 xl:order-none xl:col-span-4 flex flex-col">
+        <div class="overflow-hidden p-5 sm:p-7 col-span-12 sm:col-span-8 md:order-last md:col-span-11 lg:col-span-10 xl:order-none xl:col-span-4 flex flex-col">
             <div class="overflow-hidden">
                 <div class="text-3xl font-bold mb-10">HOTEL {{hotel_data.hotel?.name || '*No name*'}}</div>
                 <InfoTabs :package="package"/>

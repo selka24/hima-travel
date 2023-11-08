@@ -26,7 +26,7 @@ onMounted(() => {
             <preview-card v-for="offer in mainStore.destinationOffers" :key="offer.id + 'prw-card'" :travel-package="offer"/>
         </div>
         <nuxt-link to="/inspiration"
-                   class="mt-44 font-normal border border-primary px-36 py-5 rounded-[10px]">
+                   class="mt-44 font-normal border border-primary text-center w-full max-w-[300px] py-5 rounded-[10px]">
             VIEW ALL DEALS
         </nuxt-link>
     </div>

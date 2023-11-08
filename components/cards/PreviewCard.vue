@@ -5,7 +5,7 @@
 
 <template>
     <div class="border border-gray-normal rounded-[30px] p-7 relative">
-        <div class="relative group overflow-hidden rounded-[10px]  text-5xl text-white font-bold ">
+        <div class="relative group overflow-hidden rounded-[10px] text-3xl  sm:text-5xl text-white font-bold ">
             <nuxt-img format="webp"
                       v-if="travelPackage.destination_photos?.length"
                       class="transition-all ease-in duration-300 group-hover:scale-110 object-cover w-full min-h-[442px]"
@@ -32,7 +32,7 @@
                 <div class="text-gray-normal">{{travelPackage.packages_count}} Oferta</div>
             </div>
             <div class="ml-auto text-right">
-                <div class="text-5xl font-bold">{{travelPackage.packages_min_total_price || 'null'}}€</div>
+                <div class="text-3xl md:text-5xl font-bold">{{travelPackage.packages_min_total_price || 'null'}}€</div>
                 <div class="text-gray-normal">personi</div>
             </div>
         </div>
