@@ -115,7 +115,9 @@ const setSearchValues = async () => {
         }
         await mainStore.actGetPackagesSearch();
     }
-    scrollToResults();
+    nextTick(() => {
+        scrollToResults();
+    })
 }
 
 
@@ -144,12 +146,18 @@ definePageMeta({
     layoutTransition: {
         name: 'page',
         mode: 'out-in',
-        onEnter: () => {
-            //scroll to the results when transition finishes
+        onAfterEnter: () => {
             const el = document.getElementById('resultsSection');
-            if (el.getBoundingClientRect().top !== 0)
-                el.scrollIntoView({behavior: 'smooth'});
-        },
+            el.scrollIntoView({behavior: 'smooth'});
+        }
+    },
+    pageTransition: {
+        name: 'page',
+        mode: 'out-in',
+        onAfterEnter: () => {
+            const el = document.getElementById('resultsSection');
+            el.scrollIntoView({behavior: 'smooth'});
+        }
     }
 })
 </script>

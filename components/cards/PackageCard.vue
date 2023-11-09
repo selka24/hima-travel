@@ -15,21 +15,23 @@
                 </Carousel>
             </div>
         </div>
-        <div class="overflow-hidden p-5 sm:p-7 col-span-12 sm:col-span-8 md:order-last md:col-span-11 lg:col-span-10 xl:order-none xl:col-span-4 flex flex-col">
+        <div class="overflow-hidden p-5 sm:p-7 col-span-12 sm:col-span-8 md:order-last md:col-span-11 lg:col-span-10 xl:order-none xl:col-span-5 2xl:col-span-4 flex flex-col">
             <div class="overflow-hidden">
                 <div class="text-3xl font-bold mb-10">HOTEL {{hotel_data.hotel?.name || '*No name*'}}</div>
                 <InfoTabs :package="package"/>
             </div>
         </div>
-        <div class="flex py-7 gap-5 sm:gap-0- sm:py-0 justify-between sm:flex-col sm:justify-center items-center col-span-12 sm:col-span-4 md:col-span-3 lg:col-span-4 xl:col-span-3 px-5 md:bg-gray-lighter/30">
+        <div class="flex py-7 gap-5 sm:gap-0- sm:py-0 justify-between sm:flex-col sm:justify-center items-center col-span-12 sm:col-span-4 md:col-span-3 lg:col-span-4 xl:col-span-2 2xl:col-span-3 px-5 md:bg-gray-lighter/30">
             <div class="flex flex-col items-center sm:mt-auto sm:mb-20">
-                <div class="mb-2 text-lg text-gray-normal">Për person</div>
                 <transition name="slide-up" mode="out-in">
-                    <div :key="packagePrice" class="font-bold text-[36px] min-w-max lg:text-[55px]">{{ packagePrice }} €</div>
+                    <div :key="packagePrice + 'label'" class="mb-2 text-lg text-gray-normal">{{ mainStore.priceMode ? 'Totali' : 'Për person' }}</div>
+                </transition>
+                <transition name="slide-up" mode="out-in">
+                    <div :key="packagePrice" class="font-bold text-[36px] min-w-max lg:text-[55px] xl:text-[36px] 2xl:text-[55px]">{{ packagePrice }} €</div>
                 </transition>
             </div>
             <nuxt-link :to="{path: '/package', query: {package: package.id}}" class="max-w-[260px] w-full">
-                <button-default class="h-[70px] w-full sm:mb-14 font-normal">Më shumë</button-default>
+                <button-default class="h-[70px] w-full sm:mb-14 font-normal">Shiko Paketën</button-default>
             </nuxt-link>
         </div>
     </div>
@@ -47,7 +49,7 @@ const hotel_data = props.package.hotel_data
 const roomBasis = roomBasisInfo(hotel_data.room_basis);
 
 const packagePrice = computed(() => {
-    return !mainStore.priceMode ? props.package.total_price : JSON.parse(props.package.total_price) * 2
+    return !mainStore.priceMode ? Number(props.package.total_price) / 2 : props.package.total_price
 })
 </script>
 

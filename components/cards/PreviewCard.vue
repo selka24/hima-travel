@@ -32,7 +32,7 @@
                 <div class="text-gray-normal">{{travelPackage.packages_count}} Oferta</div>
             </div>
             <div class="ml-auto text-right">
-                <div class="text-3xl md:text-5xl font-bold">{{travelPackage.packages_min_total_price || 'null'}}€</div>
+                <div class="text-3xl 2xl:text-5xl font-bold">{{travelPackage.packages_min_total_price || 'null'}}€</div>
                 <div class="text-gray-normal">personi</div>
             </div>
         </div>
