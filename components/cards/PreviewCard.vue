@@ -1,7 +1,3 @@
-<script setup lang="ts">
-    const props = defineProps<{travelPackage: TravelOffer}>();
-    const {buildStorageUrl} = useUtils()
-</script>
 
 <template>
     <div class="border border-gray-normal rounded-[30px] p-7 relative">
@@ -32,7 +28,7 @@
                 <div class="text-gray-normal">{{travelPackage.packages_count}} Oferta</div>
             </div>
             <div class="ml-auto text-right">
-                <div class="text-3xl 2xl:text-5xl font-bold">{{travelPackage.packages_min_total_price || 'null'}}€</div>
+                <div class="text-2xl sm:text-3xl 2xl:text-5xl font-bold">{{pricePP}}€</div>
                 <div class="text-gray-normal">personi</div>
             </div>
         </div>
@@ -44,7 +40,14 @@
         </nuxt-link>
     </div>
 </template>
+<script setup lang="ts">
+const props = defineProps<{travelPackage: TravelOffer}>();
+const {buildStorageUrl} = useUtils();
 
-<style scoped>
-
-</style>
+const pricePP = computed(() => {
+    if(props.travelPackage.packages_min_total_price){
+        return Number(props.travelPackage.packages_min_total_price) / 2;
+    }
+    return 'null';
+})
+</script>

@@ -97,6 +97,7 @@ declare global {
             city: string
             iso_code: string
             country: string
+            description: string
             country_id: number
             destination_id: number
             hotel_photos: HotelPhoto[]

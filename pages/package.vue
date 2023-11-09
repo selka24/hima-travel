@@ -16,7 +16,7 @@
             <div class="grid grid-cols-9 mb-4 gap-7">
                 <div v-if="expandImg" class="fixed top-0 bottom-0 right-0 left-0 bg-gray-normal/80 z-[500] backdrop-blur-[5px]">
                 </div>
-                <div :class="['flex flex-col col-span-9 md:col-span-6', {'fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 h-[80vh] scale-100 z-[600] w-full max-w-page' : expandImg}]">
+                <div :class="['flex flex-col col-span-9 md:col-span-6', {'fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 h-[80vh] scale-100 z-[600] w-[90%] sm:w-[80%] max-w-page' : expandImg}]">
                     <div @click="toggleExpand"
                          v-if="expandImg"
                          class="absolute right-0 -top-11 sm:-right-9 sm:-top-9 cursor-pointer flex items-center justify-center bg-white/80 rounded-full p-2">

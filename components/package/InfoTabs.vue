@@ -17,11 +17,16 @@
               :current-slide="activeTab"
               :options="tabsContent">
         <template #option="{option}">
-            <div class="flex flex-col gap-y-3.5 absolute top-0">
-                <div v-for="(tab, idx) in option.content" :key="`${tab.value}-${idx}-inf`" class="flex gap-4 items-center">
-                    <nuxt-icon v-if="tab.icon" :name="tab.icon" filled class="text-2xl"/>
-                    <div v-else class="min-w-[24px]"/>
-                    <div class="font-bold">{{ tab.value }}</div>
+            <div class="absolute top-0">
+                <div v-if="option.value === 1" v-html="option.content" class="hotelDscr"/>
+                <div v-else class="flex flex-col gap-y-3.5">
+                    <div v-for="(tab, idx) in option.content" :key="`${tab.value}-${idx}-inf`">
+                        <div class="flex gap-4 items-center">
+                            <nuxt-icon v-if="tab.icon" :name="tab.icon" filled class="text-2xl"/>
+                            <div v-else class="min-w-[24px]"/>
+                            <div class="font-bold">{{ tab.value }}</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </template>
@@ -77,10 +82,7 @@ const flightTab = computed(() => {
 })
 
 const hotelTab = computed(() => {
-    return [
-        {icon: 'plane-departure', value: `${formatDateSQ(new Date(hotel_data.check_in_date), 'd LLLL yyyy')} - ${displayNights(hotel_data.number_of_nights)}`},
-        {icon: 'plane-arrival', value: '10 kg Bagazh Krahu '},
-    ]
+    return props.package.hotel_data.hotel.description;
 })
 
 
@@ -96,6 +98,10 @@ const handleTabChange = (tab: number) => {
     activeTab.value = tab;
 }
 </script>
-<style scoped>
-
+<style>
+.hotelDscr, p{
+    margin-left: 20px;
+    line-height: 35px;
+    font-weight: bold;
+}
 </style>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import {headPages} from "~/constants";
+  const route = useRoute();
 </script>
 
 <template>
@@ -9,7 +10,7 @@
                 <nuxt-img format="webp"  src="/images/red-logo.png"  width="140" height="56" />
             </nuxt-link>
             <div class="flex justify-center items-center gap-12 uppercase">
-                <nuxt-link v-for="page in headPages" :to="page.link">
+                <nuxt-link v-for="page in headPages" :to="page.link" :class="[{'font-bold border-b-2 border-primary': route.path === page.link}]">
                     {{page.title}}
                 </nuxt-link>
             </div>

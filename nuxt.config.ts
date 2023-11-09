@@ -19,6 +19,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     'nuxt-icons',
     '@pinia/nuxt',
+    'nuxt-simple-sitemap',
     // 'nuxt-api-party',
   ],
   // apiParty: {
