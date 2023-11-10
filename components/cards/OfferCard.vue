@@ -1,4 +1,6 @@
 <script setup lang="ts">
+    import ButtonDefault from "~/components/ButtonDefault.vue";
+
     const props = defineProps<{package: RecommendPackage, date: string}>();
     const {buildStorageUrl, formatDateSQ} = useUtils();
     const mainStore = useMainStore()

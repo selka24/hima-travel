@@ -1,6 +1,6 @@
 <template>
     <div class="min-h-[100vh]">
-        <nuxt-img format="webp"  width="1920" height="1080" class="w-full h-full max-h-[100vh] object-cover absolute top-0 left-0 z-0"  src="/images/bg-image.png" />
+        <nuxt-img format="webp"  width="1920" height="1080" class="w-full h-full max-h-[100vh] object-cover absolute top-0 left-0 z-0"  src="/images/bg-image.png" alt="Background Image"/>
         <div class="bg-gradient-to-r from-black/20 absolute w-full max-h-[100vh] h-full left-0 top-0 z-0"/>
         <div class="flex relative z-10 justify-center px-5 lg:px-10">
             <div class="flex flex-col max-w-page w-full mt-28 xl:mt-36">
@@ -12,13 +12,14 @@
                     </p>
                     <p>Zbuloni ofertat më të mira dhe rezervoni tuajat sot.</p>
                 </div>
-                <TravelSearch :show-types="true" class="mt-[90px]"/>
+                <travel-search :show-types="true" class="mt-[90px]"/>
             </div>
         </div>
     </div>
 </template>
 <script setup lang="ts">
 
+import TravelSearch from "~/components/TravelSearch.vue";
 </script>
 <style scoped>
 </style>

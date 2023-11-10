@@ -1,7 +1,13 @@
 <script setup lang="ts">
-import HomeIntro from "~/components/sections/HomeIntro.vue";
-import OffersSection from "~/components/sections/OffersSection.vue";
-import WelcomSection from "~/components/sections/WelcomSection.vue";
+import speedkitHydrate from '#speedkit/hydrate';
+
+// import HomeIntro from "~/components/sections/HomeIntro.vue";
+// import OffersSection from "~/components/sections/OffersSection.vue";
+// import WelcomSection from "~/components/sections/WelcomSection.vue";
+
+const HomeIntro = speedkitHydrate(() => import('@/components/sections/HomeIntro.vue'));
+const OffersSection = speedkitHydrate(() => import('@/components/sections/OffersSection.vue'));
+const WelcomSection = speedkitHydrate(() => import('@/components/sections/WelcomSection.vue'));
 
 const {actResetParams} = useMainStore()
 const runtimeConfig = useRuntimeConfig()
@@ -25,10 +31,9 @@ useSeoMeta({
 
 actResetParams();
 </script>
-
 <template>
     <div>
-        <HomeIntro/>
+        <HomeIntro critical/>
         <OffersSection class="mt-32"/>
         <WelcomSection class="mt-80"/>
     </div>

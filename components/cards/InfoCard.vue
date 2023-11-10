@@ -17,6 +17,8 @@
     </div>
 </template>
 <script setup lang="ts">
+import ButtonDefault from "~/components/ButtonDefault.vue";
+
 const {sendWhatsappMessage, displayNights, roomBasisInfo, formatDateSQ} = useUtils();
 
 const icons = ['user', 'moon', 'calendar', 'food']

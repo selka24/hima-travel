@@ -8,7 +8,7 @@
                       width="385"
                       height="442"
                       :src="buildStorageUrl(travelPackage.destination_photos[0].file_path)"
-                      alt="roma preview"
+                      :alt="`${travelPackage.city} picture`"
             />
             <div v-else class="bg-gray-normal w-full h-[442px] flex items-center justify-center">
             </div>
@@ -41,6 +41,8 @@
     </div>
 </template>
 <script setup lang="ts">
+import ButtonDefault from "~/components/ButtonDefault.vue";
+
 const props = defineProps<{travelPackage: TravelOffer}>();
 const {buildStorageUrl} = useUtils();
 

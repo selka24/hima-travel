@@ -13,6 +13,8 @@
     </input-skeleton>
 </template>
 <script setup lang="ts">
+import InputSkeleton from "~/components/InputSkeleton.vue";
+
 const mainStore = useMainStore();
 const {displayNights} = useUtils();
 const maxNights = 10;

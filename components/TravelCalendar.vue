@@ -5,7 +5,7 @@
         </div>
         <transition name="slide-fade">
             <div v-if="show" class="absolute top-[80px] z-10">
-                <DatePicker
+                <CDatePicker
                     v-model="mainStore.selectedDate"
                     mode="date"
                     color="red"
@@ -16,8 +16,13 @@
     </input-skeleton>
 </template>
 <script setup lang="ts">
-    import {DatePicker} from "v-calendar";
     import 'v-calendar/style.css';
+    import InputSkeleton from "~/components/InputSkeleton.vue";
+
+    const CDatePicker = defineAsyncComponent(() => import("v-calendar").then(({DatePicker}) => {
+        console.log('datepicker imported')
+        return DatePicker
+    }))
 
     const mainStore = useMainStore();
     const show = ref<boolean>(false);
