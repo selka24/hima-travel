@@ -107,11 +107,18 @@ import BookCard from "~/components/cards/BookCard.vue";
 import InfoTabs from "~/components/package/InfoTabs.vue";
 // import JsonViewer from 'vue-json-viewer';
 
+
 const mainStore = useMainStore();
 const {currTravelPackage} = toRefs(mainStore);
 const {query} = useRoute();
 const currImg = ref(0);
 const expandImg = ref(false)
+
+
+useHead({
+    title: () => `Paketa ${query.package ? query.package : ''}`
+})
+
 
 const handleSlideChange = (slide: number) => {
     currImg.value = slide;

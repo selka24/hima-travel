@@ -4,7 +4,11 @@ import ZbuloBoten from "~/components/sections/ZbuloBoten.vue";
 import PreviewCardLoading from "~/components/cards/PreviewCardLoading.vue";
 import OfferDeparture from "~/components/OfferDeparture.vue";
 const mainStore = useMainStore();
-const loadingPackage = ref(true)
+const loadingPackage = ref(true);
+
+useHead({
+    title: 'Inspirohu'
+})
 
 const getPackageInspiration = async () => {
     await mainStore.actGetInspiration();
