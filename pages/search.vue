@@ -55,6 +55,21 @@
 <script setup>
 import {useQueryValidator} from "~/composables/queryValidator.js";
 // import JsonViewer from 'vue-json-viewer'
+
+useSeoMeta({
+    title: 'Kërko paketa',
+    ogTitle: 'Kërko paketa',
+    description: 'Kerko paketa udhetimi. Paketa turistike. Agjensi Turistike Hima Travel.',
+    ogDescription: 'Kerko paketa udhetimi. Paketa turistike. Agjensi Turistike Hima Travel.',
+    ogType: 'website',
+    ogLocale: 'sq_AL',
+    ogSiteName: 'Bileta Avioni Hima Travel',
+    ogImage: () => `${runtimeConfig.public.prodUrl}/images/red-logo.png`,
+    ogImageWidth: '140',
+    ogImageHeight: '56',
+    ogImageType: 'image/png'
+})
+
 import TellUs from "~/components/sections/TellUs.vue";
 const mainStore = useMainStore();
 const resultsSection = ref(null)

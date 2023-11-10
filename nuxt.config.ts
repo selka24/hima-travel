@@ -2,14 +2,17 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   app: {
-    // head: {
-    //   link: [
-    //     {
-    //       rel: 'stylesheet',
-    //       href: 'https://rsms.me/inter/inter.css',
-    //     }
-    //   ]
-    // },
+    head: {
+      htmlAttrs:{
+        lang: 'sq'
+      }
+      // link: [
+      //   {
+      //     rel: 'stylesheet',
+      //     href: 'https://rsms.me/inter/inter.css',
+      //   }
+      // ]
+    },
     rootId: 'selka24',
     layoutTransition: { name: 'page', mode: 'out-in' },
     pageTransition: { name: 'page', mode: 'out-in' },

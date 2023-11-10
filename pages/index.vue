@@ -15,7 +15,7 @@ useSeoMeta({
     description: 'Agjensi Turistike Hima Travel. E Njohur si Agjensi Udhetimesh qe nga 2011 ofron Udhetime me Guide dhe Individuale',
     ogDescription: 'Agjensi Turistike Hima Travel. E Njohur si Agjensi Udhetimesh qe nga 2011 ofron Udhetime me Guide dhe Individuale',
     ogType: 'website',
-    ogLocale: 'en_US',
+    ogLocale: 'sq_AL',
     ogSiteName: 'Bileta Avioni Hima Travel',
     ogImage: () => `${runtimeConfig.public.prodUrl}/images/red-logo.png`,
     ogImageWidth: '140',
