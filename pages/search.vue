@@ -55,6 +55,7 @@
 <script setup>
 import {useQueryValidator} from "~/composables/queryValidator.js";
 // import JsonViewer from 'vue-json-viewer'
+const runtimeConfig = useRuntimeConfig()
 
 useSeoMeta({
     title: 'Kërko paketa',
