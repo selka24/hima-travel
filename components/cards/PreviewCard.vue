@@ -48,7 +48,7 @@ const {buildStorageUrl} = useUtils();
 
 const pricePP = computed(() => {
     if(props.travelPackage.packages_min_total_price){
-        return Number(props.travelPackage.packages_min_total_price) / 2;
+        return (Number(props.travelPackage.packages_min_total_price) / 2).toFixed(2);
     }
     return 'null';
 })

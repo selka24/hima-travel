@@ -16,15 +16,12 @@
     </div>
 </template>
 <script setup lang="ts">
-import speedkitHydrate from "#speedkit/hydrate";
 import TravelPlaces from "~/components/TravelPlaces.vue";
 import TravelNights from "~/components/TravelNights.vue";
 import ButtonDefault from "~/components/ButtonDefault.vue";
 import Tooltip from "~/components/Tooltip.vue";
-// import TravelCalendar from "~/components/TravelCalendar.vue";
+import TravelCalendar from "~/components/TravelCalendar.vue";
 import SearchTypes from "~/components/SearchTypes.vue";
-
-const TravelCalendar = speedkitHydrate(() => import('@/components/TravelCalendar.vue'));
 
 defineProps(['showTypes'])
 

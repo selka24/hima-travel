@@ -12,14 +12,14 @@
                 <TellUs/>
                 <transition-group name="fade">
                     <div v-if="mainStore.loadingPackages" class="flex flex-col gap-y-10">
-                        <LazyCardsPackageCardLoading v-for="idx in 10" :key="idx + 'load'"/>
+                        <PackageCardLoading v-for="idx in 3" :key="idx + 'load'"/>
                     </div>
                     <div v-else-if="mainStore.travelPackages" class="flex flex-col gap-y-10">
-                        <div v-for="travelPackage in mainStore.travelPackages" :key="travelPackage.id" class="relative">
-                            <LazyCardsPackageCard :package="travelPackage"/>
-                        </div>
+<!--                        <div v-for="travelPackage in mainStore.travelPackages" :key="travelPackage.id" class="relative">-->
+                            <PackageCard v-for="travelPackage in mainStore.travelPackages" :package="travelPackage" :key="travelPackage.id" class="relative"/>
+<!--                        </div>-->
                         <div class="flex w-full justify-center">
-                            <LazyPagination :per-page="10" :count="mainStore.searchTotal" :curr-page="mainStore.selectedPage" @page-changed="handlePageChanged"/>
+                            <Pagination :per-page="10" :count="mainStore.searchTotal" :curr-page="mainStore.selectedPage" @page-changed="handlePageChanged"/>
                         </div>
 <!--                        <client-only>-->
 <!--                            <json-viewer-->
@@ -56,6 +56,12 @@
 import {useQueryValidator} from "~/composables/queryValidator.js";
 // import JsonViewer from 'vue-json-viewer'
 import TellUs from "~/components/sections/TellUs.vue";
+import SearchFilters from "~/components/SearchFilters.vue";
+import TravelSearch from "~/components/TravelSearch.vue";
+const PackageCardLoading = defineAsyncComponent(() => import('/components/cards/PackageCardLoading.vue'));
+const PackageCard = defineAsyncComponent(() => import('/components/cards/PackageCard.vue'))
+const Pagination = defineAsyncComponent(() => import('/components/Pagination.vue'))
+
 const mainStore = useMainStore();
 const resultsSection = ref(null)
 

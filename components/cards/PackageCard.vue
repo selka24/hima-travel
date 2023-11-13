@@ -1,43 +1,49 @@
 <template>
-    <div class="grid grid-cols-12 border-2 border-gray-normal rounded-[30px] bg-white">
-        <div class="p-5 sm:p-7 col-span-12 md:col-span-9 lg:col-span-8 xl:col-span-5 md:bg-gray-lighter/30 xl:bg-transparent">
-            <div class="relative w-full h-full min-h-[384px] rounded-[20px] overflow-hidden">
-                <CornerInfo>
-                    {{roomBasis}}
-                </CornerInfo>
-                <Carousel :slide-classes="['w-full h-full']" :options="packageImages">
-                    <template #option="{option}">
-                        <nuxt-img loading="lazy" width="583" height="400" format="webp" class="bg-gray-light w-full h-full object-cover" :src="option" :alt="option"/>
-                    </template>
-                    <template #empty>
-                        Nuk ka imazhe per këtë hotel
-                    </template>
-                </Carousel>
+    <div ref="packageCard">
+        <div v-if="isVisible" class="grid grid-cols-12 border-2 border-gray-normal rounded-[30px] bg-white" >
+            <div class="p-5 sm:p-7 col-span-12 md:col-span-9 lg:col-span-8 xl:col-span-5 md:bg-gray-lighter/30 xl:bg-transparent">
+                <div class="relative w-full h-full min-h-[384px] rounded-[20px] overflow-hidden">
+                    <CornerInfo>
+                        {{roomBasis}}
+                    </CornerInfo>
+                    <Carousel :slide-classes="['w-full h-full']" :options="packageImages">
+                        <template #option="{option}">
+                            <nuxt-img loading="lazy" width="583" height="400" format="webp" class="bg-gray-light w-full h-full object-cover" :src="option" :alt="option"/>
+                        </template>
+                        <template #empty>
+                            Nuk ka imazhe per këtë hotel
+                        </template>
+                    </Carousel>
+                </div>
             </div>
-        </div>
-        <div class="overflow-hidden p-5 sm:p-7 col-span-12 sm:col-span-8 md:order-last md:col-span-11 lg:col-span-10 xl:order-none xl:col-span-5 2xl:col-span-4 flex flex-col">
-            <div class="overflow-hidden">
-                <div class="text-3xl font-bold mb-10">HOTEL {{hotel_data.hotel?.name || '*No name*'}}</div>
-                <InfoTabs :package="package"/>
+            <div class="overflow-hidden p-5 sm:p-7 col-span-12 sm:col-span-8 md:order-last md:col-span-11 lg:col-span-10 xl:order-none xl:col-span-5 2xl:col-span-4 flex flex-col">
+                <div class="overflow-hidden">
+                    <div class="text-3xl font-bold mb-10">HOTEL {{hotel_data.hotel?.name || '*No name*'}}</div>
+                    <InfoTabs :package="package"/>
+                </div>
             </div>
-        </div>
-        <div class="flex py-7 gap-5 sm:gap-0- sm:py-0 justify-between sm:flex-col sm:justify-center items-center col-span-12 sm:col-span-4 md:col-span-3 lg:col-span-4 xl:col-span-2 2xl:col-span-3 px-5 md:bg-gray-lighter/30">
-            <div class="flex flex-col items-center sm:mt-auto sm:mb-20">
-                <transition name="slide-up" mode="out-in">
-                    <div :key="packagePrice + 'label'" class="mb-2 text-lg text-gray-normal">{{ mainStore.priceMode ? 'Totali' : 'Për person' }}</div>
-                </transition>
-                <transition name="slide-up" mode="out-in">
-                    <div :key="packagePrice" class="font-bold text-[36px] min-w-max lg:text-[55px] xl:text-[36px] 2xl:text-[55px]">{{ packagePrice }} €</div>
-                </transition>
+            <div class="flex py-7 gap-5 sm:gap-0- sm:py-0 justify-between sm:flex-col sm:justify-center items-center col-span-12 sm:col-span-4 md:col-span-3 lg:col-span-4 xl:col-span-2 2xl:col-span-3 px-5 md:bg-gray-lighter/30">
+                <div class="flex flex-col items-center sm:mt-auto sm:mb-20">
+                    <transition name="slide-up" mode="out-in">
+                        <div :key="packagePrice + 'label'" class="mb-2 text-lg text-gray-normal">{{ mainStore.priceMode ? 'Totali' : 'Për person' }}</div>
+                    </transition>
+                    <transition name="slide-up" mode="out-in">
+                        <div :key="packagePrice" class="font-bold text-[36px] min-w-max lg:text-[55px] xl:text-[36px] 2xl:text-[55px]">{{ packagePrice.toFixed(2) }} €</div>
+                    </transition>
+                </div>
+                <nuxt-link :to="{path: '/package', query: {package: package.id}}" class="max-w-[260px] w-full">
+                    <button-default class="h-[70px] w-full sm:mb-14 font-normal">Shiko Paketën</button-default>
+                </nuxt-link>
             </div>
-            <nuxt-link :to="{path: '/package', query: {package: package.id}}" class="max-w-[260px] w-full">
-                <button-default class="h-[70px] w-full sm:mb-14 font-normal">Shiko Paketën</button-default>
-            </nuxt-link>
         </div>
     </div>
 </template>
 <script setup lang="ts">
 import InfoTabs from "~/components/package/InfoTabs.vue";
+import Carousel from "~/components/Carousel.vue";
+import ButtonDefault from "~/components/ButtonDefault.vue";
+import CornerInfo from "~/components/CornerInfo.vue";
+import PackageCardLoading from "~/components/cards/PackageCardLoading.vue";
 const {displayNights, formatDateSQ, formatDurationSQ, roomBasisInfo} = useUtils();
 const props = defineProps<{ package: FullPackage }>();
 
@@ -47,6 +53,8 @@ const packageImages = mainStore.getPackageImages(props.package);
 const hotel_data = props.package.hotel_data
 
 const roomBasis = roomBasisInfo(hotel_data.room_basis);
+const packageCard = ref(null);
+const isVisible = useElementVisibility(packageCard);
 
 const packagePrice = computed(() => {
     return !mainStore.priceMode ? Number(props.package.total_price) / 2 : props.package.total_price

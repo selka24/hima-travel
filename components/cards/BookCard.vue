@@ -35,7 +35,7 @@ const hotel_data = computed(() => {
 
 const pricePP = computed(() => {
     if(mainStore.currTravelPackage?.total_price){
-        return Number(mainStore.currTravelPackage.total_price) / 2;
+        return (Number(mainStore.currTravelPackage.total_price) / 2).toFixed(2);
     }
     return 'null'
 })

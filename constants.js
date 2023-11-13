@@ -13,7 +13,7 @@ export const pages = [
 ]
 
 export const headPages = [
-    {title: 'Rekomandime', link: '/recommend'},
+    {title: 'Inspire', link: '/inspiration'},
     {title: 'Paketa', link: '/search'},
 ]
 

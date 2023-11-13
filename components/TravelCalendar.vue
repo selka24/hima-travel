@@ -18,10 +18,8 @@
 <script setup lang="ts">
     import 'v-calendar/style.css';
     import InputSkeleton from "~/components/InputSkeleton.vue";
-
     const CDatePicker = defineAsyncComponent(() => import("v-calendar").then(({DatePicker}) => {
-        console.log('datepicker imported')
-        return DatePicker
+        return DatePicker;
     }))
 
     const mainStore = useMainStore();
