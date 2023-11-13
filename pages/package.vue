@@ -80,7 +80,7 @@
             </div>
             <div class="mt-14">
                 <div class="text-3xl mb-12 font-bold">Room types</div>
-                <room-info/>
+                <RoomInfo/>
             </div>
             <div class="mt-14">
                 <div class="text-3xl mb-12 font-bold">Contact us to book</div>
@@ -105,20 +105,18 @@ import InfoCard from "~/components/cards/InfoCard.vue";
 import ZbuloBoten from "~/components/sections/ZbuloBoten.vue";
 import BookCard from "~/components/cards/BookCard.vue";
 import InfoTabs from "~/components/package/InfoTabs.vue";
+import Carousel from "~/components/Carousel.vue";
+import RoomInfo from "~/components/RoomInfo.vue";
 // import JsonViewer from 'vue-json-viewer';
-
-
 const mainStore = useMainStore();
 const {currTravelPackage} = toRefs(mainStore);
 const {query} = useRoute();
 const currImg = ref(0);
 const expandImg = ref(false)
 
-
 useHead({
     title: () => `Paketa ${query.package ? query.package : ''}`
 })
-
 
 const handleSlideChange = (slide: number) => {
     currImg.value = slide;
@@ -151,6 +149,7 @@ const getPackage = async () => {
         console.error('Invalid package id parameter')
     }
 }
+
 
 onMounted(() => {
     getPackage();

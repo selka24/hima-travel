@@ -1,6 +1,6 @@
 <template>
     <div class="relative">
-        <LazySearchTypes v-if="showTypes"/>
+        <SearchTypes v-if="showTypes"/>
         <div class="grid sm:grid-cols-6 lg:grid-cols-9 gap-y-4 gap-x-2.5 pt-8 px-10 bg-gradient-to-r rounded-[20px] from-white/90 to-white/80 w-full backdrop-blur-[3px] relative z-20 ">
             <travel-places class="sm:col-span-6 lg:col-span-5"/>
             <travel-calendar class="sm:col-span-4 lg:col-span-2"/>
@@ -18,7 +18,12 @@
 <script setup lang="ts">
 import TravelPlaces from "~/components/TravelPlaces.vue";
 import TravelNights from "~/components/TravelNights.vue";
+import ButtonDefault from "~/components/ButtonDefault.vue";
+import Tooltip from "~/components/Tooltip.vue";
+import TravelCalendar from "~/components/TravelCalendar.vue";
+// import SearchTypes from "~/components/SearchTypes.vue";
 
+const SearchTypes = defineAsyncComponent(() => import('./SearchTypes.vue'))
 defineProps(['showTypes'])
 
 const mainStore = useMainStore();

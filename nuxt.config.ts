@@ -2,17 +2,6 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   app: {
-    head: {
-      htmlAttrs:{
-        lang: 'sq'
-      }
-      // link: [
-      //   {
-      //     rel: 'stylesheet',
-      //     href: 'https://rsms.me/inter/inter.css',
-      //   }
-      // ]
-    },
     rootId: 'selka24',
     layoutTransition: { name: 'page', mode: 'out-in' },
     pageTransition: { name: 'page', mode: 'out-in' },
@@ -23,8 +12,11 @@ export default defineNuxtConfig({
     'nuxt-icons',
     '@pinia/nuxt',
     'nuxt-simple-sitemap',
-    // 'nuxt-api-party',
+    '@vueuse/nuxt',    // 'nuxt-api-party',
   ],
+  components:{
+    dirs: []
+  },
   // apiParty: {
   //   endpoints: {
   //     myApi: {

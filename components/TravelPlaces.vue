@@ -50,6 +50,8 @@
     </div>
 </template>
 <script setup lang="ts">
+import SearchSelect from "~/components/SearchSelect.vue";
+
 const mainStore = useMainStore();
 const {$api} = useNuxtApp();
 const {handleQueryValidate} = useQueryValidator()

@@ -9,7 +9,7 @@
         </DevOnly>
         <div class="max-w-page flex justify-between w-full">
             <div class="hidden md:block">
-                <nuxt-img format="webp"  src="/images/red-logo.png"  width="140" height="56" class="max-w-[222px] w-full"/>
+                <nuxt-img format="webp"  src="/images/red-logo.png" alt="red-logo"  width="140" height="56" class="max-w-[222px] w-full"/>
                 <div class="text-xl font-bold mt-10">
                     10 VITE HIMA TRAVEL
                     <br>

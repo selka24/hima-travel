@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import HomeIntro from "~/components/sections/HomeIntro.vue";
-import OffersSection from "~/components/sections/OffersSection.vue";
-import WelcomSection from "~/components/sections/WelcomSection.vue";
+// import defineAsyncComponent from '#speedkit/hydrate';
+
+const HomeIntro = defineAsyncComponent(() => import('@/components/sections/HomeIntro.vue'));
+const OffersSection = defineAsyncComponent(() => import('@/components/sections/OffersSection.vue'));
+const WelcomeSection = defineAsyncComponent(() => import('@/components/sections/WelcomeSection.vue'));
 
 const {actResetParams} = useMainStore()
 const runtimeConfig = useRuntimeConfig()
@@ -22,15 +24,13 @@ useSeoMeta({
     ogImageHeight: '56',
     ogImageType: 'image/png'
 })
-
 actResetParams();
 </script>
-
 <template>
     <div>
-        <HomeIntro/>
-        <OffersSection class="mt-32"/>
-        <WelcomSection class="mt-80"/>
+        <HomeIntro critical/>
+        <OffersSection class="mt-32" id="OffersSection"/>
+        <WelcomeSection class="mt-80"/>
     </div>
 </template>
 

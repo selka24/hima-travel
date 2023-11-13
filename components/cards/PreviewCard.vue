@@ -8,7 +8,7 @@
                       width="385"
                       height="442"
                       :src="buildStorageUrl(travelPackage.destination_photos[0].file_path)"
-                      alt="roma preview"
+                      :alt="`${travelPackage.city} picture`"
             />
             <div v-else class="bg-gray-normal w-full h-[442px] flex items-center justify-center">
             </div>
@@ -22,31 +22,33 @@
                 {{travelPackage.city}}
             </div>
         </div>
-        <div class="flex mt-11 items-center">
+        <div class="flex mt-11 items-center justify-between mb-12">
             <div>
                 <div class="text-2xl font-bold">{{travelPackage.city}}</div>
                 <div class="text-gray-normal">{{travelPackage.packages_count}} Oferta</div>
             </div>
-            <div class="ml-auto text-right">
-                <div class="text-2xl sm:text-3xl 2xl:text-5xl font-bold">{{pricePP}}€</div>
+            <div class="text-right">
+                <div class="text-2xl sm:text-3xl font-bold">{{pricePP}}€</div>
                 <div class="text-gray-normal">personi</div>
             </div>
         </div>
-        <div class="mt-11 font-bold text-lg mb-12">
-            {{travelPackage.description}}
-        </div>
-        <nuxt-link :to="`/recommend?destinationId=${travelPackage.id}`">
+<!--        <div class="mt-11 font-bold text-lg mb-12">-->
+<!--            {{travelPackage.description}}-->
+<!--        </div>-->
+        <nuxt-link :to="`/recommendations?destinationId=${travelPackage.id}`">
             <button-default class="uppercase px-8 py-4 font-normal absolute left-1/2 -translate-x-1/2">zbulo ofertën</button-default>
         </nuxt-link>
     </div>
 </template>
 <script setup lang="ts">
+import ButtonDefault from "~/components/ButtonDefault.vue";
+
 const props = defineProps<{travelPackage: TravelOffer}>();
 const {buildStorageUrl} = useUtils();
 
 const pricePP = computed(() => {
     if(props.travelPackage.packages_min_total_price){
-        return Number(props.travelPackage.packages_min_total_price) / 2;
+        return Math.ceil(Number(props.travelPackage.packages_min_total_price) / 2);
     }
     return 'null';
 })

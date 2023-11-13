@@ -18,6 +18,8 @@
     </div>
 </template>
 <script setup>
+    import ButtonDefault from "~/components/ButtonDefault.vue";
+
     const tellUsOptions = [
         'I found less expensive tickets somewhere else',
         'I believe flights are missing',

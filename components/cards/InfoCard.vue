@@ -17,6 +17,9 @@
     </div>
 </template>
 <script setup lang="ts">
+import ButtonDefault from "~/components/ButtonDefault.vue";
+import CornerInfo from "~/components/CornerInfo.vue";
+
 const {sendWhatsappMessage, displayNights, roomBasisInfo, formatDateSQ} = useUtils();
 
 const icons = ['user', 'moon', 'calendar', 'food']
@@ -40,7 +43,7 @@ const packageInfo = computed(() => {
 
 const price = computed(() => {
     if(mainStore.currTravelPackage?.total_price){
-        return Number(mainStore.currTravelPackage.total_price) / 2;
+        return Math.ceil(Number(mainStore.currTravelPackage.total_price) / 2);
     }
     return 'null';
 })

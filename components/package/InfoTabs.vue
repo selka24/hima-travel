@@ -34,6 +34,8 @@
 </template>
 <script setup lang="ts">
 import {intervalToDuration} from "date-fns";
+import Carousel from "~/components/Carousel.vue";
+import ArrowTabs from "~/components/ArrowTabs.vue";
 
 const {roomBasisInfo, formatDateSQ, formatDurationSQ, displayNights} = useUtils();
 const props = defineProps<{ package: FullPackage, bgTriangle?: string }>();
@@ -99,7 +101,7 @@ const handleTabChange = (tab: number) => {
 }
 </script>
 <style>
-.hotelDscr, p{
+.hotelDscr p{
     margin-left: 20px;
     line-height: 35px;
     font-weight: bold;

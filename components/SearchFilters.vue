@@ -15,6 +15,9 @@
 </div>
 </template>
 <script setup lang="ts">
+import Dropdown from "~/components/Dropdown.vue";
+import Toggle from "~/components/Toggle.vue";
+
 const mainStore = useMainStore()
 const sortOptions = [
     {title: 'Rekomandimit', value: 1},

@@ -8,6 +8,7 @@ export const useMainStore = defineStore('main', () => {
     const fromServer = ref(false)
     const currTravelPackage = ref<FullPackage | null>(null);
     const loadingCurrPackage = ref(true);
+    const loadingInspiration = ref(true)
 
     const allOrigins = ref<Origin[]>([]);
     const allDestinations = ref<Destination[]>([]);
@@ -129,14 +130,21 @@ export const useMainStore = defineStore('main', () => {
     }
 
     const actGetInspiration = async () => {
-        await $api.get('/destinations/all')
-            .then((response) => {
-                console.log('response', response)
-                destinationOffers.value = response.data
-            })
-            .catch((e) => {
-                destinationOffers.value = [];
-            })
+        try {
+            const {data} = await $api.get('/destinations/all')
+            destinationOffers.value = data
+        } catch (e) {
+            console.log(e, 'errrorr')
+        } finally {
+            loadingInspiration.value = false
+        }
+            // .then((response) => {
+            //     console.log('response', response)
+            //     destinationOffers.value = response.data
+            // })
+            // .catch((e) => {
+            //     destinationOffers.value = [];
+            // })
     }
 
     const actGetDestinationPackages = async (destinationID: number) => {
@@ -161,6 +169,7 @@ export const useMainStore = defineStore('main', () => {
         getSearchParams,
         loadingCurrPackage,
         loadingPackages,
+        loadingInspiration,
         originSearch,
         priceMode,
         searchTotal,

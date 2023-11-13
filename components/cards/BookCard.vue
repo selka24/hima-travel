@@ -25,6 +25,8 @@
     </div>
 </template>
 <script setup lang="ts">
+import ButtonDefault from "~/components/ButtonDefault.vue";
+
 const {sendWhatsappMessage, displayNights, roomBasisInfo, formatDateSQ} = useUtils();
 const mainStore = useMainStore();
 const hotel_data = computed(() => {
@@ -33,7 +35,7 @@ const hotel_data = computed(() => {
 
 const pricePP = computed(() => {
     if(mainStore.currTravelPackage?.total_price){
-        return Number(mainStore.currTravelPackage.total_price) / 2;
+        return Math.ceil(Number(mainStore.currTravelPackage.total_price) / 2);
     }
     return 'null'
 })
