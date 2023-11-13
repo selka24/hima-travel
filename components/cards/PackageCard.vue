@@ -18,7 +18,7 @@
             </div>
             <div class="overflow-hidden p-5 sm:p-7 col-span-12 sm:col-span-8 md:order-last md:col-span-11 lg:col-span-10 xl:order-none xl:col-span-5 2xl:col-span-4 flex flex-col">
                 <div class="overflow-hidden">
-                    <div class="text-3xl font-bold mb-10">{{props.package.id }} HOTEL {{hotel_data.hotel?.name || '*No name*'}}</div>
+                    <div class="text-3xl font-bold mb-10">HOTEL {{hotel_data.hotel?.name || '*No name*'}}</div>
                     <InfoTabs :package="package"/>
                 </div>
             </div>
