@@ -10,14 +10,10 @@
                 <nuxt-img format="webp"  src="/images/red-logo.png" alt="red-logo" width="140" height="56" />
             </nuxt-link>
             <div class="flex justify-center items-center gap-12 uppercase">
-                <nuxt-link v-for="page in headPages" :to="page.link" :class="[{'font-bold border-b-2 border-primary': route.path === page.link}]">
+                <nuxt-link v-for="page in headPages" :to="page.link + (page.query || '')" :class="[{'font-bold border-b-2 border-primary': route.path === page.link}]">
                     {{page.title}}
                 </nuxt-link>
             </div>
         </div>
     </div>
 </template>
-
-<style scoped>
-
-</style>

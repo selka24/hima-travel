@@ -1,5 +1,5 @@
 <template>
-    <div ref="packageCard">
+    <div ref="packageCard" class="min-h-[384px]">
         <div v-if="isVisible || alreadyShown" class="grid grid-cols-12 border-2 border-gray-normal rounded-[30px] bg-white" >
             <div class="p-5 sm:p-7 col-span-12 md:col-span-9 lg:col-span-8 xl:col-span-5 md:bg-gray-lighter/30 xl:bg-transparent">
                 <div class="relative w-full h-full min-h-[384px] rounded-[20px] overflow-hidden">
@@ -43,7 +43,6 @@ import InfoTabs from "~/components/package/InfoTabs.vue";
 import Carousel from "~/components/Carousel.vue";
 import ButtonDefault from "~/components/ButtonDefault.vue";
 import CornerInfo from "~/components/CornerInfo.vue";
-import PackageCardLoading from "~/components/cards/PackageCardLoading.vue";
 const {displayNights, formatDateSQ, formatDurationSQ, roomBasisInfo} = useUtils();
 const props = defineProps<{ package: FullPackage }>();
 
@@ -54,29 +53,18 @@ const hotel_data = props.package.hotel_data
 
 const roomBasis = roomBasisInfo(hotel_data.room_basis);
 const packageCard = ref(null);
-const isVisible = useElementVisibility(packageCard);
 const alreadyShown = ref(false);
 
 const packagePrice = computed(() => {
     return !mainStore.priceMode ? Number(props.package.total_price) / 2 : props.package.total_price
 })
 
-// watch(isVisible, (val) => {
-//             console.log(val, 'isVisible', props.package.id)
-//     // if(val){
-//     //     alreadyShown.value = true;
-//     // }
-// })
+const isVisible = useElementVisibility(packageCard);
 
-watchEffect(() => {
-    console.log('effeektii', props.package.id, isVisible.value)
-})
-onMounted(() => {
-
-    nextTick(() => {
-        console.log('next tick', props.package.id)
-    })
-    // console.log('mounteed', props.package.id, isVisible.value)
+watch(isVisible, (val) => {
+    if(val){
+        alreadyShown.value = true;
+    }
 })
 </script>
 

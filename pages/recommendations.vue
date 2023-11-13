@@ -21,7 +21,6 @@ const getRecommends = async () => {
 }
 
 onMounted(() => {
-    console.log('rekomend mounted')
     getRecommends();
 })
 </script>
@@ -31,9 +30,9 @@ onMounted(() => {
         <div v-if="loading" class="grid w-full grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-3 gap-y-28 max-w-page mt-11">
             <PreviewCardLoading v-for="idx in 6" :key="idx + 'rec'"/>
         </div>
-<!--        <div v-else class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-3 gap-y-28 max-w-page w-full mt-11">-->
-<!--            <OfferCard v-for="(pckg, date) in mainStore.destinationPackages" :key="date" :date="date" :package="pckg" />-->
-<!--        </div>-->
+        <div v-else class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-3 gap-y-28 max-w-page w-full mt-11">
+            <OfferCard v-for="(pckg, date) in mainStore.destinationPackages" :key="date" :date="date" :package="pckg" />
+        </div>
     </div>
 </template>
 
