@@ -101,7 +101,7 @@ const handleTabChange = (tab: number) => {
 }
 </script>
 <style>
-.hotelDscr, p{
+.hotelDscr p{
     margin-left: 20px;
     line-height: 35px;
     font-weight: bold;

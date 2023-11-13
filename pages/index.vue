@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import speedkitHydrate from '#speedkit/hydrate';
+// import defineAsyncComponent from '#speedkit/hydrate';
 
-const HomeIntro = speedkitHydrate(() => import('@/components/sections/HomeIntro.vue'));
-const OffersSection = speedkitHydrate(() => import('@/components/sections/OffersSection.vue'));
-const WelcomeSection = speedkitHydrate(() => import('@/components/sections/WelcomeSection.vue'));
+const HomeIntro = defineAsyncComponent(() => import('@/components/sections/HomeIntro.vue'));
+const OffersSection = defineAsyncComponent(() => import('@/components/sections/OffersSection.vue'));
+const WelcomeSection = defineAsyncComponent(() => import('@/components/sections/WelcomeSection.vue'));
 
 const {actResetParams} = useMainStore()
 const runtimeConfig = useRuntimeConfig()
@@ -29,7 +29,7 @@ actResetParams();
 <template>
     <div>
         <HomeIntro critical/>
-        <OffersSection class="mt-32"/>
+        <OffersSection class="mt-32" id="OffersSection"/>
         <WelcomeSection class="mt-80"/>
     </div>
 </template>

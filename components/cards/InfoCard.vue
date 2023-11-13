@@ -43,7 +43,7 @@ const packageInfo = computed(() => {
 
 const price = computed(() => {
     if(mainStore.currTravelPackage?.total_price){
-        return (Number(mainStore.currTravelPackage.total_price) / 2).toFixed(2);
+        return Math.ceil(Number(mainStore.currTravelPackage.total_price) / 2);
     }
     return 'null';
 })

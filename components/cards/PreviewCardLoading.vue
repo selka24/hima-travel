@@ -18,9 +18,3 @@
 <!--        <button-default class="uppercase !bg-gray-light animate-pulse px-8 py-4 font-normal absolute left-1/2 -translate-x-1/2 !text-transparent">zbulo ofertën</button-default>-->
     </div>
 </template>
-
-<style scoped>
-
-</style>
-<script setup lang="ts">
-</script>

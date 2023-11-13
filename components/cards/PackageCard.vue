@@ -1,6 +1,6 @@
 <template>
     <div ref="packageCard">
-        <div v-if="isVisible" class="grid grid-cols-12 border-2 border-gray-normal rounded-[30px] bg-white" >
+        <div v-if="isVisible || alreadyShown" class="grid grid-cols-12 border-2 border-gray-normal rounded-[30px] bg-white" >
             <div class="p-5 sm:p-7 col-span-12 md:col-span-9 lg:col-span-8 xl:col-span-5 md:bg-gray-lighter/30 xl:bg-transparent">
                 <div class="relative w-full h-full min-h-[384px] rounded-[20px] overflow-hidden">
                     <CornerInfo>
@@ -18,7 +18,7 @@
             </div>
             <div class="overflow-hidden p-5 sm:p-7 col-span-12 sm:col-span-8 md:order-last md:col-span-11 lg:col-span-10 xl:order-none xl:col-span-5 2xl:col-span-4 flex flex-col">
                 <div class="overflow-hidden">
-                    <div class="text-3xl font-bold mb-10">HOTEL {{hotel_data.hotel?.name || '*No name*'}}</div>
+                    <div class="text-3xl font-bold mb-10">{{props.package.id }} HOTEL {{hotel_data.hotel?.name || '*No name*'}}</div>
                     <InfoTabs :package="package"/>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                         <div :key="packagePrice + 'label'" class="mb-2 text-lg text-gray-normal">{{ mainStore.priceMode ? 'Totali' : 'Për person' }}</div>
                     </transition>
                     <transition name="slide-up" mode="out-in">
-                        <div :key="packagePrice" class="font-bold text-[36px] min-w-max lg:text-[55px] xl:text-[36px] 2xl:text-[55px]">{{ packagePrice.toFixed(2) }} €</div>
+                        <div :key="packagePrice" class="font-bold text-[36px] min-w-max lg:text-5xl">{{ Math.ceil(packagePrice) }} €</div>
                     </transition>
                 </div>
                 <nuxt-link :to="{path: '/package', query: {package: package.id}}" class="max-w-[260px] w-full">
@@ -55,9 +55,28 @@ const hotel_data = props.package.hotel_data
 const roomBasis = roomBasisInfo(hotel_data.room_basis);
 const packageCard = ref(null);
 const isVisible = useElementVisibility(packageCard);
+const alreadyShown = ref(false);
 
 const packagePrice = computed(() => {
     return !mainStore.priceMode ? Number(props.package.total_price) / 2 : props.package.total_price
+})
+
+// watch(isVisible, (val) => {
+//             console.log(val, 'isVisible', props.package.id)
+//     // if(val){
+//     //     alreadyShown.value = true;
+//     // }
+// })
+
+watchEffect(() => {
+    console.log('effeektii', props.package.id, isVisible.value)
+})
+onMounted(() => {
+
+    nextTick(() => {
+        console.log('next tick', props.package.id)
+    })
+    // console.log('mounteed', props.package.id, isVisible.value)
 })
 </script>
 

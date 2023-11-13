@@ -21,8 +21,9 @@ import TravelNights from "~/components/TravelNights.vue";
 import ButtonDefault from "~/components/ButtonDefault.vue";
 import Tooltip from "~/components/Tooltip.vue";
 import TravelCalendar from "~/components/TravelCalendar.vue";
-import SearchTypes from "~/components/SearchTypes.vue";
+// import SearchTypes from "~/components/SearchTypes.vue";
 
+const SearchTypes = defineAsyncComponent(() => import('./SearchTypes.vue'))
 defineProps(['showTypes'])
 
 const mainStore = useMainStore();

@@ -23,7 +23,7 @@ onMounted(() => {
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-3 gap-y-28 mt-20 max-w-page">
             <preview-card v-for="offer in mainStore.destinationOffers" :key="offer.id + 'prw-card'" :travel-package="offer"/>
         </div>
-        <nuxt-link to="/inspiration"
+        <nuxt-link to="/inspiration?origin=Tirana"
                    class="mt-44 font-normal border border-primary text-center w-full max-w-[300px] py-5 rounded-[10px]">
             VIEW ALL DEALS
         </nuxt-link>

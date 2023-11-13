@@ -34,7 +34,7 @@
                 <div class="text-gray-normal">nga Tirana</div>
             </div>
             <div class="ml-auto text-right">
-                <div class="text-2xl sm:text-3xl 2xl:text-5xl font-bold">{{ package.total_price / 2 }}€</div>
+                <div class="text-2xl sm:text-3xl font-bold">{{ Math.ceil(package.total_price / 2) }}€</div>
                 <div class="text-gray-normal">personi</div>
             </div>
         </div>

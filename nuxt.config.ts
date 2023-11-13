@@ -12,82 +12,10 @@ export default defineNuxtConfig({
     'nuxt-icons',
     '@pinia/nuxt',
     'nuxt-simple-sitemap',
-    'nuxt-speedkit',
     '@vueuse/nuxt',    // 'nuxt-api-party',
   ],
   components:{
     dirs: []
-  },
-  speedkit: {
-    detection: {
-      performance: true,
-      browserSupport: true
-    },
-
-    performanceMetrics: {
-      device: {
-        hardwareConcurrency: { min: 2, max: 48 },
-        deviceMemory: { min: 2 }
-      },
-      timing: {
-        fcp: 800,
-        dcl: 1200
-      }
-    },
-    fonts: [{
-      family: 'Inter',
-      locals: ['Inter'],
-      fallback: ['Inter', 'sans-serif'],
-      variances: [
-        {
-          style: 'normal',
-          weight: 300,
-          sources: [
-            { src: '@/assets/fonts/Inter-Light.woff2', type:'woff2' }
-          ]
-        },
-        {
-          style: 'normal',
-          weight: 400,
-          sources: [
-            { src: '@/assets/fonts/Inter-Regular.woff2', type:'woff2' }
-          ]
-        },
-        {
-          style: 'normal',
-          weight: 500,
-          sources: [
-            { src: '@/assets/fonts/Inter-Medium.woff2', type:'woff2' }
-          ]
-        },
-        {
-          style: 'normal',
-          weight: 600,
-          sources: [
-            { src: '@/assets/fonts/Inter-SemiBold.woff2', type:'woff2' }
-          ]
-        },
-        {
-          style: 'normal',
-          weight: 700,
-          sources: [
-            { src: '@/assets/fonts/Inter-Bold.woff2', type:'woff2' }
-          ]
-        }
-      ]
-    }],
-    targetFormats: ['webp', 'avif', 'jpg|jpeg|png|gif'],
-    componentAutoImport: false,
-    componentPrefix: undefined,
-
-    /**
-     * IntersectionObserver rootMargin for Compoennts and Assets
-     */
-    lazyOffset: {
-      component: '0%',
-      asset: '0%'
-    }
-
   },
   // apiParty: {
   //   endpoints: {
