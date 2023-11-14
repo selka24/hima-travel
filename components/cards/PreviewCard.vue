@@ -14,8 +14,8 @@
             </div>
             <div class="flex flex-col justify-end items-center transition-all ease-in duration-300 opacity-0 group-hover:opacity-100 absolute w-full h-full bg-primary/70  backdrop-blur-[1px] top-0 rounded-[10px]">
                 <nuxt-icon :name="'roma'" filled class="text-[150px] mb-8"/>
-                <div class="mb-40">
-                    {{travelPackage.packages_count}} OFERTA
+                <div class="mb-40 uppercase">
+                    {{travelPackage.packages_count}} {{ travelPackage.packages_count === 1 ? 'ofertë' : 'oferta' }}
                 </div>
             </div>
             <div class="transition-all ease-in duration-300 uppercase absolute bottom-1/2 left-1/2 -translate-x-1/2 group-hover:bottom-24">
@@ -25,7 +25,7 @@
         <div class="flex mt-11 items-center justify-between mb-12">
             <div>
                 <div class="text-2xl font-bold">{{travelPackage.city}}</div>
-                <div class="text-gray-normal">{{travelPackage.packages_count}} Oferta</div>
+                <div class="text-gray-normal">{{travelPackage.packages_count}} {{ travelPackage.packages_count === 1 ? 'Ofertë' : 'Oferta' }}</div>
             </div>
             <div class="text-right">
                 <div class="text-2xl sm:text-3xl font-bold">{{pricePP}}€</div>

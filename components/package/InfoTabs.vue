@@ -22,9 +22,9 @@
                 <div v-else class="flex flex-col gap-y-3.5">
                     <div v-for="(tab, idx) in option.content" :key="`${tab.value}-${idx}-inf`">
                         <div class="flex gap-4 items-center">
-                            <nuxt-icon v-if="tab.icon" :name="tab.icon" filled class="text-2xl"/>
+                            <nuxt-icon v-if="tab.icon" :name="tab.icon" class="text-2xl text-gray-normal"/>
                             <div v-else class="min-w-[24px]"/>
-                            <div class="font-bold">{{ tab.value }}</div>
+                            <div class="font-bold" v-html="tab.value"/>
                         </div>
                     </div>
                 </div>
@@ -38,6 +38,7 @@ import Carousel from "~/components/Carousel.vue";
 import ArrowTabs from "~/components/ArrowTabs.vue";
 
 const {roomBasisInfo, formatDateSQ, formatDurationSQ, displayNights} = useUtils();
+const linkFlight = ref<HTMLElement | null>(null)
 const props = defineProps<{ package: FullPackage, bgTriangle?: string }>();
 const tabs = [
     {title: 'Të përfshira', icon: 'info'},
@@ -56,7 +57,7 @@ const getFlightInfo = (flight: Flight) => {
     const duration = formatDurationSQ(intervalToDuration({start: departure, end: arrival}));
     return {
         places: `${data.legs[0].origin.name} ${flight.origin} -> ${data.legs[0].destination.name} ${flight.destination}`,
-        time: `${formatDateSQ(departure, 'dd, LLL yyyy -  HH:mm')} - ${formatDateSQ(arrival, 'dd, LLL yyyy -  HH:mm')}`,
+        time: `${formatDateSQ(departure, 'dd, LLL yyyy -  HH:mm')} - ${formatDateSQ(arrival, 'HH:mm')}`,
         duration
     }
 }
@@ -67,6 +68,13 @@ const includedTab = computed(() => {
         {icon: 'backpack', value: 'Bagazh krahu 10 kg'},
         {icon: 'bed', value: JSON.parse(hotel_data.room_details)[0]},
         {icon: 'food', value: roomBasis},
+        {icon: 'plane-departure', value: `
+            <span>Udhëtimi vajtje-ardhje<span>
+            &nbsp
+            <span id="flight-${props.package.id}" class="underline cursor-pointer text-sm font-medium text-primary">
+                Shiko më shumë
+            </span>`
+        }
     ]
 })
 
@@ -99,6 +107,23 @@ const tabsContent = computed(() => {
 const handleTabChange = (tab: number) => {
     activeTab.value = tab;
 }
+
+const goToFlightTab = () => {
+    activeTab.value = 2;
+}
+
+const linkFlightClick = () => {
+    linkFlight.value = document.getElementById(`flight-${props.package.id}`);
+    linkFlight.value?.addEventListener('click', goToFlightTab);
+}
+
+onMounted(() => {
+    linkFlightClick();
+})
+
+onBeforeUnmount(() => {
+    linkFlight.value?.removeEventListener('click', goToFlightTab);
+})
 </script>
 <style>
 .hotelDscr p{

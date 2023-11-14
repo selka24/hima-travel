@@ -18,17 +18,25 @@
             </div>
             <div class="overflow-hidden p-5 sm:p-7 col-span-12 sm:col-span-8 md:order-last md:col-span-11 lg:col-span-10 xl:order-none xl:col-span-5 2xl:col-span-4 flex flex-col">
                 <div class="overflow-hidden">
-                    <div class="text-3xl font-bold mb-10">HOTEL {{hotel_data.hotel?.name || '*No name*'}}</div>
+                    <div class="text-2xl flex justify-between font-bold mb-10">
+                        <div>
+                            HOTEL {{hotel_data.hotel?.name || '*No name*'}}
+                        </div>
+                        <HotelStars :stars="hotel_data.hotel.stars"/>
+                    </div>
                     <InfoTabs :package="package"/>
                 </div>
             </div>
             <div class="flex py-7 gap-5 sm:gap-0- sm:py-0 justify-between sm:flex-col sm:justify-center items-center col-span-12 sm:col-span-4 md:col-span-3 lg:col-span-4 xl:col-span-2 2xl:col-span-3 px-5 md:bg-gray-lighter/30">
                 <div class="flex flex-col items-center sm:mt-auto sm:mb-20">
                     <transition name="slide-up" mode="out-in">
-                        <div :key="packagePrice + 'label'" class="mb-2 text-lg text-gray-normal">{{ mainStore.priceMode ? 'Totali' : 'Për person' }}</div>
-                    </transition>
-                    <transition name="slide-up" mode="out-in">
-                        <div :key="packagePrice" class="font-bold text-[36px] min-w-max lg:text-5xl">{{ Math.ceil(packagePrice) }} €</div>
+                        <div :key="packagePrice + 'label'" class="text-center">
+                            <div class="mb-2 text-lg text-gray-normal">{{ mainStore.priceMode ? 'Totali' : 'Për person' }}</div>
+                            <div class="font-bold text-[36px] min-w-max lg:text-4xl">{{ Math.ceil(packagePrice) }}€</div>
+                            <div v-if="!mainStore.priceMode" class="mt-2 text-gray-light">
+                                Dhomë Dyshe
+                            </div>
+                        </div>
                     </transition>
                 </div>
                 <nuxt-link :to="{path: '/package', query: {package: package.id}}" class="max-w-[260px] w-full">
@@ -43,6 +51,7 @@ import InfoTabs from "~/components/package/InfoTabs.vue";
 import Carousel from "~/components/Carousel.vue";
 import ButtonDefault from "~/components/ButtonDefault.vue";
 import CornerInfo from "~/components/CornerInfo.vue";
+import HotelStars from "~/components/HotelStars.vue";
 const {displayNights, formatDateSQ, formatDurationSQ, roomBasisInfo} = useUtils();
 const props = defineProps<{ package: FullPackage }>();
 

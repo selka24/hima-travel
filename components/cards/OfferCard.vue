@@ -1,5 +1,6 @@
 <script setup lang="ts">
     import ButtonDefault from "~/components/ButtonDefault.vue";
+    import HotelStars from "~/components/HotelStars.vue";
 
     const props = defineProps<{package: RecommendPackage, date: string}>();
     const {buildStorageUrl, formatDateSQ} = useUtils();
@@ -39,7 +40,12 @@
             </div>
         </div>
         <div class="border-t border-primary mt-4 mb-5 py-3">
-            <div class="text-lg font-bold">Hotel {{ hotel.name }} me {{hotel.stars ? `${hotel.stars} yje` : ''}}</div>
+            <div class="flex justify-between text-lg">
+                <div class="font-bold">
+                    Hotel {{ hotel.name }}
+                </div>
+                <HotelStars v-if="hotel.stars" :stars="Number(hotel.stars)"/>
+            </div>
             <div class="mt-4 flex justify-between">
                 <div>
                     <div class="text-[#55C7F8]">Nisja</div>
