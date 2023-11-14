@@ -129,6 +129,6 @@ onBeforeUnmount(() => {
 .hotelDscr p{
     margin-left: 20px;
     line-height: 35px;
-    font-weight: bold;
+    font-weight: 600;
 }
 </style>
