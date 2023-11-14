@@ -4,7 +4,7 @@
         <div class="grid grid-cols-6">
             <div class="col-span-6 sm:col-span-3 md:col-span-4 flex flex-col lg:max-h-[170px] gap-y-5 flex-wrap">
                 <div v-for="(info, idx) in bookCardInfo" class="flex gap-3" :key="idx + 'bookinfo'">
-                    <nuxt-icon :name="info.icon" class="text-2xl" filled />
+                    <nuxt-icon :name="info.icon" class="text-2xl text-gray-normal"/>
                     <div>{{info.value}}</div>
                 </div>
             </div>
@@ -12,7 +12,7 @@
                 <div class="flex flex-col xs:flex-row items-center w-full sm:w-auto gap-x-5 pt-10 sm:pt-0 justify-between sm:flex-col sm:justify-center">
                     <div class="flex flex-col items-center">
                         <div class="text-lg font-bold">Për person</div>
-                        <div class="font-bold text-[36px] min-w-max sm:text-[55px]">{{ pricePP }} €</div>
+                        <div class="font-bold text-[36px] min-w-max">{{ pricePP }}€</div>
                     </div>
                     <button-default
                         class="h-[70px] w-[260px] font-normal"

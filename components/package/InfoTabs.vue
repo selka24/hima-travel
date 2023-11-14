@@ -24,7 +24,7 @@
                         <div class="flex gap-4 items-center">
                             <nuxt-icon v-if="tab.icon" :name="tab.icon" class="text-2xl text-gray-normal"/>
                             <div v-else class="min-w-[24px]"/>
-                            <div class="font-bold" v-html="tab.value"/>
+                            <div class="font-semibold" v-html="tab.value"/>
                         </div>
                     </div>
                 </div>
@@ -54,11 +54,11 @@ const getFlightInfo = (flight: Flight) => {
     const data = JSON.parse(flight.extra_data);
     const departure = new Date(flight.departure);
     const arrival = new Date(flight.arrival);
-    const duration = formatDurationSQ(intervalToDuration({start: departure, end: arrival}));
+    // const duration = formatDurationSQ(intervalToDuration({start: departure, end: arrival}));
     return {
         places: `${data.legs[0].origin.name} ${flight.origin} -> ${data.legs[0].destination.name} ${flight.destination}`,
         time: `${formatDateSQ(departure, 'dd, LLL yyyy -  HH:mm')} - ${formatDateSQ(arrival, 'HH:mm')}`,
-        duration
+        // duration
     }
 }
 
@@ -84,10 +84,10 @@ const flightTab = computed(() => {
     return [
         {icon: 'plane-departure', value: outbound.places},
         {icon: '', value: outbound.time},
-        {icon: '', value: outbound.duration},
+        // {icon: '', value: outbound.duration},
         {icon: 'plane-arrival', value: inbound.places},
         {icon: '', value: inbound.time},
-        {icon: '', value: inbound.duration},
+        // {icon: '', value: inbound.duration},
     ]
 })
 
