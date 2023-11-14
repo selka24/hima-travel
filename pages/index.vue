@@ -12,17 +12,20 @@ definePageMeta({
 })
 
 useSeoMeta({
-    title: 'Hima Travel Bileta Avioni',
-    ogTitle: 'Hima Travel Bileta Avioni',
-    description: 'Agjensi Turistike Hima Travel. E Njohur si Agjensi Udhetimesh qe nga 2011 ofron Udhetime me Guide dhe Individuale',
-    ogDescription: 'Agjensi Turistike Hima Travel. E Njohur si Agjensi Udhetimesh qe nga 2011 ofron Udhetime me Guide dhe Individuale',
+    title: 'Hima Travel',
+    ogTitle: 'Agjensi Turistike Hima Travel. E Njohur si Agjensi Udhetimesh qe nga 2011 ofron Udhetime me Guide dhe Individuale. Oferta Turistike. Bileta Avioni. Paketa Turistike. Paketa all inclusive.',
+    description: 'Agjensi Turistike Hima Travel. E Njohur si Agjensi Udhetimesh qe nga 2011 ofron Udhetime me Guide dhe Individuale. Oferta Turistike. Bileta Avioni. Paketa Turistike. Paketa all inclusive.',
+    ogDescription: 'Agjensi Turistike Hima Travel. E Njohur si Agjensi Udhetimesh qe nga 2011 ofron Udhetime me Guide dhe Individuale. Oferta Turistike. Bileta Avioni. Paketa Turistike. Paketa all inclusive.',
     ogType: 'website',
     ogLocale: 'sq_AL',
-    ogSiteName: 'Bileta Avioni Hima Travel',
+    ogSiteName: 'Agjensi Turistike Hima Travel. E Njohur si Agjensi Udhetimesh qe nga 2011 ofron Udhetime me Guide dhe Individuale. Oferta Turistike. Bileta Avioni. Paketa Turistike. Paketa all inclusive.',
     ogImage: () => `${runtimeConfig.public.prodUrl}/images/red-logo.png`,
     ogImageWidth: '140',
     ogImageHeight: '56',
-    ogImageType: 'image/png'
+    ogImageType: 'image/png',
+    twitterCard: "summary_large_image",
+    twitterTitle: 'Agjensi Turistike Hima Travel. E Njohur si Agjensi Udhetimesh qe nga 2011 ofron Udhetime me Guide dhe Individuale. Oferta Turistike. Bileta Avioni. Paketa Turistike. Paketa all inclusive.',
+    twitterDescription: 'Agjensi Turistike Hima Travel. E Njohur si Agjensi Udhetimesh qe nga 2011 ofron Udhetime me Guide dhe Individuale. Oferta Turistike. Bileta Avioni. Paketa Turistike. Paketa all inclusive.',
 })
 actResetParams();
 </script>

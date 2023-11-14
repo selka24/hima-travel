@@ -18,12 +18,13 @@
             </div>
             <div class="overflow-hidden p-5 sm:p-7 col-span-12 sm:col-span-8 md:order-last md:col-span-11 lg:col-span-10 xl:order-none xl:col-span-5 2xl:col-span-4 flex flex-col">
                 <div class="overflow-hidden">
-                    <div class="text-2xl flex justify-between font-bold mb-10">
-                        <div>
-                            HOTEL {{hotel_data.hotel?.name || '*No name*'}}
-                        </div>
-                        <HotelStars :stars="hotel_data.hotel.stars"/>
-                    </div>
+                    <hotel-title :hotel_data="hotel_data"/>
+<!--                    <div class="text-2xl flex justify-between font-bold mb-10">-->
+<!--                        <div>-->
+<!--                            HOTEL {{hotel_data.hotel?.name || '*No name*'}}-->
+<!--                        </div>-->
+<!--                        <HotelStars :stars="hotel_data.hotel.stars"/>-->
+<!--                    </div>-->
                     <InfoTabs :package="package"/>
                 </div>
             </div>
@@ -52,6 +53,7 @@ import Carousel from "~/components/Carousel.vue";
 import ButtonDefault from "~/components/ButtonDefault.vue";
 import CornerInfo from "~/components/CornerInfo.vue";
 import HotelStars from "~/components/HotelStars.vue";
+import HotelTitle from "~/components/package/HotelTitle.vue";
 const {displayNights, formatDateSQ, formatDurationSQ, roomBasisInfo} = useUtils();
 const props = defineProps<{ package: FullPackage }>();
 
