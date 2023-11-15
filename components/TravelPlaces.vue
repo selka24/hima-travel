@@ -1,5 +1,5 @@
 <template>
-    <div class="grid sm:grid-cols-11 gap-3">
+    <div class="grid sm:grid-cols-11 sm:gap-3">
             <search-select
                 class="sm:col-span-5"
                 v-model="originSearch"
@@ -22,7 +22,7 @@
                 </template>
             </search-select>
 
-        <div class="mb-5 sm:mt-3 sm:mb-0 sm:col-span-1 flex flex-col justify-center sm:justify-start items-center">
+        <div class="mb-5 hidden sm:flex sm:mt-3 sm:mb-0 sm:col-span-1 flex-col justify-center sm:justify-start items-center">
             <nuxt-icon name="arrow" class="text-primary text-2xl [&>svg]:rotate-180"/>
             <nuxt-icon name="arrow" class="text-gray-normal text-2xl"/>
         </div>

@@ -36,7 +36,7 @@
 <!--            {{travelPackage.description}}-->
 <!--        </div>-->
         <nuxt-link :to="`/recommendations?destinationId=${travelPackage.id}`">
-            <button-default class="uppercase px-8 py-4 font-normal absolute left-1/2 -translate-x-1/2">zbulo ofertën</button-default>
+            <button-default class="uppercase px-8 py-4 font-normal absolute left-1/2 -translate-x-1/2">zbulo ofertat</button-default>
         </nuxt-link>
     </div>
 </template>
