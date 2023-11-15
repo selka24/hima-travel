@@ -12,20 +12,20 @@ definePageMeta({
 })
 
 useSeoMeta({
-    title: 'Hima Travel',
-    ogTitle: 'Agjensi Turistike Hima Travel. E Njohur si Agjensi Udhetimesh qe nga 2011 ofron Udhetime me Guide dhe Individuale. Oferta Turistike. Bileta Avioni. Paketa Turistike. Paketa all inclusive.',
-    description: 'Agjensi Turistike Hima Travel. E Njohur si Agjensi Udhetimesh qe nga 2011 ofron Udhetime me Guide dhe Individuale. Oferta Turistike. Bileta Avioni. Paketa Turistike. Paketa all inclusive.',
-    ogDescription: 'Agjensi Turistike Hima Travel. E Njohur si Agjensi Udhetimesh qe nga 2011 ofron Udhetime me Guide dhe Individuale. Oferta Turistike. Bileta Avioni. Paketa Turistike. Paketa all inclusive.',
+    title: 'Hima Trips',
+    ogTitle: 'Agjensi Turistike Hima Trips. E Njohur si Agjensi Udhetimesh qe nga 2011 ofron Udhetime me Guide dhe Individuale. Oferta Turistike. Bileta Avioni. Paketa Turistike. Paketa all inclusive.',
+    description: 'Agjensi Turistike Hima Trips. E Njohur si Agjensi Udhetimesh qe nga 2011 ofron Udhetime me Guide dhe Individuale. Oferta Turistike. Bileta Avioni. Paketa Turistike. Paketa all inclusive.',
+    ogDescription: 'Agjensi Turistike Hima Trips. E Njohur si Agjensi Udhetimesh qe nga 2011 ofron Udhetime me Guide dhe Individuale. Oferta Turistike. Bileta Avioni. Paketa Turistike. Paketa all inclusive.',
     ogType: 'website',
     ogLocale: 'sq_AL',
-    ogSiteName: 'Agjensi Turistike Hima Travel. E Njohur si Agjensi Udhetimesh qe nga 2011 ofron Udhetime me Guide dhe Individuale. Oferta Turistike. Bileta Avioni. Paketa Turistike. Paketa all inclusive.',
+    ogSiteName: 'Agjensi Turistike Hima Trips. E Njohur si Agjensi Udhetimesh qe nga 2011 ofron Udhetime me Guide dhe Individuale. Oferta Turistike. Bileta Avioni. Paketa Turistike. Paketa all inclusive.',
     ogImage: () => `${runtimeConfig.public.prodUrl}/images/red-logo.png`,
     ogImageWidth: '140',
     ogImageHeight: '56',
     ogImageType: 'image/png',
     twitterCard: "summary_large_image",
-    twitterTitle: 'Agjensi Turistike Hima Travel. E Njohur si Agjensi Udhetimesh qe nga 2011 ofron Udhetime me Guide dhe Individuale. Oferta Turistike. Bileta Avioni. Paketa Turistike. Paketa all inclusive.',
-    twitterDescription: 'Agjensi Turistike Hima Travel. E Njohur si Agjensi Udhetimesh qe nga 2011 ofron Udhetime me Guide dhe Individuale. Oferta Turistike. Bileta Avioni. Paketa Turistike. Paketa all inclusive.',
+    twitterTitle: 'Agjensi Turistike Hima Trips. E Njohur si Agjensi Udhetimesh qe nga 2011 ofron Udhetime me Guide dhe Individuale. Oferta Turistike. Bileta Avioni. Paketa Turistike. Paketa all inclusive.',
+    twitterDescription: 'Agjensi Turistike Hima Trips. E Njohur si Agjensi Udhetimesh qe nga 2011 ofron Udhetime me Guide dhe Individuale. Oferta Turistike. Bileta Avioni. Paketa Turistike. Paketa all inclusive.',
 })
 actResetParams();
 </script>

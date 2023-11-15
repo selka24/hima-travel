@@ -83,6 +83,19 @@ export const useUtils = () => {
         return `${runtimeConfig.public.storageUrl}/${file_path}`
     }
 
+    const getAllDatesInMonth = (year: number, month: number) => {
+        let startDate = new Date(year, month - 1, 1); // month is 0-indexed
+        let endDate = new Date(year, month, 1);
+
+        let dates = [];
+        while (startDate < endDate) {
+            dates.push(new Date(startDate)); // clone the date object
+            startDate.setDate(startDate.getDate() + 1);
+        }
+
+        return dates;
+    }
+
     return {
         multipleSearchFilter,
         isInViewport,
@@ -91,6 +104,7 @@ export const useUtils = () => {
         formatDurationSQ,
         buildStorageUrl,
         sendWhatsappMessage,
-        roomBasisInfo
+        roomBasisInfo,
+        getAllDatesInMonth,
     }
 }

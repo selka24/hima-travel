@@ -12,6 +12,7 @@ export const useMainStore = defineStore('main', () => {
 
     const allOrigins = ref<Origin[]>([]);
     const allDestinations = ref<Destination[]>([]);
+    const availableDates = ref<string[]>([])
 
     const originSearch = ref('');
     const destinationSearch = ref('');
@@ -49,7 +50,6 @@ export const useMainStore = defineStore('main', () => {
 
 
     //actions
-
     const actResetParams = () => {
         originSearch.value = '';
         destinationSearch.value = '';
@@ -157,9 +157,36 @@ export const useMainStore = defineStore('main', () => {
             })
     }
 
+    const actGetAvailableDates = async ({month, year}: any) => {
+        const date = selectedDate.value || new Date();
+        // const month = date.getMonth() + 1;
+        // const year = date.getFullYear();
+
+        console.log({
+            origin_id: selectedOrigin.value?.id,
+            destination_id: selectedDestination.value?.id,
+            month,
+            year,
+        })
+        try {
+            const response = await $api.post('/packages/available-dates', {
+                origin_id: selectedOrigin.value?.id,
+                destination_id: selectedDestination.value?.id,
+                month,
+                year,
+            })
+            availableDates.value = response.data;
+        } catch (e) {
+
+        } finally {
+
+        }
+    }
+
     return {
         allDestinations,
         allOrigins,
+        availableDates,
         currTravelPackage,
         destinationOffers,
         destinationPackages,
@@ -180,6 +207,7 @@ export const useMainStore = defineStore('main', () => {
         selectedPage,
         selectedSort,
         travelPackages,
+        actGetAvailableDates,
         actGetDestinationPackages,
         actGetHomeDestinations,
         actGetOrigins,

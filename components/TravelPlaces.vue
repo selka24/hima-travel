@@ -57,7 +57,7 @@ const {$api} = useNuxtApp();
 const {handleQueryValidate} = useQueryValidator()
 
 const { selectedOrigin, selectedDestination, originSearch, destinationSearch, allOrigins } = storeToRefs(mainStore)
-const { actSetOrigin, actSetDestination, actGetOrigins } = mainStore
+const { actSetOrigin, actSetDestination, actGetOrigins, actGetAvailableDates } = mainStore
 
 // const searchOrigin = ref<string>('');
 // const searchDestination = ref<string>('');

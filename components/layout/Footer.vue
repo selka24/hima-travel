@@ -11,7 +11,7 @@
             <div class="hidden md:block">
                 <nuxt-img format="webp"  src="/images/red-logo.png" alt="red-logo"  width="140" height="56" class="max-w-[222px] w-full"/>
                 <div class="text-xl font-bold mt-10">
-                    10 VITE HIMA TRAVEL
+                    10 VITE Hima TripsTRIPS
                     <br>
                     AGJENSI
                     TURISTIKE TIRANE

@@ -12,9 +12,9 @@
             <div class="flex flex-col items-center gap-y-10">
                 <nuxt-img format="webp"  src="/images/red-logo.png" alt="red-logo" width="140" height="56" class="max-w-[308px] w-full"/>
                 <div class="max-w-[600px]">
-                    <div class="text-primary font-bold text-lg">Rreth Hima Travel</div>
+                    <div class="text-primary font-bold text-lg">Rreth Hima Trips</div>
                     <div class="text-primary text-[50px] font-bold">Mirë se erdhe në bord!</div>
-                    <p class="text-lg">Në HimaTrips, ne e kuptojmë bukurinë e udhëtimit pa supriza të papritura. Opsionet tona janë të kuruara me kujdes, hotelet e zgjedhura me dorë nga agjentët tanë ekspertë të udhëtimit e bëjnë rezervimin të thjeshtë. Frymëzohuni lehtësisht sepse për ne, udhëtimi juaj është më shumë se një udhëtim; është një përvojë.
+                    <p class="text-lg">Në Hima Trips, ne e kuptojmë bukurinë e udhëtimit pa supriza të papritura. Opsionet tona janë të kuruara me kujdes, hotelet e zgjedhura me dorë nga agjentët tanë ekspertë të udhëtimit e bëjnë rezervimin të thjeshtë. Frymëzohuni lehtësisht sepse për ne, udhëtimi juaj është më shumë se një udhëtim; është një përvojë.
                         “Asnjë surprizë e fshehur – vetëm emocioni i një aventure të re.”</p>
                 </div>
             </div>
