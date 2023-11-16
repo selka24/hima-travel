@@ -28,7 +28,7 @@
     </div>
 </template>
 
-<style scoped>
+<style>
 .arrow {
     width: 0;
     height: 0;

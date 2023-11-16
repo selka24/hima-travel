@@ -1,7 +1,7 @@
 <template>
     <div class="relative">
         <SearchTypes v-if="showTypes"/>
-        <div class="grid grid-cols-2 sm:grid-cols-6 lg:grid-cols-9 sm:gap-y-4 gap-x-2.5 pt-8 px-10 bg-gradient-to-r rounded-[20px] from-white/90 to-white/80 w-full backdrop-blur-[3px] relative z-20 ">
+        <div class="grid grid-cols-2 sm:grid-cols-6 lg:grid-cols-9 sm:gap-y-4 gap-x-2.5 pt-8 px-5 sm:px-10 bg-gradient-to-r rounded-[20px] from-white/90 to-white/80 w-full backdrop-blur-[3px] relative z-20 ">
             <travel-places class="col-span-2 sm:col-span-6 lg:col-span-5"/>
             <travel-calendar class="col-span-1 sm:col-span-4 lg:col-span-2"/>
             <travel-nights class="col-span-1 sm:col-span-1 lg:col-span-1"/>

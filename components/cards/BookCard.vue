@@ -46,7 +46,7 @@ const bookCardInfo = computed(() => {
         {icon: 'user', value: '2 të rritur'},
         {icon: 'moon', value: displayNights(hotel_data.value.number_of_nights)},
         {icon: 'calendar', value: `E ${formatDateSQ(new Date(hotel_data.value.check_in_date), 'iiii, d LLLL yyyy')}`},
-        {icon: 'backpack', value: 'Bagazh krahu 10 kg'},
+        {icon: 'backpack', value: 'Çantë dore 10 kg'},
         {icon: 'bed', value: JSON.parse(hotel_data.value.room_details)[0]},
         {icon: 'food', value:  roomBasisInfo(hotel_data.value.room_basis)},
     ];

@@ -24,7 +24,7 @@ onMounted(() => {
         <div v-if="mainStore.loadingInspiration" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-3 gap-y-28 mt-20 max-w-page relative">
             <preview-card-loading v-for="idx in 6" :key="idx + 'load'"/>
         </div>
-        <div v-else class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-3 gap-y-28 mt-20 max-w-page relative">
+        <div v-else class="grid grid-cols-2 xl:grid-cols-3 gap-x-3 gap-y-28 mt-20 max-w-page relative">
             <preview-card v-for="offer in mainStore.destinationOffers" :key="offer.id + 'prw-card'" :travel-package="offer"/>
         </div>
     </div>

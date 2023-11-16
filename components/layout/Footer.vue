@@ -3,15 +3,15 @@
 </script>
 
 <template>
-    <div class="flex justify-center mt-72 px-5 pb-14 pt-20 lg:px-10 bg-white">
+    <div class="flex justify-center mt-20 sm:mt-72 px-5 pb-14 pt-20 lg:px-10 bg-white">
         <DevOnly>
-            <div class="fixed rounded-full bg-green-600 p-3 text-white top-3 z-[9999]">DEV MODE</div>
+<!--            <div class="fixed rounded-full bg-green-600 p-3 text-white top-3 z-[9999]">DEV MODE</div>-->
         </DevOnly>
-        <div class="max-w-page grid grid-cols-6 w-full">
+        <div class="max-w-page grid grid-cols-6 gap-y-10 w-full">
 <!--                <nuxt-img format="webp"  src="/images/red-logo.png" alt="red-logo"  width="140" height="56" class="max-w-[150px] w-full"/>-->
-                <div class="col-span-3 base-text hidden md:block">
-                    HimaTrips,
-                    <div class="mt-1.5"></div>
+                <div class="col-span-6 md:col-span-4 lg:col-span-3 base-text">
+                    <span class="font-bold text-xl text-primary">HimaTrips</span>
+                    <div class="mt-7"></div>
                     Krijuar për të ju ofruar një Kërkim te pandërprerë të
                     <br>
                     shërbimeve të udhëtimit për Bileta + Hotel.
@@ -34,27 +34,27 @@
                     <br>
                     jush dhe furnizuesit specifik të lidhur me atë produkt.
                 </div>
-            <div class="col-span-3">
+            <div class="col-span-6 lg:col-span-3">
 
-            <div class="flex flex-wrap gap-10">
-                <div class="flex flex-col gap-7">
-                    <div class="text-primary font-bold text-xl">Kontakt</div>
-                    <div v-for="info in contactInfo" v-html="info"/>
+                <div class="flex flex-wrap justify-start lg:justify-end xl:justify-center gap-10">
+                    <div class="flex flex-col gap-7">
+                        <div class="text-primary font-bold text-xl">Kontakt</div>
+                        <div v-for="info in contactInfo" v-html="info"/>
+                    </div>
+    <!--                <div class="flex flex-col gap-7">-->
+    <!--                    <div class="text-primary font-bold text-xl">Menu</div>-->
+    <!--                    <div v-for="menu in pages">-->
+    <!--                        {{menu.title}}-->
+    <!--                    </div>-->
+    <!--                </div>-->
+                    <div class="flex flex-col gap-7">
+                        <div class="text-primary font-bold text-xl">Na ndiqni</div>
+                        <a v-for="net in socialNetworks" :href="net.link"  target="_blank" class="flex min-w-max gap-1.5">
+                            <nuxt-icon :name="net.title" filled class="text-2xl"/>
+                            <div>{{net.title}}</div>
+                        </a>
+                    </div>
                 </div>
-<!--                <div class="flex flex-col gap-7">-->
-<!--                    <div class="text-primary font-bold text-xl">Menu</div>-->
-<!--                    <div v-for="menu in pages">-->
-<!--                        {{menu.title}}-->
-<!--                    </div>-->
-<!--                </div>-->
-                <div class="flex flex-col gap-7">
-                    <div class="text-primary font-bold text-xl">Na ndiqni</div>
-                    <a v-for="net in socialNetworks" :href="net.link"  target="_blank" class="flex min-w-max gap-1.5">
-                        <nuxt-icon :name="net.title" filled class="text-2xl"/>
-                        <div>{{net.title}}</div>
-                    </a>
-                </div>
-            </div>
             </div>
 
         </div>

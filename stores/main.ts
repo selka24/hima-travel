@@ -114,6 +114,7 @@ export const useMainStore = defineStore('main', () => {
                 console.log(e, 'errorrr')
             })
             .then((response) => {
+                console.log(response?.data, 'response?.data')
                 allOrigins.value = response?.data
             })
     }
