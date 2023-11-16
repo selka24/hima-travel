@@ -4,7 +4,7 @@
         <div class="relative group overflow-hidden rounded-[10px] text-xl  sm:text-5xl text-white font-bold ">
             <nuxt-img format="webp"
                       v-if="travelPackage.destination_photos?.length"
-                      class="transition-all ease-in duration-300 group-hover:scale-110 object-cover w-full md:min-h-[442px]"
+                      class="transition-all ease-in duration-300 group-hover:scale-110 object-cover w-full min-h-[190px] md:min-h-[442px]"
                       width="385"
                       height="442"
                       :src="buildStorageUrl(travelPackage.destination_photos[0].file_path)"

@@ -32,7 +32,7 @@
             <div class="absolute bottom-0 left-0 z-[10] bg-yellow-500 rounded-[0_10px] text-white font-bold p-1.5 text-center min-w-40 w-max">
                 <hotel-stars :stars="hotel.stars" color="text-white"/>
             </div>
-            <nuxt-img alt="hotel-photo" loading="lazy" v-if="hotelPhoto" :src="hotelPhoto" width="383" height="400" class="bg-gray-light w-full md:min-h-[400px]"/>
+            <nuxt-img alt="hotel-photo" loading="lazy" v-if="hotelPhoto" :src="hotelPhoto" width="383" height="400" class="bg-gray-light w-full min-h-[170px] md:min-h-[400px]"/>
 <!--            <div class="font-bold text-5xl absolute-center text-white">{{ hotel.city }}</div>-->
         </div>
         <div class="mt-7 items-center justify-between hidden sm:flex">

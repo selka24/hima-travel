@@ -31,7 +31,7 @@ actResetParams();
 </script>
 <template>
     <div>
-        <HomeIntro critical/>
+        <HomeIntro />
         <OffersSection class="mt-8" id="OffersSection"/>
         <WelcomeSection class="mt-40 sm:mt-80"/>
     </div>
