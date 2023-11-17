@@ -9,7 +9,7 @@
         <div id="resultsSection" ref="resultsSection" class="flex flex-col items-center justify-center w-full px-3.5 sm:px-5 lg:px-10">
             <SearchFilters class="max-w-page mt-11"/>
             <div class="flex flex-col gap-10 max-w-screen-2xl w-full mt-10">
-                <TellUs/>
+<!--                <TellUs/>-->
                 <transition-group name="fade">
                     <div v-if="mainStore.loadingPackages" class="flex flex-col gap-y-10">
                         <PackageCardLoading v-for="idx in 3" :key="idx + 'load'"/>
@@ -62,7 +62,7 @@ useSeoMeta({
     ogImageType: 'image/png'
 })
 
-import TellUs from "~/components/sections/TellUs.vue";
+// import TellUs from "~/components/sections/TellUs.vue";
 import SearchFilters from "~/components/SearchFilters.vue";
 import TravelSearch from "~/components/TravelSearch.vue";
 const PackageCardLoading = defineAsyncComponent(() => import('/components/cards/PackageCardLoading.vue'));

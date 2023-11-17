@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    const props = defineProps(['options', 'currentSlide', 'slideClasses', 'noControls']);
+    const props = defineProps(['options', 'currentSlide', 'slideClasses', 'noControls', 'mobile']);
     const emit = defineEmits(['slideChange'])
     const slide = ref(0)
     const carousel = ref(null)

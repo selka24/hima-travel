@@ -26,16 +26,9 @@
                             <nuxt-icon v-if="tab.icon" :name="tab.icon" class="text-lg sm:text-2xl text-gray-normal"/>
                             <div v-else class="min-w-[24px]"/>
                             <div class="font-semibold" v-html="tab.value"/>
-                            <div v-if="tab.infoPoint" class="relative">
-                                <div v-if="triggerInfoPoint" :class="`arrow absolute z-[31] -top-3 left-1/2 -translate-x-1/2 border-b-[15px] border-b-gray-hard`"></div>
-                                <nuxt-icon @mouseenter="handleTriggerInfo" @mouseleave="handleTriggerInfo(500, 1)" @click="handleTriggerInfo(2000)" name="info" class="text-gray-normal"/>
-                            </div>
-                            <div v-if="tab.infoPoint && triggerInfoPoint" :class="['bg-gray-hard text-white w-full opacity-100 left-0 top-9 absolute z-[30] px-3 py-2 text-sm transition-opacity duration-300 rounded-lg shadow-sm', {'opacity-100 inline-block': false}, {'hidden': false}]">
+                            <info-point v-if="tab.infoPoint" class="text-gray-normal">
                                 {{ tab.infoPoint }}
-<!--                                <div class="absolute right-1.5 top-2.5 cursor-pointer">-->
-<!--                                    <nuxt-icon name="xmark-solid"/>-->
-<!--                                </div>-->
-                            </div>
+                            </info-point>
                         </div>
                     </div>
                     <div v-if="option.value === 2" class="italic text-xs mt-2">
@@ -49,6 +42,7 @@
 <script setup lang="ts">
 import Carousel from "~/components/Carousel.vue";
 import ArrowTabs from "~/components/ArrowTabs.vue";
+import InfoPoint from "~/components/InfoPoint.vue";
 
 const {roomBasisInfo, formatDateSQ, displayNights} = useUtils();
 const linkFlight = ref<HTMLElement | null>(null)
@@ -102,7 +96,7 @@ const calendarDate = computed(() => {
 const includedTab = computed(() => {
     return [
         {icon: 'calendar', value: `${displayNights(hotel_data.number_of_nights)}, ${calendarDate.value}`},
-        {icon: 'backpack', value: 'Çantë dore 10 kg', infoPoint: 'Me pagesë ekstra, Mundet të shtoni bagazhin 20kg+'},
+        {icon: 'backpack', value: 'Çantë dore 10 kg', infoPoint: 'Për të shtuar një bagazh, kontaktoni me operatorët tanë'},
         {icon: 'bed', value: JSON.parse(hotel_data.room_details)[0]},
         {icon: 'food', value: roomBasis},
         {icon: 'plane-departure', value: `

@@ -57,7 +57,7 @@ export const useUtils = () => {
             case 'HB':
                 return 'Half board';
             case 'RO':
-                return 'Pa ushqim';
+                return 'Vetëm fjetje';
             case 'BD':
                 return 'Darka e përfshirë';
             default:
@@ -67,7 +67,7 @@ export const useUtils = () => {
     }
 
     const sendWhatsappMessage = (pckg: FullPackage) => {
-        const number = '355696696144';
+        const number = '355695161381';
         // const info = ['Udhetime', 'Mar,%20 20 %20 Shtator %20 2023', '2','http://localhost:3000/package']
         const link = `https://api.whatsapp.com/send/?phone=${number}&text=`
         const pckgTitle = pckg.hotel_data.hotel.name.replace(/\s+/g, '%20');

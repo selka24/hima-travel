@@ -9,7 +9,21 @@
             <div class="sm:p-7 col-span-12 md:col-span-9 lg:col-span-8 xl:col-span-5 md:bg-gray-lighter/30 xl:bg-transparent">
                 <div class="relative w-full h-full min-h-[200px] sm:min-h-[300px] md:min-h-[384px] sm:rounded-[20px] overflow-hidden">
                     <CornerInfo>
-                        {{roomBasis}}
+                        <div class="flex gap-2 items-center justify-between">
+                            <div>{{roomBasis}}</div>
+                            <info-point v-if="package.hotel_data.room_basis === 'RO'" class="text-white">
+                                Për të shtuar vaktet e ushqimit kontaktoni me operatorët tanë
+                            </info-point>
+<!--                            <div>-->
+<!--                                <div v-if="tab.infoPoint" class="relative">-->
+<!--                                    <div v-if="triggerInfoPoint" :class="`arrow absolute z-[31] -top-3 left-1/2 -translate-x-1/2 border-b-[15px] border-b-gray-hard`"></div>-->
+<!--                                    <nuxt-icon @mouseenter="handleTriggerInfo" @mouseleave="handleTriggerInfo(500, 1)" @click="handleTriggerInfo(2000)" name="info" class="text-gray-normal"/>-->
+<!--                                </div>-->
+<!--                                <div v-if="tab.infoPoint && triggerInfoPoint" :class="['bg-gray-hard text-white w-full opacity-100 left-0 top-9 absolute z-[30] px-3 py-2 text-sm transition-opacity duration-300 rounded-lg shadow-sm', {'opacity-100 inline-block': false}, {'hidden': false}]">-->
+<!--                                    {{ tab.infoPoint }}-->
+<!--                                </div>-->
+<!--                            </div>-->
+                        </div>
                     </CornerInfo>
                     <Carousel :slide-classes="['w-full h-full']" :options="packageImages">
                         <template #option="{option}">
@@ -80,6 +94,7 @@ import HotelStars from "~/components/HotelStars.vue";
 import HotelTitle from "~/components/package/HotelTitle.vue";
 import BookKapar from "~/components/package/BookKapar.vue";
 import TripAdvisor from "~/components/package/TripAdvisor.vue";
+import InfoPoint from "~/components/InfoPoint.vue";
 
 const Collection = defineAsyncComponent(() => import("~/components/package/Collection.vue"));
 const {displayNights, formatDateSQ, formatDurationSQ, roomBasisInfo, sendWhatsappMessage} = useUtils();
