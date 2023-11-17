@@ -12,8 +12,9 @@
             <nuxt-icon class="hidden text-xl" :name="tab.icon" />
         </template>
     </ArrowTabs>
-    <Carousel :slide-classes="['w-full min-h-[210px]']"
+    <Carousel :slide-classes="['w-full min-h-[200px]']"
               :no-controls="true"
+              @slideChange="handleTabChange"
               :current-slide="activeTab"
               :options="tabsContent">
         <template #option="{option}">

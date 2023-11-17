@@ -5,7 +5,7 @@
                 {{roomBasis}}
             </CornerInfo>
             <div class="sm:p-7 col-span-12 md:col-span-9 lg:col-span-8 xl:col-span-5 md:bg-gray-lighter/30 xl:bg-transparent">
-                <div class="relative w-full h-full min-h-[210px] sm:min-h-[300px] md:min-h-[384px] sm:rounded-[20px] overflow-hidden">
+                <div class="relative w-full h-full min-h-[200px] sm:min-h-[300px] md:min-h-[384px] sm:rounded-[20px] overflow-hidden">
 
                     <Carousel :slide-classes="['w-full h-full']" :options="packageImages">
                         <template #option="{option}">

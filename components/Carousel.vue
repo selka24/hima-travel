@@ -2,7 +2,10 @@
     const props = defineProps(['options', 'currentSlide', 'slideClasses', 'noControls']);
     const emit = defineEmits(['slideChange'])
     const slide = ref(0)
+    const carousel = ref(null)
     const goingBack = ref(false);
+
+    const {direction} = useSwipe(carousel);
 
     const lastSlide = (props.options.length - 1);
     const handleSlideChange = (slideNo: number) => {
@@ -14,9 +17,13 @@
         } else {
             slideTo = slideNo;
         }
-        if (hasParentSlide.value)
+
+        handleGoingBack(slideTo, currSlideNo.value);
+
+        if (hasParentSlide.value) {
+            console.log({slideTo})
             emit('slideChange', slideTo);
-        else
+        } else
             slide.value = slideTo;
     }
 
@@ -36,23 +43,33 @@
 
     const currSlideNo = computed(() => {
         return hasParentSlide.value ? props.currentSlide : slide.value;
-    }, {
-        onTrigger({newValue, oldValue}) {
-            handleGoingBack(newValue, oldValue);
+    })
+
+    const handleSwipe = (swipeDirection: string) => {
+        if(swipeDirection === 'left'){
+            console.log('swiping left');
+            handleSlideChange(currSlideNo.value + 1)
+        } else if (swipeDirection === 'right') {
+            console.log('swiping right');
+            handleSlideChange(currSlideNo.value - 1)
         }
+    }
+
+    watch(direction, (val) => {
+        handleSwipe(val)
     })
 </script>
 
 <template>
-    <div :class="['overflow-hidden relative', ...(slideClasses || ['w-[500px]', 'h-[500px]']), {'border-2 rounded-[20px]': !options.length}]">
+    <div ref="carousel" :class="['overflow-hidden relative', ...(slideClasses || ['w-[500px]', 'h-[500px]']), {'border-2 rounded-[20px]': !options.length}]">
         <div v-if="options.length && !noControls" class="w-full px-4 z-10 flex absolute-center items-center justify-between">
             <div @click="handleSlideChange(currSlideNo - 1)"
-                 class="cursor-pointer flex items-center justify-center bg-white/80 rounded-full p-2">
-                <nuxt-icon name="chevron-down-solid" class="text-2xl [&>*:first-child]:rotate-90" filled/>
+                 class="cursor-pointer flex items-center justify-center bg-white/80 rounded-full p-1 sm:p-2">
+                <nuxt-icon name="chevron-down-solid" class="base-text sm:text-2xl [&>*:first-child]:rotate-90" filled/>
             </div>
             <div @click="handleSlideChange(currSlideNo + 1)"
-                 class="cursor-pointer flex items-center justify-center bg-white/80 rounded-full p-2">
-                <nuxt-icon name="chevron-down-solid" class="text-2xl [&>*:first-child]:-rotate-90 text-primary" filled/>
+                 class="cursor-pointer flex items-center justify-center bg-white/80 rounded-full p-1 sm:p-2">
+                <nuxt-icon name="chevron-down-solid" class="base-text sm:text-2xl [&>*:first-child]:-rotate-90 text-primary" filled/>
             </div>
         </div>
         <transition-group :name="goingBack ? 'slideback' : 'slide'">
