@@ -11,7 +11,7 @@
 <!--                    </dev-only>-->
 <!--                </client-only>-->
             <div class="grid grid-cols-9 mb-4 gap-7 ">
-                <hotel-title v-if="currTravelPackage" :hotel_data="currTravelPackage.hotel_data" class="col-span-9 md:col-span-6"/>
+<!--                <hotel-title v-if="currTravelPackage" :hotel_data="currTravelPackage.hotel_data" class="col-span-9 md:col-span-6"/>-->
                 <div v-if="expandImg" class="fixed top-0 bottom-0 right-0 left-0 bg-gray-normal/80 z-[500] backdrop-blur-[5px]">
                 </div>
                 <div :class="['flex flex-col col-span-9 md:col-span-6', {'fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 h-[80vh] scale-100 z-[600] w-[90%] sm:w-[80%] max-w-page' : expandImg}]">
@@ -154,7 +154,3 @@ useHead({
     title: () => hotel.value ? `HOTEL ${hotel.value.name}` : 'Loading Package...'
 })
 </script>
-
-<style scoped>
-
-</style>

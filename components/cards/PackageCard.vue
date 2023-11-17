@@ -1,11 +1,18 @@
 <template>
     <div ref="packageCard" class="min-h-[384px]">
+        <div v-if="expandImg" class="fixed top-0 bottom-0 right-0 left-0 bg-gray-normal/80 z-[500] backdrop-blur-[5px]">
+        </div>
         <div v-if="isVisible || alreadyShown" class="grid grid-cols-12 border-2 border-gray-normal rounded-[20px] overflow-hidden sm:rounded-[30px] bg-white" >
             <CornerInfo>
                 {{roomBasis}}
             </CornerInfo>
-            <div class="sm:p-7 col-span-12 md:col-span-9 lg:col-span-8 xl:col-span-5 md:bg-gray-lighter/30 xl:bg-transparent">
-                <div class="relative w-full h-full min-h-[200px] sm:min-h-[300px] md:min-h-[384px] sm:rounded-[20px] overflow-hidden">
+            <div :class="['sm:p-7 col-span-12 md:col-span-9 lg:col-span-8 xl:col-span-5 md:bg-gray-lighter/30 xl:bg-transparent', {'fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-[600] h-[80vh] w-[90%] sm:w-[80%] !p-0 !bg-transparent': expandImg}]">
+                <div @click="() => {expandImg = false}"
+                     v-if="expandImg"
+                     class="absolute right-0 -top-11 sm:-right-9 sm:-top-9 cursor-pointer flex items-center justify-center bg-white/80 rounded-full p-2">
+                    <nuxt-icon name="close" class="text-xl" filled/>
+                </div>
+                <div :class="['relative w-full h-full min-h-[200px] sm:min-h-[300px] md:min-h-[384px] sm:rounded-[20px] overflow-hidden cursor-pointer', {'!rounded-none': expandImg}]" @click="() => {expandImg = true}">
 
                     <Carousel :slide-classes="['w-full h-full']" :options="packageImages">
                         <template #option="{option}">
@@ -42,7 +49,6 @@
 <!--                        <HotelStars :stars="hotel_data.hotel.stars"/>-->
 <!--                    </div>-->
                     <InfoTabs :package="package"/>
-                    <BookKapar/>
                 </div>
             </div>
             <div class="flex pb-5 gap-2 sm:py-7 px-3 sm:px-5 sm:gap-0  justify-between flex-col sm:justify-between items-center col-span-12 sm:col-span-4 md:col-span-3 lg:col-span-4 xl:col-span-2 2xl:col-span-3 md:bg-gray-lighter/30">
@@ -60,9 +66,10 @@
                         </div>
                     </transition>
                 </div>
-                <nuxt-link :to="{path: '/package', query: {package: package.id}}" class="w-full">
-                    <button-default class="h-[50px] md:h-[70px] w-full font-normal">Shiko Paketën</button-default>
-                </nuxt-link>
+<!--                <nuxt-link :to="{path: '/package', query: {package: package.id}}" class="w-full">-->
+                    <button-default @click="sendWhatsappMessage(package)" class="h-[50px] md:h-[70px] w-full font-normal">Kontakto Tani</button-default>
+<!--                </nuxt-link>-->
+                <BookKapar class="w-full mt-2"/>
             </div>
         </div>
     </div>
@@ -76,11 +83,12 @@ import HotelStars from "~/components/HotelStars.vue";
 import HotelTitle from "~/components/package/HotelTitle.vue";
 import BookKapar from "~/components/package/BookKapar.vue";
 import TripAdvisor from "~/components/package/TripAdvisor.vue";
-const {displayNights, formatDateSQ, formatDurationSQ, roomBasisInfo} = useUtils();
+const {displayNights, formatDateSQ, formatDurationSQ, roomBasisInfo, sendWhatsappMessage} = useUtils();
 const props = defineProps<{ package: FullPackage }>();
 
 const mainStore = useMainStore()
 const packageImages = mainStore.getPackageImages(props.package);
+const expandImg = ref(false);
 
 const hotel_data = props.package.hotel_data
 

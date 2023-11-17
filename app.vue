@@ -14,3 +14,6 @@ if(process.server){
     await mainStore.actGetOrigins();
 }
 </script>
+<style scoped>
+
+</style>
