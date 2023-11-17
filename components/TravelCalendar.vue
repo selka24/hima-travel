@@ -5,7 +5,7 @@
                 {{ mainStore.selectedDate?.toDateString() || 'Data e nisjes'}}
             </div>
             <transition name="slide-fade">
-                <div v-if="show" :class="['absolute top-[60px] sm:top-[80px] z-10 w-full']">
+                <div v-if="show" :class="['absolute top-[60px] sm:top-[80px] z-20 w-full']">
 <!--                    <div v-show="loadingAvailableDates" class="rounded-md absolute w-full h-full animate-pulse bg-gray-normal opacity-20 z-[10]"></div>-->
                     <CDatePicker
                         v-model="mainStore.selectedDate"

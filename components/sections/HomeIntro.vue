@@ -1,7 +1,8 @@
 <template>
-    <div class="h-[100dvh] relative">
-        <nuxt-img format="webp"  width="1920" height="1080" class="w-full h-full max-h-[100vh] object-cover absolute top-0 left-0 z-0"  src="/images/bg-image.png" alt="Background Image"/>
-        <div class="bg-gradient-to-r from-black/20 absolute w-full max-h-[100vh] h-full left-0 top-0 z-0"/>
+    <div :class="['relative']" :style="{height: height}">
+        <Reviews class="absolute bottom-5 z-[10]"/>
+        <nuxt-img format="webp"  width="1920" height="1080" class="w-full h-full object-cover absolute top-0 left-0 z-0" :style="{'max-height': height}"  src="/images/bg-image.png" alt="Background Image"/>
+        <div class="bg-gradient-to-r from-black/20 absolute w-full h-full left-0 top-0 z-0" :style="{'max-height': height}" />
         <div class="flex relative z-10 justify-center px-3.5 sm:px-5 lg:px-10">
             <div class="flex flex-col max-w-page w-full mt-5 sm:mt-14">
                 <div class="text-white">
@@ -22,15 +23,23 @@
                     </p>
 <!--                    <p>Zbuloni ofertat më të mira dhe rezervoni tuajat sot.</p>-->
                 </div>
-                <travel-search :show-types="true" class="mt-14"/>
+                <travel-search :show-types="true" class="mt-14 z-[20]"/>
             </div>
         </div>
-        <Reviews class="absolute bottom-5 z-[10]"/>
     </div>
 </template>
 <script setup lang="ts">
 import TravelSearch from "~/components/TravelSearch.vue";
 import Reviews from "~/components/Reviews.vue";
+
+const height = ref('100dvh')
+
+onMounted(() => {
+    if(process.client){
+        height.value = window.innerHeight + 'px';
+    }
+})
+
 </script>
 <style scoped>
 </style>
