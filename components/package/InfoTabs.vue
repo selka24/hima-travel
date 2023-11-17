@@ -3,7 +3,7 @@
                :tabs="tabs"
                :bgTriangle="bgTriangle"
                :active-tab="activeTab"
-               class="mb-10">
+               class="mb-8">
         <template #default="{tab}">
             <div class="flex items-center gap-3 text-sm sm:text-base">
                 <nuxt-icon :name="tab.icon" class="text-xl hidden md:block"/>
@@ -12,7 +12,7 @@
             <nuxt-icon class="hidden text-xl" :name="tab.icon" />
         </template>
     </ArrowTabs>
-    <Carousel :slide-classes="['w-full min-h-[250px]']"
+    <Carousel :slide-classes="['w-full min-h-[210px]']"
               :no-controls="true"
               :current-slide="activeTab"
               :options="tabsContent">
@@ -21,8 +21,8 @@
                 <div v-if="option.value === 1" v-html="option.content" class="hotelDscr"/>
                 <div v-else class="flex flex-col gap-y-3.5 w-full">
                     <div v-for="(tab, idx) in option.content" :key="`${tab.value}-${idx}-inf`">
-                        <div class="flex gap-4 items-center w-full relative">
-                            <nuxt-icon v-if="tab.icon" :name="tab.icon" class="text-2xl text-gray-normal"/>
+                        <div class="flex gap-4 items-center w-full relative text-sm sm:text-base">
+                            <nuxt-icon v-if="tab.icon" :name="tab.icon" class="text-lg sm:text-2xl text-gray-normal"/>
                             <div v-else class="min-w-[24px]"/>
                             <div class="font-semibold" v-html="tab.value"/>
                             <div v-if="tab.infoPoint" class="relative">
@@ -164,7 +164,16 @@ onBeforeUnmount(() => {
 <style>
 .hotelDscr p{
     margin-left: 20px;
-    line-height: 35px;
-    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+}
+
+@media screen and (max-width: 640px) {
+    .hotelDscr p{
+        margin-left: 20px;
+        line-height: 35px;
+        font-weight: 600;
+    }
 }
 </style>

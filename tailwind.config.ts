@@ -19,6 +19,7 @@ export default <Partial<Config>>{
       },
       screens: {
         'xs': '360px',
+        '2xs': '390px',
         ...defaultTheme.screens,
     // 'sm': '640px',
 

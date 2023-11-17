@@ -1,11 +1,12 @@
 <template>
     <div ref="packageCard" class="min-h-[384px]">
         <div v-if="isVisible || alreadyShown" class="grid grid-cols-12 border-2 border-gray-normal rounded-[20px] overflow-hidden sm:rounded-[30px] bg-white" >
+            <CornerInfo>
+                {{roomBasis}}
+            </CornerInfo>
             <div class="sm:p-7 col-span-12 md:col-span-9 lg:col-span-8 xl:col-span-5 md:bg-gray-lighter/30 xl:bg-transparent">
-                <div class="relative w-full h-full min-h-[250px] sm:min-h-[300px] md:min-h-[384px] sm:rounded-[20px] overflow-hidden">
-                    <CornerInfo>
-                        {{roomBasis}}
-                    </CornerInfo>
+                <div class="relative w-full h-full min-h-[210px] sm:min-h-[300px] md:min-h-[384px] sm:rounded-[20px] overflow-hidden">
+
                     <Carousel :slide-classes="['w-full h-full']" :options="packageImages">
                         <template #option="{option}">
                             <nuxt-img loading="lazy" width="583" height="400" format="webp" class="bg-gray-light w-full h-full object-cover" :src="option" :alt="option"/>
@@ -30,7 +31,7 @@
                     </div>
                     <div class="flex items-center mb-5 sm:mb-8 gap-1">
                         <nuxt-icon name="location" class="text-primary text-xl"/>
-                        <div class="font-semibold text-sm text-gray-hard">
+                        <div class="font-semibold text-xs sm:text-sm text-gray-hard">
                             {{hotel_data.hotel.address}}
                         </div>
                     </div>
@@ -44,14 +45,14 @@
                     <BookKapar/>
                 </div>
             </div>
-            <div class="flex pb-5 gap-2 sm:py-7 px-3 sm:px-5 sm:gap-0  justify-between flex-col sm:justify-center items-center col-span-12 sm:col-span-4 md:col-span-3 lg:col-span-4 xl:col-span-2 2xl:col-span-3 md:bg-gray-lighter/30">
+            <div class="flex pb-5 gap-2 sm:py-7 px-3 sm:px-5 sm:gap-0  justify-between flex-col sm:justify-between items-center col-span-12 sm:col-span-4 md:col-span-3 lg:col-span-4 xl:col-span-2 2xl:col-span-3 md:bg-gray-lighter/30">
                 <trip-advisor class="hidden sm:flex"/>
-                <div class="flex flex-col items-center sm:mt-auto sm:mb-20">
+                <div class="flex flex-col items-center">
                     <transition name="slide-up" mode="out-in">
                         <div :key="packagePrice + 'label'" class="text-center">
-                            <div class="flex items-center gap-1 sm:flex-col">
+                            <div class="flex items-center gap-1 justify-center">
                                 <div class="font-bold text-[36px] min-w-max lg:text-4xl">{{ Math.ceil(packagePrice) }}€</div>
-                                <div class="mb-2 text-lg text-gray-normal">{{ mainStore.priceMode ? 'Totali' : '/ Person' }}</div>
+                                <div class="text-lg text-gray-normal">{{ mainStore.priceMode ? 'Totali' : '/ Person' }}</div>
                             </div>
                             <div v-if="!mainStore.priceMode" class="mt-2 text-gray-normal hidden md:block">
                                 Dhomë Dyshe
@@ -60,7 +61,7 @@
                     </transition>
                 </div>
                 <nuxt-link :to="{path: '/package', query: {package: package.id}}" class="w-full">
-                    <button-default class="h-[50px] md:h-[70px] w-full md:mb-14 font-normal">Shiko Paketën</button-default>
+                    <button-default class="h-[50px] md:h-[70px] w-full font-normal">Shiko Paketën</button-default>
                 </nuxt-link>
             </div>
         </div>
