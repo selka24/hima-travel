@@ -6,10 +6,11 @@
             </div>
             <transition name="slide-fade">
                 <div v-if="show" :class="['absolute top-[60px] sm:top-[80px] z-10 w-full']">
-                    <div v-show="loadingAvailableDates" class="rounded-md absolute w-full h-full animate-pulse bg-gray-normal opacity-20 z-[10]"></div>
+<!--                    <div v-show="loadingAvailableDates" class="rounded-md absolute w-full h-full animate-pulse bg-gray-normal opacity-20 z-[10]"></div>-->
                     <CDatePicker
                         v-model="mainStore.selectedDate"
                         :expanded="true"
+                        :attributes="attributes"
                         mode="date"
                         color="red"
                         :min-date="new Date()"
@@ -53,17 +54,30 @@
         }
     }
 
+    const attributes = computed(() => {
+        return mainStore.availableDates.map((d) => {
+            return {
+                highlight: {
+                    color: 'green',
+                    fillMode: 'light',
+                },
+                dates: new Date(d),
+            }
+        })
+    })
+
     const disabledDates = computed(() => {
         if(currYear.value && currMonth.value){
             const datesOfMonth = getAllDatesInMonth(currYear.value, currMonth.value);
-            if(mainStore.availableDates.length){
+            if(mainStore.availableDates.length && currYear.value && currMonth.value){
                 return datesOfMonth.filter((date) => {
                     return mainStore.availableDates.findIndex(d => new Date(d).getDate() === date.getDate()) < 0;
                 })
             }
             return datesOfMonth;
         }
-        return [];
+        const today = new Date();
+        return getAllDatesInMonth(today.getFullYear(), today.getMonth() + 1);
     })
     const handlePageUpdate = async (page: any) => {
         const {month, year} = page[0];
@@ -79,6 +93,4 @@
         }
     }
 </script>
-<style scoped>
-
-</style>
+<style scoped></style>

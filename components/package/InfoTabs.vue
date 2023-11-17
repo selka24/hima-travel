@@ -159,16 +159,17 @@ onBeforeUnmount(() => {
 <style>
 .hotelDscr p{
     margin-left: 20px;
-    font-size: 14px;
-    line-height: 20px;
-    font-weight: 500;
+    line-height: 35px;
+    font-weight: 600;
 }
 
-@media screen and (max-width: 640px) {
+@media only screen and (max-width: 640px) {
     .hotelDscr p{
+
         margin-left: 20px;
-        line-height: 35px;
-        font-weight: 600;
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: 500;
     }
 }
 </style>
