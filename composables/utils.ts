@@ -68,14 +68,15 @@ export const useUtils = () => {
 
     const sendWhatsappMessage = (pckg: FullPackage) => {
         const number = '355696696144';
-        const info = ['Udhetime', 'Mar,%20 20 %20 Shtator %20 2023', '2','http://localhost:3000/package']
+        // const info = ['Udhetime', 'Mar,%20 20 %20 Shtator %20 2023', '2','http://localhost:3000/package']
         const link = `https://api.whatsapp.com/send/?phone=${number}&text=`
-        const pckgTitle = pckg.hotel_data.hotel.name.replace(/\s+/g, '%20')
-        let message = `Pershendetje,%0a
-        Dua %20te%20 prenotoj %20paketen:%20${pckgTitle}%20-%20${pckg.hotel_data.hotel.country}%0a
-        Nisja:%20 ${formatDateSQ(pckg.hotel_data.check_in_date, 'dd %20 LLLL %20 yyyy')}%0a
-        Numri%20 personave:%20${info[2]}%0a
-        Linku%20 i %20 paketës:%20${runtimeConfig.public.prodUrl}/package?package=${pckg.id}`
+        const pckgTitle = pckg.hotel_data.hotel.name.replace(/\s+/g, '%20');
+        const pckgNight = displayNights(pckg.hotel_data.number_of_nights).replace(/\s+/g, '%20');
+        const pckgBasis = roomBasisInfo(pckg.hotel_data.room_basis).replace(/\s+/g, '%20');
+        let message = `Pershendetje %20 Hima%0a
+        Jam %20i%20 interesuar %20për%20 udhëtimin %20${pckg.hotel_data.hotel.city.replace(/\s+/g, '%20')}%0a
+        Nisja:%20 ${formatDateSQ(pckg.hotel_data.check_in_date, 'dd %20 LLLL %20 yyyy')}, %20 ${pckgNight} %20, ${pckgBasis}%0a
+        Hotel:%20 ${pckgTitle}`
         window.open(link + message.replace(/\s+/g, ''), "_blank");
     }
 

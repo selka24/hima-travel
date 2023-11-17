@@ -3,9 +3,7 @@
         <div v-if="expandImg" class="fixed top-0 bottom-0 right-0 left-0 bg-gray-normal/80 z-[500] backdrop-blur-[5px]">
         </div>
         <div v-if="isVisible || alreadyShown" class="grid grid-cols-12 border-2 border-gray-normal rounded-[20px] overflow-hidden sm:rounded-[30px] bg-white" >
-            <CornerInfo>
-                {{roomBasis}}
-            </CornerInfo>
+
             <div :class="['sm:p-7 col-span-12 md:col-span-9 lg:col-span-8 xl:col-span-5 md:bg-gray-lighter/30 xl:bg-transparent', {'fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-[600] h-[80vh] w-[90%] sm:w-[80%] !p-0 !bg-transparent': expandImg}]">
                 <div @click="() => {expandImg = false}"
                      v-if="expandImg"
@@ -13,7 +11,9 @@
                     <nuxt-icon name="close" class="text-xl" filled/>
                 </div>
                 <div :class="['relative w-full h-full min-h-[200px] sm:min-h-[300px] md:min-h-[384px] sm:rounded-[20px] overflow-hidden cursor-pointer', {'!rounded-none': expandImg}]" @click="() => {expandImg = true}">
-
+                    <CornerInfo v-show="!expandImg">
+                        {{roomBasis}}
+                    </CornerInfo>
                     <Carousel :slide-classes="['w-full h-full']" :options="packageImages">
                         <template #option="{option}">
                             <nuxt-img loading="lazy" width="583" height="400" format="webp" class="bg-gray-light w-full h-full object-cover" :src="option" :alt="option"/>
