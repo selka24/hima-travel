@@ -14,7 +14,7 @@ useHead({
 </script>
 
 <template>
-    <div class="flex justify-center px-5 lg:px-10">
+    <div class="flex justify-center px-3.5 sm:px-5 lg:px-10">
         <div class="max-w-page w-full">
             <OfferDeparture class="!items-end justify-center mt-24 mb-16"/>
             <InspirationSection/>

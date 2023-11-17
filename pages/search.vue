@@ -1,12 +1,12 @@
 <template>
     <div class="flex flex-col justify-center items-center">
-        <div class="relative bg-right-bottom bg-cover pt-24 pb-10 px-5 lg:px-10 w-full min-h-[286px]" :style="backgroundStyles">
+        <div class="relative bg-right-bottom bg-cover pt-24 pb-10 px-3.5 sm:px-5 lg:px-10 w-full min-h-[286px]" :style="backgroundStyles">
             <div class="bg-gradient-to-r from-black/20 absolute w-full h-full left-0 top-0 z-0"/>
             <div class="flex justify-center">
                 <TravelSearch class="max-w-page w-full"/>
             </div>
         </div>
-        <div id="resultsSection" ref="resultsSection" class="flex flex-col items-center justify-center w-full px-5 lg:px-10">
+        <div id="resultsSection" ref="resultsSection" class="flex flex-col items-center justify-center w-full px-3.5 sm:px-5 lg:px-10">
             <SearchFilters class="max-w-page mt-11"/>
             <div class="flex flex-col gap-10 max-w-screen-2xl w-full mt-10">
                 <TellUs/>

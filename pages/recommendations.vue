@@ -34,7 +34,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="flex flex-col items-center px-5 lg:px-10 mt-11">
+    <div class="flex flex-col items-center px-3.5 sm:px-5 lg:px-10 mt-11">
         <div class="flex items-center">
             <div class="text-3xl">Udhëtim në</div>
             <div class="text-primary text-4xl ml-3 font-bold">{{ destination?.name || 'Destinacioni nuk ekziston' }}</div>
