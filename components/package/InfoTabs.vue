@@ -168,7 +168,7 @@ onBeforeUnmount(() => {
         margin-left: 20px;
         font-size: 14px;
         line-height: 35px;
-        font-weight: 500;
+        font-weight: 600;
     }
 }
 </style>
