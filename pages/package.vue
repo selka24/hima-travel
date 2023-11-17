@@ -56,7 +56,7 @@
                     <InfoTabs bgTriangle="bg-gray-lighter" :package="mainStore.currTravelPackage"/>
                 </div>
             </div>
-            <ZbuloBoten class="mt-28"/>
+<!--            <ZbuloBoten class="mt-28"/>-->
             <div class="mt-14">
                 <div class="text-3xl mb-12 font-bold">Introduction Hotel Filan Fisteku</div>
                 <div>
