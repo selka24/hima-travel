@@ -8,7 +8,7 @@
             </transition>
             <div class="sm:p-7 col-span-12 md:col-span-9 lg:col-span-8 xl:col-span-5 md:bg-gray-lighter/30 xl:bg-transparent">
                 <div class="relative w-full h-full min-h-[200px] sm:min-h-[300px] md:min-h-[384px] sm:rounded-[20px] overflow-hidden">
-                    <CornerInfo>
+                    <CornerInfo class="z-[11]">
                         <div class="flex gap-2 items-center justify-between">
                             <div>{{roomBasis}}</div>
                             <info-point v-if="package.hotel_data.room_basis === 'RO'" class="text-white">
