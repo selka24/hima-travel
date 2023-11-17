@@ -98,7 +98,7 @@ const includedTab = computed(() => {
         {icon: 'calendar', value: `${displayNights(hotel_data.number_of_nights)}, ${calendarDate.value}`},
         {icon: 'backpack', value: 'Çantë dore 10 kg', infoPoint: 'Për të shtuar një bagazh, kontaktoni me operatorët tanë'},
         {icon: 'bed', value: JSON.parse(hotel_data.room_details)[0]},
-        {icon: 'food', value: roomBasis},
+        {icon: 'food', value: roomBasis, ...(props.package.hotel_data.room_basis === 'RO' ? {infoPoint: 'Për të shtuar vaktet e ushqimit kontaktoni me operatorët tanë'} : {})},
         {icon: 'plane-departure', value: `
             <span>Udhëtim V/A nga Tirana<span>
             &nbsp
