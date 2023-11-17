@@ -1,11 +1,11 @@
 <template>
     <div>
-        <input-skeleton :class="['relative cursor-pointer', {'!rounded-b-[0]': show}, {'border border-primary': error}]" v-click-outside="hideNights">
-            <div @click="showNights">
+        <input-skeleton :class="['relative cursor-pointer', {'!rounded-b-[0]': show}, {'border border-primary': error}]" v-click-outside="hideNights" @click="showNights">
+            <div>
                 {{ displayNights(mainStore.selectedNights) || 'Netët' }}
             </div>
             <transition name="slide-fade">
-                <div v-if="show" class="z-[30] absolute bg-white top-[70px] w-full shadow-[0_0_5px_0] shadow-gray-normal rounded-b-[10px] flex flex-col text-center pt-2.5 gap-2.5 overflow-auto max-h-[250px]">
+                <div v-if="show" class="z-[30] absolute bg-white left-0 top-[50px] sm:top-[70px] w-full shadow-[0_0_5px_0] shadow-gray-normal rounded-b-[10px] flex flex-col text-center pt-2.5 gap-2.5 overflow-auto max-h-[250px]">
                     <div v-for="night in currNights" @click="handleSelect(night)" class="cursor-pointer py-2.5 hover:bg-secondary/20 w-full">
                         {{displayNights(night)}}
                     </div>

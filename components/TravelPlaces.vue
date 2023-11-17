@@ -90,7 +90,21 @@ const handleOriginFocusOut = () => {
         originSearch.value = selectedOrigin.value.name;
 }
 
-const handleDestFocus = () => {
+const handleDestFocus = (e: FocusEvent) => {
+    const {y} = e.target.getBoundingClientRect();
+    if(y > 0) {
+        console.log(y, 'yyyyyyyyy')
+        console.log(navigator, 'navigator navigator')
+            if ("virtualKeyboard" in navigator) {
+                console.log('virtual keboard')
+            }
+        setTimeout(() => {
+            scrollTo({
+                top: y - 30,
+                behavior: 'smooth'
+            })
+        },150)
+    }
     destinationSearch.value = ''
 }
 const handleDestinationFocusOut = () => {

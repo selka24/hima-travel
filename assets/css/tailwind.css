@@ -16,7 +16,7 @@
     }
 
     .base-input{
-        @apply px-3 sm:px-5 bg-white flex sm:justify-center sm:text-center items-center w-full font-bold text-secondary h-[50px] sm:h-[70px] shadow-[0_0_5px_0] shadow-gray-normal rounded-[10px] outline-secondary/50 placeholder-secondary focus-visible:placeholder-gray-normal;
+        @apply px-3 sm:px-5 bg-white flex justify-center text-center items-center w-full font-bold text-secondary h-[50px] sm:h-[70px] shadow-[0_0_5px_0] shadow-gray-normal rounded-[10px] outline-secondary/50 placeholder-secondary focus-visible:placeholder-gray-normal;
     }
 
     .max-w-page {

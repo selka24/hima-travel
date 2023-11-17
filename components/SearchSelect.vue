@@ -57,12 +57,12 @@ const filteredOptions = computed(() => {
     }
     return props.options;
 })
-const handleInputFocus = () => {
+const handleInputFocus = (e: FocusEvent) => {
     if(props.error) {
         showError.value = true;
     } else {
         showList();
-        emit('focus');
+        emit('focus', e);
     }
 }
 const handleSelect = (option: Origin) => {

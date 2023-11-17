@@ -15,19 +15,10 @@
                         <PackageCardLoading v-for="idx in 3" :key="idx + 'load'"/>
                     </div>
                     <div v-else-if="mainStore.travelPackages" class="flex flex-col gap-y-10">
-<!--                        <div v-for="travelPackage in mainStore.travelPackages" :key="travelPackage.id" class="relative">-->
                             <PackageCard v-for="travelPackage in mainStore.travelPackages" :package="travelPackage" :key="travelPackage.id" class="relative"/>
-<!--                        </div>-->
                         <div class="flex w-full justify-center">
                             <Pagination :per-page="10" :count="mainStore.searchTotal" :curr-page="mainStore.selectedPage" @page-changed="handlePageChanged"/>
                         </div>
-<!--                        <client-only>-->
-<!--                            <json-viewer-->
-<!--                                :value="mainStore.travelPackages"-->
-<!--                                :expand-depth=5-->
-<!--                                copyable-->
-<!--                                boxed></json-viewer>-->
-<!--                        </client-only>-->
                     </div>
                     <div v-else class="mt-10 flex justify-center items-center">
                         <div class="text-center text-secondary font-semibold">
