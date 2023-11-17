@@ -55,12 +55,13 @@
 
     const disabledDates = computed(() => {
         if(currYear.value && currMonth.value){
+            const datesOfMonth = getAllDatesInMonth(currYear.value, currMonth.value);
             if(mainStore.availableDates.length){
-                const datesOfMonth = getAllDatesInMonth(currYear.value, currMonth.value);
-                return  datesOfMonth.filter((date) => {
+                return datesOfMonth.filter((date) => {
                     return mainStore.availableDates.findIndex(d => new Date(d).getDate() === date.getDate()) < 0;
                 })
             }
+            return datesOfMonth;
         }
         return [];
     })
