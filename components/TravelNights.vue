@@ -1,7 +1,7 @@
 <template>
     <div>
-        <input-skeleton :class="['relative cursor-pointer', {'!rounded-b-[0]': show}, {'border border-primary': error}]" v-click-outside="hideNights" @click="showNights">
-            <div>
+        <input-skeleton :class="['relative cursor-pointer !p-0', {'!rounded-b-[0]': show}, {'border border-primary': error}]" v-click-outside="hideNights">
+            <div @click="showNights" class="w-full h-full flex items-center justify-center">
                 {{ displayNights(mainStore.selectedNights) || 'Netët' }}
             </div>
             <transition name="slide-fade">
