@@ -62,16 +62,16 @@
 
 <template>
     <div ref="carousel" :class="['overflow-hidden relative', ...(slideClasses || ['w-[500px]', 'h-[500px]']), {'border-2 rounded-[20px]': !options.length}]">
-        <div v-if="options.length && !noControls" class="w-full px-4 z-10 flex absolute-center items-center justify-between">
-            <div @click="handleSlideChange(currSlideNo - 1)"
-                 class="cursor-pointer flex items-center justify-center bg-white/80 rounded-full p-1 sm:p-2">
+<!--        <div v-if="options.length && !noControls" class="w-full px-4 z-10 flex absolute-center items-center justify-between">-->
+            <div v-if="options.length && !noControls" @click="handleSlideChange(currSlideNo - 1)"
+                 class="cursor-pointer flex items-center justify-center max-w-min bg-white/80 rounded-full p-1 sm:p-2 absolute top-1/2 -translate-y-1/2 z-10 left-4">
                 <nuxt-icon name="chevron-down-solid" class="base-text sm:text-2xl [&>*:first-child]:rotate-90" filled/>
             </div>
-            <div @click="handleSlideChange(currSlideNo + 1)"
-                 class="cursor-pointer flex items-center justify-center bg-white/80 rounded-full p-1 sm:p-2">
+            <div v-if="options.length && !noControls" @click="handleSlideChange(currSlideNo + 1)"
+                 class="cursor-pointer flex items-center justify-center max-w-min bg-white/80 rounded-full p-1 sm:p-2 absolute top-1/2 -translate-y-1/2 z-10 right-4">
                 <nuxt-icon name="chevron-down-solid" class="base-text sm:text-2xl [&>*:first-child]:-rotate-90 text-primary" filled/>
             </div>
-        </div>
+<!--        </div>-->
         <transition-group :name="goingBack ? 'slideback' : 'slide'">
             <div v-for="(opt, idx) in options"
                  v-show="idx === currSlideNo"
