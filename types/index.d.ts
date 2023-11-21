@@ -90,6 +90,8 @@ declare global {
             stars: number
             stars_id: number
             longitude: string
+            review_score: string
+            review_count: number
             latitude: string
             is_apartment: number
             giata_code: string

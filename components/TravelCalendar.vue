@@ -6,14 +6,15 @@
             </div>
             <transition name="slide-fade">
                 <div v-if="show" :class="['absolute top-[60px] sm:top-[80px] z-20 w-full']">
-<!--                    <div v-show="loadingAvailableDates" class="rounded-md absolute w-full h-full animate-pulse bg-gray-normal opacity-20 z-[10]"></div>-->
+<!--                    <div v-if="loadingAvailableDates" class="rounded-md absolute w-full h-full animate-pulse bg-gray-normal opacity-20 z-[10]"></div>-->
                     <CDatePicker
                         v-model="mainStore.selectedDate"
+                        ref="travelCalendar"
                         :expanded="true"
                         :attributes="attributes"
                         mode="date"
                         color="red"
-                        :min-date="new Date()"
+                        :min-date="minDate"
                         :disabled-dates="disabledDates"
                         @update:pages="handlePageUpdate"
                     />
@@ -36,16 +37,35 @@
     const mainStore = useMainStore();
     const show = ref<boolean>(false);
     const loadingAvailableDates = ref(false);
-    const currMonth = ref(null);
-    const currYear = ref(null);
+    const currMonth = ref<number | null>(null);
+    const currYear = ref<number | null>(null);
     const error = ref('');
+    const travelCalendar = ref(null);
+    const minDate = ref(new Date())
     const hideCalendar = () => {
         show.value = false;
         new Date().toLocaleDateString()
     }
-    const showCalendar = () => {
+
+    const moveToAvailable = () => {
+        if(mainStore.availableDates.length){
+            const currAvail = new Date(mainStore.availableDates[0]);
+            minDate.value = currAvail;
+            const month = currAvail.getMonth() + 1;
+            const year = currAvail.getFullYear();
+            currMonth.value = month;
+            currYear.value = year;
+            // travelCalendar.value?.move({month, year});
+        }
+    }
+    const showCalendar = async () => {
         if(mainStore.selectedDestination) {
+            if(show.value) return;
+            loadingAvailableDates.value = true;
+            await mainStore.actGetAvailableDates({});
+            moveToAvailable();
             show.value = true;
+            loadingAvailableDates.value = false;
         } else {
             error.value = 'Ju lutem zgjidhni destinacionin!'
             setTimeout(() => {
@@ -53,6 +73,7 @@
             }, 2000)
         }
     }
+
 
     const attributes = computed(() => {
         return mainStore.availableDates.map((d) => {
@@ -82,14 +103,12 @@
     const handlePageUpdate = async (page: any) => {
         const {month, year} = page[0];
         if(month !== currMonth.value || year !== currYear.value){
+            console.log(currMonth.value, month)
             currMonth.value = month;
             currYear.value = year;
-
-            loadingAvailableDates.value = true;
-
+            // loadingAvailableDates.value = true;
             await mainStore.actGetAvailableDates({month, year});
-
-            loadingAvailableDates.value = false;
+            // loadingAvailableDates.value = false;
         }
     }
 </script>

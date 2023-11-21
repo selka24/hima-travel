@@ -158,23 +158,21 @@ export const useMainStore = defineStore('main', () => {
             })
     }
 
-    const actGetAvailableDates = async ({month, year}: any) => {
-        const date = selectedDate.value || new Date();
+    const actGetAvailableDates = async (date:  {}) => {
+        // const date = selectedDate.value || new Date();
         // const month = date.getMonth() + 1;
         // const year = date.getFullYear();
 
         console.log({
             origin_id: selectedOrigin.value?.id,
             destination_id: selectedDestination.value?.id,
-            month,
-            year,
+            ...date
         })
         try {
             const response = await $api.post('/packages/available-dates', {
                 origin_id: selectedOrigin.value?.id,
                 destination_id: selectedDestination.value?.id,
-                month,
-                year,
+                ...date
             })
             availableDates.value = response.data;
         } catch (e) {

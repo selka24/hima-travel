@@ -27,7 +27,7 @@
                     <div class="text-2xl flex flex-col gap-3 font-bold mb-2">
                         <div class="flex justify-between items-center">
                             <HotelStars :stars="hotel_data.hotel.stars" class="base-text sm:text-2xl"/>
-                            <trip-advisor :mobile="true" class="flex sm:hidden"/>
+                            <trip-advisor :mobile="true" class="flex sm:hidden" :score="hotel_data.hotel.review_score" :count="hotel_data.hotel.review_count"/>
                         </div>
                         <div>
                             {{hotel_data.hotel?.name || '*No name*'}}
@@ -49,7 +49,8 @@
                 </div>
             </div>
             <div class="flex pb-5 gap-2 sm:py-7 px-3 sm:px-5 sm:gap-0  justify-between flex-col sm:justify-between items-center col-span-12 sm:col-span-4 md:col-span-3 lg:col-span-4 xl:col-span-2 2xl:col-span-3 md:bg-gray-lighter/30">
-                <trip-advisor class="hidden sm:flex"/>
+                <trip-advisor class="hidden sm:flex" :score="hotel_data.hotel.review_score" :count="hotel_data.hotel.review_count"/>
+<!--                <trip-advisor class="hidden sm:flex"/>-->
                 <div class="flex flex-col items-center">
                     <transition name="slide-up" mode="out-in">
                         <div :key="packagePrice + 'label'" class="text-center">
