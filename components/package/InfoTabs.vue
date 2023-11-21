@@ -3,7 +3,7 @@
                :tabs="tabs"
                :bgTriangle="bgTriangle"
                :active-tab="activeTab"
-               class="mb-4 h-14 overflow-hidden">
+               class="mb-2 h-14 overflow-hidden">
         <template #default="{tab}">
             <div class="flex items-center gap-3 text-sm sm:text-base">
                 <nuxt-icon :name="tab.icon" class="text-xl hidden md:block"/>
@@ -19,8 +19,8 @@
               :options="tabsContent">
         <template #option="{option}">
             <div class="absolute top-0 w-full">
-                <div v-if="option.value === 1" v-html="option.content" class="hotelDscr first-letter:uppercase first-letter:block"/>
-                <div v-else class="flex flex-col gap-y-3.5 w-full">
+<!--                <div v-if="option.value === 1" v-html="option.content" class="hotelDscr first-letter:uppercase first-letter:block"/>-->
+                <div class="flex flex-col gap-y-3.5 w-full">
                     <div v-for="(tab, idx) in option.content" :key="`${tab.value}-${idx}-inf`">
                         <div class="flex gap-3 items-center w-full relative text-sm sm:text-base">
                             <nuxt-icon v-if="tab.icon" :name="tab.icon" class="text-lg sm:text-2xl text-gray-normal"/>
@@ -123,7 +123,14 @@ const flightTab = computed(() => {
 })
 
 const hotelTab = computed(() => {
-    return props.package.hotel_data.hotel.description;
+    const stripString = props.package.hotel_data.hotel.description.replace(/<p>|<\/p>/g, '');
+    console.log({stripString})
+    const arrayDscr = stripString.split('<br>');
+    console.log({arrayDscr});
+    return arrayDscr.map(d => {
+        return {icon: '', value: d}
+    })
+    // return props.package.hotel_data.hotel.description;
 })
 
 

@@ -11,7 +11,7 @@
                     <CornerInfo>
                         {{roomBasis}}
                     </CornerInfo>
-                    <Carousel :slide-classes="['w-full h-full']" :options="packageImages">
+                    <Carousel :slide-classes="['w-full h-full overflow-auto']" :options="packageImages">
                         <template #option="{option}">
                             <nuxt-img @click="() => {expandImg = true}" loading="lazy" width="583" height="400" format="webp" class="bg-gray-light w-full h-full object-cover cursor-pointer" :src="option" :alt="option"/>
                         </template>
