@@ -44,7 +44,7 @@
         new Date().toLocaleDateString()
     }
     const showCalendar = () => {
-        if(mainStore.selectedOrigin) {
+        if(mainStore.selectedDestination) {
             show.value = true;
         } else {
             error.value = 'Ju lutem zgjidhni destinacionin!'

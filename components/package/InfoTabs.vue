@@ -3,7 +3,7 @@
                :tabs="tabs"
                :bgTriangle="bgTriangle"
                :active-tab="activeTab"
-               class="mb-8">
+               class="mb-4 h-14 overflow-hidden">
         <template #default="{tab}">
             <div class="flex items-center gap-3 text-sm sm:text-base">
                 <nuxt-icon :name="tab.icon" class="text-xl hidden md:block"/>
@@ -19,13 +19,13 @@
               :options="tabsContent">
         <template #option="{option}">
             <div class="absolute top-0 w-full">
-                <div v-if="option.value === 1" v-html="option.content" class="hotelDscr"/>
+                <div v-if="option.value === 1" v-html="option.content" class="hotelDscr first-letter:uppercase first-letter:block"/>
                 <div v-else class="flex flex-col gap-y-3.5 w-full">
                     <div v-for="(tab, idx) in option.content" :key="`${tab.value}-${idx}-inf`">
-                        <div class="flex gap-4 items-center w-full relative text-sm sm:text-base">
+                        <div class="flex gap-3 items-center w-full relative text-sm sm:text-base">
                             <nuxt-icon v-if="tab.icon" :name="tab.icon" class="text-lg sm:text-2xl text-gray-normal"/>
                             <div v-else class="min-w-[24px]"/>
-                            <div class="font-semibold" v-html="tab.value"/>
+                            <div class="font-semibold first-letter:uppercase " v-html="tab.value"/>
                             <info-point v-if="tab.infoPoint" class="text-gray-normal">
                                 {{ tab.infoPoint }}
                             </info-point>

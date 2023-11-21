@@ -1,13 +1,13 @@
 <template>
     <div ref="packageCard" class="min-h-[384px]">
-        <div v-if="isVisible || alreadyShown" class="grid grid-cols-12 border-2 border-gray-normal rounded-[20px] overflow-hidden sm:rounded-[30px] bg-white" >
+        <div v-if="isVisible || alreadyShown" class="grid grid-cols-12 border-2 border-gray-normal rounded-[20px] sm:rounded-[30px] bg-white" >
             <transition name="page" @after-enter="toggleScroll(true)">
                 <div v-if="expandImg" class="fixed top-0 left-0 z-[600] h-[100dvh] w-full">
                     <Collection :package="package" @closed="handleCollectionclose"/>
                 </div>
             </transition>
             <div class="sm:p-7 col-span-12 md:col-span-9 lg:col-span-8 xl:col-span-5 md:bg-gray-lighter/30 xl:bg-transparent">
-                <div class="relative w-full h-full min-h-[200px] sm:min-h-[300px] md:min-h-[384px] sm:rounded-[20px] overflow-hidden">
+                <div class="relative w-full h-full min-h-[200px] sm:min-h-[300px] md:min-h-[384px] rounded-t-[20px] sm:rounded-[20px] overflow-hidden">
                     <CornerInfo>
                         {{roomBasis}}
                     </CornerInfo>
@@ -21,8 +21,8 @@
                     </Carousel>
                 </div>
             </div>
-            <div class="overflow-hidden p-3 sm:p-7 col-span-12 sm:col-span-8 md:order-last md:col-span-11 lg:col-span-10 xl:order-none xl:col-span-5 2xl:col-span-4 flex flex-col">
-                <div class="overflow-hidden relative">
+            <div class="p-3 sm:p-7 col-span-12 sm:col-span-8 md:order-last md:col-span-11 lg:col-span-10 xl:order-none xl:col-span-5 2xl:col-span-4 flex flex-col">
+                <div class="relative">
 <!--                    <hotel-title :hotel_data="hotel_data" :stars="true" class="!mb-2"/>-->
                     <div class="text-2xl flex flex-col gap-3 font-bold mb-2">
                         <div class="flex justify-between items-center">
@@ -110,7 +110,7 @@ watch(isVisible, (val) => {
 
 const handleCollectionclose = () => {
     expandImg.value = false;
-    toggleScroll(false);
+    // toggleScroll(false);
 }
 const toggleScroll = (value: boolean) => {
     if(value){
