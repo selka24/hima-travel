@@ -14,6 +14,10 @@ onMounted(() => {
     // mainStore.fromServer = false;
 })
 
+const filteredOffers = computed(() => {
+    return mainStore.destinationOffers.filter((d) => d.packages_min_total_price !== null)
+})
+
 
 </script>
 
@@ -21,7 +25,7 @@ onMounted(() => {
     <div class="flex flex-col items-center px-3.5 sm:px-5 lg:px-10">
         <OfferDeparture/>
         <div class="grid grid-cols-2 xl:grid-cols-3 gap-x-3 gap-y-28 mt-8 max-w-page">
-            <preview-card v-for="offer in mainStore.destinationOffers" :key="offer.id + 'prw-card'" :travel-package="offer"/>
+            <preview-card v-for="offer in filteredOffers" :key="offer.id + 'prw-card'" :travel-package="offer"/>
         </div>
         <nuxt-link to="/inspiration?origin=Tirana"
                    class="mt-20 sm:mt-44 font-normal border border-primary text-center w-full max-w-[300px] py-5 rounded-[10px]">
