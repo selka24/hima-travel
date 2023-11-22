@@ -1,13 +1,13 @@
 <template>
     <div>
-        <ModalWrapper/>
+<!--        <ModalWrapper/>-->
         <NuxtLayout>
             <NuxtPage/>
         </NuxtLayout>
     </div>
 </template>
 <script setup lang="ts">
-import ModalWrapper from "~/components/layout/ModalWrapper.vue";
+// import ModalWrapper from "~/components/layout/ModalWrapper.vue";
 const mainStore = useMainStore();
 
 if(process.server){

@@ -13,7 +13,6 @@
     })
 
     watch(() => props.trigger, () => {
-        console.log('triggereed')
         showTooltip.value = true;
         setTimeout(() => {
             showTooltip.value = false;

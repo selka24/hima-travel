@@ -103,7 +103,6 @@
     const handlePageUpdate = async (page: any) => {
         const {month, year} = page[0];
         if(month !== currMonth.value || year !== currYear.value){
-            console.log(currMonth.value, month)
             currMonth.value = month;
             currYear.value = year;
             // loadingAvailableDates.value = true;

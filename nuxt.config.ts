@@ -2,6 +2,11 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   app: {
+    head: {
+      htmlAttrs: {
+        lang: 'sq_AL'
+      }
+    },
     rootId: 'selka24',
     layoutTransition: { name: 'page', mode: 'out-in' },
     pageTransition: { name: 'page', mode: 'out-in' },

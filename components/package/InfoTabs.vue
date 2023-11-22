@@ -58,18 +58,6 @@ const roomBasis = roomBasisInfo(hotel_data.room_basis);
 const activeTab = ref(0);
 const triggerInfoPoint = ref(false);
 
-const handleTriggerInfo = (timeout: number, close?: number) => {
-    if(close !== 1){
-        triggerInfoPoint.value = true;
-    }
-    console.log(timeout, 'timeout')
-    if(!isNaN(timeout)){
-        setTimeout(() => {
-            triggerInfoPoint.value = false
-        }, timeout)
-    }
-}
-
 const getFlightInfo = (flight: Flight) => {
     const data = JSON.parse(flight.extra_data);
     // const duration = formatDurationSQ(intervalToDuration({start: departure, end: arrival}));

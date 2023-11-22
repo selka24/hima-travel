@@ -67,7 +67,7 @@
 <!--                <nuxt-link :to="{path: '/package', query: {package: package.id}}" class="w-full">-->
                     <button-default @click="sendWhatsappMessage(package)" class="h-[50px] md:h-[70px] w-full font-normal">Kontakto Tani</button-default>
 <!--                </nuxt-link>-->
-                <BookKapar class="w-full mt-2"/>
+                <BookKapar class="w-full mt-2" :kapar="package.price_minus_hotel"/>
             </div>
         </div>
     </div>
@@ -115,7 +115,6 @@ const handleCollectionclose = () => {
 }
 const toggleScroll = (value: boolean) => {
     if(value){
-        console.log('after enter')
         document.body.classList.add('stopScroll')
     } else {
         document.body.classList.remove('stopScroll')

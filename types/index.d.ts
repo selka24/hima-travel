@@ -49,6 +49,7 @@ declare global {
         hotel_data_id: number
         commission: string
         total_price: string
+        price_minus_hotel: string
         created_at: Date | string
         updated_at: Date | string
     }

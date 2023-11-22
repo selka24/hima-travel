@@ -21,7 +21,6 @@
         handleGoingBack(slideTo, currSlideNo.value);
 
         if (hasParentSlide.value) {
-            console.log({slideTo})
             emit('slideChange', slideTo);
         } else
             slide.value = slideTo;
@@ -47,10 +46,8 @@
 
     const handleSwipe = (swipeDirection: string) => {
         if(swipeDirection === 'left'){
-            console.log('swiping left');
             handleSlideChange(currSlideNo.value + 1)
         } else if (swipeDirection === 'right') {
-            console.log('swiping right');
             handleSlideChange(currSlideNo.value - 1)
         }
     }

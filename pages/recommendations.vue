@@ -7,9 +7,7 @@ const mainStore = useMainStore();
 const loading = ref(true);
 const getRecommends = async () => {
     const {query} = route;
-    console.log(query, 'queryyy')
     if(query.destinationId){
-        console.log('query.destinationId', query.destinationId);
         const id = Number(query.destinationId)
         if(!isNaN(id)){
             await mainStore.actGetDestinationPackages(id);

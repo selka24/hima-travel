@@ -18,15 +18,6 @@ import {useTriggerModal} from "~/composables/triggerModal";
 import TellUsModal from "~/components/modals/TellUsModal.vue";
 
 const {triggerModal, toggleTrigger} = useTriggerModal();
-const testTrigger = () => {
-    console.log('I got triggered from a composable')
-}
-
-
-// const testModal = () => resolveComponent('ModalsTestModal');
-
-
-watch(triggerModal, testTrigger)
 </script>
 
 <style scoped>

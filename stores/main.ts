@@ -114,7 +114,6 @@ export const useMainStore = defineStore('main', () => {
                 console.log(e, 'errorrr')
             })
             .then((response) => {
-                console.log(response?.data, 'response?.data')
                 allOrigins.value = response?.data
             })
     }
@@ -151,7 +150,6 @@ export const useMainStore = defineStore('main', () => {
     const actGetDestinationPackages = async (destinationID: number) => {
         await $api.get(`destinations/${destinationID}/packages`)
             .then((response) => {
-                console.log('package', response.data);
                 destinationPackages.value = response.data;
             }).catch((e) => {
                 console.log('destination packages', e)
@@ -159,10 +157,6 @@ export const useMainStore = defineStore('main', () => {
     }
 
     const actGetAvailableDates = async (date:  {}) => {
-        // const date = selectedDate.value || new Date();
-        // const month = date.getMonth() + 1;
-        // const year = date.getFullYear();
-
         console.log({
             origin_id: selectedOrigin.value?.id,
             destination_id: selectedDestination.value?.id,

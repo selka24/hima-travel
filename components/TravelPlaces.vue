@@ -92,12 +92,7 @@ const handleOriginFocusOut = () => {
 
 const handleDestFocus = (e: FocusEvent) => {
     const {y} = e.target.getBoundingClientRect();
-    console.log(window.innerWidth, 'yyyyyyyyy')
     if(y > 0 && window.innerWidth <=640) {
-        console.log(navigator, 'navigator navigator')
-            if ("virtualKeyboard" in navigator) {
-                console.log('virtual keboard')
-            }
         setTimeout(() => {
             scrollTo({
                 top: y - 30,

@@ -92,7 +92,6 @@ const scrollToResults = () => {
 }
 
 const handlePageChanged = (page) => {
-    console.log(page, 'pageee')
     mainStore.selectedPage = page;
     router.push({path: '/search', query: {...mainStore.getSearchParams, page}})
 }
@@ -102,7 +101,6 @@ const setSearchValues = async () => {
 
     if(invalid.value) {
         mainStore.loadingPackages = false;
-        console.log('invalid search')
     } else {
         if(!mainStore.allOrigins.length){
             console.log('getting dataaa origin')

@@ -1,21 +1,11 @@
 <script setup lang="ts">
 import PreviewCard from "~/components/cards/PreviewCard.vue";
 import PreviewCardLoading from "~/components/cards/PreviewCardLoading.vue";
-// const loadingPackage = ref(true);
 const mainStore = useMainStore();
 
-const getPackageInspiration = () => {
-    // loadingPackage.value = true;
-    mainStore.actGetInspiration();
-    // loadingPackage.value = false;
-
-}
 
 onMounted(() => {
-    // if(!mainStore.fromServer)
-    console.log('fetch on server')
     mainStore.actGetInspiration();
-    // mainStore.fromServer = false;
 })
 </script>
 
