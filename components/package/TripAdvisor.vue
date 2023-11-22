@@ -1,11 +1,15 @@
 <script setup lang="ts">
-const props = defineProps<{mobile?:boolean, score: string, count: number}>()
+const props = defineProps<{mobile?:boolean, score: string | null, count: number | null}>()
 
 const numberScore = computed(() => {
+    if(!props.score) return 0;
     const num = Number(props.score);
     return Number(num.toFixed(1));
 })
 
+const displayCount = computed(() => {
+    return props.count || 0
+})
 </script>
 
 <template>
@@ -25,10 +29,10 @@ const numberScore = computed(() => {
             {{ `${numberScore}/5`}}
         </div>
         <div class="hidden lg:block">
-            {{`Bazuar ne ${count} Reviews`}}
+            {{`Bazuar ne ${displayCount} Reviews`}}
         </div>
         <div class="block lg:hidden">
-            {{ `${count} Reviews`}}
+            {{ `${displayCount} Reviews`}}
         </div>
     </div>
 </template>

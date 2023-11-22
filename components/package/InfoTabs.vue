@@ -72,12 +72,10 @@ const handleTriggerInfo = (timeout: number, close?: number) => {
 
 const getFlightInfo = (flight: Flight) => {
     const data = JSON.parse(flight.extra_data);
-    const departure = new Date(flight.departure);
-    const arrival = new Date(flight.arrival);
     // const duration = formatDurationSQ(intervalToDuration({start: departure, end: arrival}));
     return {
         places: `${data.legs[0].origin.name} ${flight.origin} -> ${data.legs[0].destination.name} ${flight.destination}`,
-        time: `${formatDateSQ(departure, 'dd, LLL yyyy -  HH:mm')} - ${formatDateSQ(arrival, 'HH:mm')}`,
+        time: `${formatDateSQ(flight.departure, 'dd, LLL yyyy -  HH:mm')} - ${formatDateSQ(flight.arrival, 'HH:mm')}`,
         // duration
     }
 }
@@ -124,9 +122,7 @@ const flightTab = computed(() => {
 
 const hotelTab = computed(() => {
     const stripString = props.package.hotel_data.hotel.description.replace(/<p>|<\/p>/g, '');
-    console.log({stripString})
     const arrayDscr = stripString.split('<br>');
-    console.log({arrayDscr});
     return arrayDscr.map(d => {
         return {icon: '', value: d}
     })
@@ -164,7 +160,7 @@ onBeforeUnmount(() => {
 })
 </script>
 <style>
-.hotelDscr p{
+/*.hotelDscr p{
     margin-left: 20px;
     line-height: 35px;
     font-weight: 600;
@@ -177,5 +173,5 @@ onBeforeUnmount(() => {
         line-height: 35px;
         font-weight: 600;
     }
-}
+}*/
 </style>

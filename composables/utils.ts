@@ -25,8 +25,9 @@ export const useUtils = () => {
     }
 
     const formatDateSQ = (date: Date | number | string, formatStr: string = 'PP') => {
-
-        return format(new Date(date), formatStr, {
+        const parseDate = new Date(date)
+        const userTimezoneOffset = parseDate.getTimezoneOffset() * 60000;
+        return format(new Date(parseDate.valueOf() + userTimezoneOffset), formatStr, {
             locale: sq
         })
     }
