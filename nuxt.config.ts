@@ -5,7 +5,10 @@ export default defineNuxtConfig({
     head: {
       htmlAttrs: {
         lang: 'sq_AL'
-      }
+      },
+      meta: [
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+      ]
     },
     rootId: 'selka24',
     layoutTransition: { name: 'page', mode: 'out-in' },

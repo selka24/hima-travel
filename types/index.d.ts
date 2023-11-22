@@ -65,6 +65,7 @@ declare global {
         price: string
         created_at: Date | string
         updated_at: Date | string
+        reservation_deadline: string
     }
 
     interface Package extends BasePackage {

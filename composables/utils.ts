@@ -1,16 +1,18 @@
-import { format, formatDuration } from 'date-fns';
-import { sq } from 'date-fns/locale';
+import {format, formatDuration} from 'date-fns';
+import {sq} from 'date-fns/locale';
+
 export const useUtils = () => {
 
-    const runtimeConfig = useRuntimeConfig()
+    const runtimeConfig = useRuntimeConfig();
+
 
     const multipleSearchFilter = (array: any[], filterKeys: string | string[], keyword: string) => {
         const checkIdx = (option: string) => option.toLowerCase().indexOf(keyword);
         return array.filter(opt => {
-            if(Array.isArray(filterKeys)){
-                for(let x = 0; x < filterKeys.length; x++){
+            if (Array.isArray(filterKeys)) {
+                for (let x = 0; x < filterKeys.length; x++) {
                     const idx = checkIdx(opt[filterKeys[x] || '']);
-                    if(idx >= 0) return true;
+                    if (idx >= 0) return true;
                 }
                 return false;
             } else {
@@ -20,14 +22,18 @@ export const useUtils = () => {
     }
 
     const displayNights = (nights: number) => {
-        if(!nights) return '';
+        if (!nights) return '';
         return nights + (nights > 1 ? ' Netë' : ' Natë')
     }
 
-    const formatDateSQ = (date: Date | number | string, formatStr: string = 'PP') => {
+    const removeTimezone = (date: any) => {
         const parseDate = new Date(date)
         const userTimezoneOffset = parseDate.getTimezoneOffset() * 60000;
-        return format(new Date(parseDate.valueOf() + userTimezoneOffset), formatStr, {
+        return new Date(parseDate.valueOf() + userTimezoneOffset)
+    }
+
+    const formatDateSQ = (date: Date | number | string, formatStr: string = 'PP') => {
+        return format(removeTimezone(date), formatStr, {
             locale: sq
         })
     }
@@ -39,7 +45,7 @@ export const useUtils = () => {
     }
 
     const isInViewport = (el: HTMLElement) => {
-        if(!el) return false;
+        if (!el) return false;
         const rect = el.getBoundingClientRect();
         // returns true or false based on whether the element is in viewport
         return rect.top === 0;
@@ -100,6 +106,7 @@ export const useUtils = () => {
 
     return {
         multipleSearchFilter,
+        removeTimezone,
         isInViewport,
         displayNights,
         formatDateSQ,

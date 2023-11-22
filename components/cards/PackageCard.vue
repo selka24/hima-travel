@@ -67,7 +67,7 @@
 <!--                <nuxt-link :to="{path: '/package', query: {package: package.id}}" class="w-full">-->
                     <button-default @click="sendWhatsappMessage(package)" class="h-[50px] md:h-[70px] w-full font-normal">Kontakto Tani</button-default>
 <!--                </nuxt-link>-->
-                <BookKapar class="w-full mt-2" :kapar="kapar"/>
+                <BookKapar v-if="!kaparDisabled" class="w-full mt-2" :kapar="kapar"/>
             </div>
         </div>
     </div>
@@ -79,21 +79,22 @@ import ButtonDefault from "~/components/ButtonDefault.vue";
 import CornerInfo from "~/components/CornerInfo.vue";
 import HotelStars from "~/components/HotelStars.vue";
 import HotelTitle from "~/components/package/HotelTitle.vue";
-import BookKapar from "~/components/package/BookKapar.vue";
 import TripAdvisor from "~/components/package/TripAdvisor.vue";
 import InfoPoint from "~/components/InfoPoint.vue";
+import { differenceInDays } from 'date-fns';
 
 const Collection = defineAsyncComponent(() => import("~/components/package/Collection.vue"));
-const {displayNights, formatDateSQ, formatDurationSQ, roomBasisInfo, sendWhatsappMessage} = useUtils();
+const BookKapar = defineAsyncComponent(() => import("~/components/package/BookKapar.vue"));
+const {displayNights, formatDateSQ, formatDurationSQ, roomBasisInfo, sendWhatsappMessage, removeTimezone} = useUtils();
 const props = defineProps<{ package: FullPackage }>();
 
 const mainStore = useMainStore()
 const packageImages = mainStore.getPackageImages(props.package);
 const expandImg = ref(false);
 
-const hotel_data = props.package.hotel_data
+const hotel_data = computed(() => props.package.hotel_data)
 
-const roomBasis = roomBasisInfo(hotel_data.room_basis);
+const roomBasis = roomBasisInfo(hotel_data.value.room_basis);
 const packageCard = ref(null);
 const alreadyShown = ref(false);
 
@@ -103,6 +104,11 @@ const packagePrice = computed(() => {
 
 const kapar = computed(() => {
     return !mainStore.priceMode ? Number(props.package.price_minus_hotel) / 2 : props.package.price_minus_hotel
+})
+
+const kaparDisabled = computed(() => {
+    const days = differenceInDays(new Date(hotel_data.value.reservation_deadline), new Date());
+    return days < 2;
 })
 
 const isVisible = useElementVisibility(packageCard);

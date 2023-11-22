@@ -1,10 +1,13 @@
 <script setup lang="ts">
 // import defineAsyncComponent from '#speedkit/hydrate';
-
 const HomeIntro = defineAsyncComponent(() => import('@/components/sections/HomeIntro.vue'));
 const OffersSection = defineAsyncComponent(() => import('@/components/sections/OffersSection.vue'));
 const WelcomeSection = defineAsyncComponent(() => import('@/components/sections/WelcomeSection.vue'));
 
+// const WelcomeSection = useLazyLoadComponentIfVisible({
+//     componentLoader: () => import('@/components/sections/WelcomeSection.vue'),
+//     loadingComponent: ButtonDefault,
+// });
 const {actResetParams} = useMainStore()
 const runtimeConfig = useRuntimeConfig()
 definePageMeta({
@@ -12,8 +15,8 @@ definePageMeta({
 })
 
 useSeoMeta({
-    title: 'Hima Trips',
-    ogTitle: 'Agjensi Turistike Hima Trips. E Njohur si Agjensi Udhetimesh qe nga 2011 ofron Udhetime me Guide dhe Individuale. Oferta Turistike. Bileta Avioni. Paketa Turistike. Paketa all inclusive.',
+    title: 'Rezervo Destinacionin tuaj te preferuar me HimaTrips.com',
+    ogTitle: 'Rezervo Destinacionin tuaj te preferuar me HimaTrips.com',
     description: 'Agjensi Turistike Hima Trips. E Njohur si Agjensi Udhetimesh qe nga 2011 ofron Udhetime me Guide dhe Individuale. Oferta Turistike. Bileta Avioni. Paketa Turistike. Paketa all inclusive.',
     ogDescription: 'Agjensi Turistike Hima Trips. E Njohur si Agjensi Udhetimesh qe nga 2011 ofron Udhetime me Guide dhe Individuale. Oferta Turistike. Bileta Avioni. Paketa Turistike. Paketa all inclusive.',
     ogType: 'website',
