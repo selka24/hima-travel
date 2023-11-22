@@ -67,7 +67,7 @@
 <!--                <nuxt-link :to="{path: '/package', query: {package: package.id}}" class="w-full">-->
                     <button-default @click="sendWhatsappMessage(package)" class="h-[50px] md:h-[70px] w-full font-normal">Kontakto Tani</button-default>
 <!--                </nuxt-link>-->
-                <BookKapar class="w-full mt-2" :kapar="package.price_minus_hotel"/>
+                <BookKapar class="w-full mt-2" :kapar="kapar"/>
             </div>
         </div>
     </div>
@@ -99,6 +99,10 @@ const alreadyShown = ref(false);
 
 const packagePrice = computed(() => {
     return !mainStore.priceMode ? Number(props.package.total_price) / 2 : props.package.total_price
+})
+
+const kapar = computed(() => {
+    return !mainStore.priceMode ? Number(props.package.price_minus_hotel) / 2 : props.package.price_minus_hotel
 })
 
 const isVisible = useElementVisibility(packageCard);

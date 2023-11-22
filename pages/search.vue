@@ -23,10 +23,9 @@
                     <div v-else class="mt-10 flex justify-center items-center">
                         <div class="text-center text-secondary font-semibold">
                             <div v-if="errors.length" class="flex flex-col gap-5 text-3xl text-primary text-left">
-                                <div v-for="error in errors">
-                                    {{error}}!
-                                </div>
-
+<!--                                <div v-for="error in errors">-->
+<!--                                    {{error}}!-->
+<!--                                </div>-->
                                 <div class="mt-5 text-secondary">
                                     Kontrolloni parametrat e kerkimit
                                 </div>
