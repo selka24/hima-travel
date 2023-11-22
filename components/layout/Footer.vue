@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import {contactInfo, pages, socialNetworks} from "~/constants";
+    import {contactInfo, privacyLinks, socialNetworks} from "~/constants";
 </script>
 
 <template>
@@ -53,6 +53,14 @@
                             <nuxt-icon :name="net.title" filled class="text-2xl"/>
                             <div>{{net.title}}</div>
                         </a>
+                    </div>
+                    <div class="flex flex-col gap-7">
+                        <div class="text-primary font-bold text-xl">Shërbimet</div>
+                        <div v-for="info in privacyLinks">
+                            <nuxt-link :to="info.link">
+                                <div>{{info.title}}</div>
+                            </nuxt-link>
+                        </div>
                     </div>
                 </div>
             </div>

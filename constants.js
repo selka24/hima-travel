@@ -1,5 +1,5 @@
 export const contactInfo = {
-    address: 'Rr.Myslym Shyri, <br> Kryeqzimi me Muhamet Gjolleshen',
+    address: 'Rr.Myslym Shyri, <br> Kryeqzimi me  Muhamet Gjolleshen',
     phone: '069 70 21 101',
     email: 'kontakt@himatravel.com',
     orari: 'E Hene – E Shtune <br> Ora 08:00 – 21:00'
@@ -22,5 +22,11 @@ export const socialNetworks = [
     {title: 'instagram', link: 'https://www.instagram.com/agjensi_udhetimi_hima_travel'},
     {title: 'twitter', link: 'https://twitter.com/himatravel'},
     {title: 'youtube', link: 'https://www.youtube.com'},
+]
+
+export const privacyLinks = [
+    {title: 'Politikat e privatësisë', link: 'https://himatravel.com/politikat-e-privatesise/'},
+    {title: 'Kontrata me klientin', link: 'https://himatravel.com/kontrata-me-klientin/'},
+    {title: 'Rreth Nesh', link: 'https://himatravel.com/rreth-nesh/'},
 ]
 
