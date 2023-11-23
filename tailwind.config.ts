@@ -15,7 +15,7 @@ export default <Partial<Config>>{
         }
       },
       fontFamily: {
-        sans: ['Inter', ...defaultTheme.fontFamily.sans],
+        sans: ['Gibson', ...defaultTheme.fontFamily.sans],
       },
       screens: {
         'xs': '360px',

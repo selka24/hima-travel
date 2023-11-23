@@ -23,7 +23,7 @@ const filteredOffers = computed(() => {
 
 <template>
     <div class="flex flex-col items-center px-3.5 sm:px-5 lg:px-10">
-        <OfferDeparture/>
+        <OfferDeparture class="my-20"/>
         <div class="grid grid-cols-2 xl:grid-cols-3 gap-x-3 gap-y-28 mt-8 max-w-page">
             <preview-card v-for="offer in filteredOffers" :key="offer.id + 'prw-card'" :travel-package="offer"/>
         </div>

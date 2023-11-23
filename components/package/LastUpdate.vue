@@ -3,13 +3,13 @@
     const props = defineProps<{lastUpdate: string}>()
 
     const formatTime = computed(() => {
-        return formatDateSQ(props.lastUpdate, 'dd-LLL-yyyy')
+        return formatDateSQ(props.lastUpdate, 'dd-LLL-yyyy, hh:MM ')
     })
 </script>
 
 <template>
     <div class="flex gap-1 items-center text-gray-hard text-xs">
-<!--        <nuxt-icon name="clock-regular"/>-->
+        <nuxt-icon name="clock-regular"/>
         <div>
             Oferta e përditësuar më: {{formatTime}}
         </div>
