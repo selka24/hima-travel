@@ -102,26 +102,22 @@ const setSearchValues = async () => {
         mainStore.loadingPackages = false;
     } else {
         if(!mainStore.allOrigins.length){
-            console.log('getting dataaa origin')
             await mainStore.actGetOrigins();
         }
-
-        mainStore.selectedDate = validParams.checkin_date;
-        mainStore.selectedNights = validParams.nights;
-        mainStore.selectedPage = validParams.page;
-
         const origin = mainStore.allOrigins.find(o => o.id === validParams.origin_id);
         if(origin){
             mainStore.actSetOrigin(origin);
-            mainStore.originSearch = origin.name
-            mainStore.allDestinations = origin.destinations;
-        }
+            await mainStore.actGetDestinations();
 
-        const destination = mainStore.allDestinations.find(o => o.id === validParams.destination_id);
-
-        if(destination){
-            mainStore.actSetDestination(destination || null)
-            mainStore.destinationSearch = destination.name
+            const destination = mainStore.allDestinations.find(o => o.id === validParams.destination_id);
+            if(destination){
+                mainStore.originSearch = origin.name;
+                mainStore.actSetDestination(destination)
+                mainStore.destinationSearch = destination.name;
+                mainStore.selectedDate = validParams.checkin_date;
+                mainStore.selectedNights = validParams.nights;
+                mainStore.selectedPage = validParams.page;
+            }
         }
         await mainStore.actGetPackagesSearch();
     }

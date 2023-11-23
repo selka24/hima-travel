@@ -123,12 +123,17 @@ declare global {
         updated_at: null | string
         package_config_id: number
     }
+    interface PackageConfig {
+        id: number,
+        last_processed_at: string
+    }
 
     interface FullPackage extends BasePackage {
         package_config_id: number
         hotel_data: FullHotel
         outbound_flight: Flight
         inbound_flight: Flight
+        package_config: PackageConfig
     }
 
     interface RecommendPackage extends BasePackage{

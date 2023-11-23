@@ -48,7 +48,7 @@
                     <InfoTabs :package="package"/>
                 </div>
             </div>
-            <div class="flex pb-5 gap-2 sm:py-7 px-3 sm:px-5 sm:gap-0  justify-between flex-col sm:justify-between items-center col-span-12 sm:col-span-4 md:col-span-3 lg:col-span-4 xl:col-span-2 2xl:col-span-3 md:bg-gray-lighter/30">
+            <div class="flex flex-col pb-5 gap-2 sm:py-7 px-3 sm:px-5 sm:gap-0  justify-between sm:justify-between items-center col-span-12 sm:col-span-4 md:col-span-3 lg:col-span-4 xl:col-span-2 2xl:col-span-3 md:bg-gray-lighter/30">
                 <trip-advisor class="hidden sm:flex" :score="hotel_data.hotel.review_score" :count="hotel_data.hotel.review_count"/>
 <!--                <trip-advisor class="hidden sm:flex"/>-->
                 <div class="flex flex-col items-center">
@@ -68,6 +68,7 @@
                     <button-default @click="sendWhatsappMessage(package)" class="h-[50px] md:h-[70px] w-full font-normal">Kontakto Tani</button-default>
 <!--                </nuxt-link>-->
                 <BookKapar v-if="!kaparDisabled" class="w-full mt-2" :kapar="kapar"/>
+                <LastUpdate :last-update="package.package_config.last_processed_at" class="mt-2"/>
             </div>
         </div>
     </div>
@@ -82,6 +83,7 @@ import HotelTitle from "~/components/package/HotelTitle.vue";
 import TripAdvisor from "~/components/package/TripAdvisor.vue";
 import InfoPoint from "~/components/InfoPoint.vue";
 import { differenceInDays } from 'date-fns';
+import LastUpdate from "~/components/package/LastUpdate.vue";
 
 const Collection = defineAsyncComponent(() => import("~/components/package/Collection.vue"));
 const BookKapar = defineAsyncComponent(() => import("~/components/package/BookKapar.vue"));

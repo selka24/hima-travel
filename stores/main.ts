@@ -118,6 +118,16 @@ export const useMainStore = defineStore('main', () => {
             })
     }
 
+    const actGetDestinations = async () => {
+        if(!selectedOrigin.value) return;
+        try {
+            const response = await $api.get(`/destinations/${selectedOrigin.value.id}`)
+            allDestinations.value = response.data;
+        } catch (e) {
+            console.log(e, 'error getting destinations')
+        }
+    }
+
     const actGetHomeDestinations = async () => {
         await $api.get('/destinations')
             .then((response) => {
@@ -201,6 +211,7 @@ export const useMainStore = defineStore('main', () => {
         selectedSort,
         travelPackages,
         actGetAvailableDates,
+        actGetDestinations,
         actGetDestinationPackages,
         actGetHomeDestinations,
         actGetOrigins,
