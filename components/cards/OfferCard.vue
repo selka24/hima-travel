@@ -5,7 +5,7 @@
 
 
 
-    const props = defineProps<{package: RecommendPackage, date: string}>();
+    const props = defineProps<{package: RecommendPackage, date: string, sqDestination?: string}>();
     const {buildStorageUrl,displayNights, formatDateSQ} = useUtils();
     const mainStore = useMainStore()
     const hotel = computed(() => {
@@ -37,7 +37,7 @@
         </div>
         <div class="mt-7 items-center justify-between hidden sm:flex">
             <div>
-                <div class="text-lg sm:text-2xl font-bold">{{ hotel.city }}</div>
+                <div class="text-lg sm:text-2xl font-bold">{{ sqDestination||hotel.city }}</div>
                 <div class="text-sm sm:text-base text-gray-normal">nga Tirana</div>
             </div>
             <div class="ml-auto text-right">

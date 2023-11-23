@@ -41,7 +41,7 @@ onMounted(() => {
             <PreviewCardLoading v-for="idx in 6" :key="idx + 'rec'"/>
         </div>
         <div v-else class="grid grid-cols-2 xl:grid-cols-3 gap-x-3 gap-y-28 max-w-page w-full mt-11">
-            <OfferCard v-for="(pckg, date) in mainStore.destinationPackages" :key="date" :date="date" :package="pckg" />
+            <OfferCard v-for="(pckg, date) in mainStore.destinationPackages" :key="date" :date="date" :package="pckg" :sqDestination="destination?.name"/>
         </div>
     </div>
 </template>

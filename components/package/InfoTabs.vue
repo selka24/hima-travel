@@ -60,9 +60,10 @@ const triggerInfoPoint = ref(false);
 
 const getFlightInfo = (flight: Flight) => {
     const data = JSON.parse(flight.extra_data);
+    const {origin, destination} = data.legs[0];
     // const duration = formatDurationSQ(intervalToDuration({start: departure, end: arrival}));
     return {
-        places: `${data.legs[0].origin.name} ${flight.origin} -> ${data.legs[0].destination.name} ${flight.destination}`,
+        places: `${origin.name} ${origin?.displayCode} -> ${destination.name} ${destination?.displayCode}`,
         time: `${formatDateSQ(flight.departure, 'dd, LLL yyyy -  HH:mm')} - ${formatDateSQ(flight.arrival, 'HH:mm')}`,
         // duration
     }
