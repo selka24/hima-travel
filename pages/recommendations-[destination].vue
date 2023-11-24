@@ -3,6 +3,7 @@ import OfferCard from "~/components/cards/OfferCard.vue";
 import PreviewCardLoading from "~/components/cards/PreviewCardLoading.vue";
 
 const runtimeConfig = useRuntimeConfig()
+const img = useImage()
 const route = useRoute();
 const mainStore = useMainStore();
 const {params} = route;
@@ -35,14 +36,31 @@ const getDestinationInfo = async () => {
     }
 }
 
+
 if(process.server){
     await getDestinationInfo();
-    console.log(destination.value, 'destination.value')
 }
 
 onMounted(() => {
     getRecommends();
 })
+
+const getOGImage = () => {
+    const size = img.getSizes(`${runtimeConfig.public.storageUrl}/${destination.value?.destination_photos[0].file_path}`, {
+        sizes: 'xl:100vw',
+        modifiers: {
+            format: 'webp',
+            quality: 70,
+            width: 1200,
+            height: 630,
+            fit: 'cover'
+        }
+    })
+    if(process.env.NODE_ENV === 'development'){
+        return `localhost:3001${size.srcset.split(' ')[0]}`;
+    }
+    return `${runtimeConfig.public.prodUrl}${size.srcset.split(' ')[0]}`;
+}
 
 useSeoMeta({
     title: () => `Udhëtim në ${destination.value?.name || 'Error Destination'}`,
@@ -53,15 +71,15 @@ useSeoMeta({
     ogType: 'website',
     ogLocale: 'sq_AL',
     ogSiteName: 'Perfitoni Nga Ofertat e udhetimit me HimaTrips',
-    ogImage: () => `${runtimeConfig.public.storageUrl}/${destination.value?.destination_photos[0].file_path}`,
-    ogImageWidth: '200',
-    ogImageHeight: '200',
+    ogImage: () => getOGImage(),
+    ogImageWidth: '1200',
+    ogImageHeight: '630',
     ogImageType: 'image/jpeg',
     twitterCard: "summary_large_image",
     twitterTitle: 'Perfitoni Nga Ofertat e udhetimit me HimaTrips',
     twitterDescription: 'Perfitoni Nga Ofertat e udhetimit me HimaTrips',
     twitterSite: '@HimaTravel',
-    twitterImage:  () => `${runtimeConfig.public.storageUrl}/${destination.value?.destination_photos[0].file_path}`,
+    twitterImage:  () => getOGImage(),
 })
 </script>
 
