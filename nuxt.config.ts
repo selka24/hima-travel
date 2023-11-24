@@ -1,4 +1,14 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import axios from 'axios';
+
+const getDestinations = async () => {
+  const response = await axios.get(
+      `${process.env.API_BASE_URL}/destinations/1`
+  );
+  // return the array of routes
+  return response?.data?.data.map((dest: Destination) => `/recommendations-${dest.id}`);
+};
+
 export default defineNuxtConfig({
   devtools: { enabled: true },
   app: {
@@ -13,6 +23,14 @@ export default defineNuxtConfig({
     rootId: 'selka24',
     layoutTransition: { name: 'page', mode: 'out-in' },
     pageTransition: { name: 'page', mode: 'out-in' },
+  },
+  hooks: {
+    async 'nitro:config'(nitroConfig) {
+      // fetch the routes from our function above
+      const slugs = await getDestinations();
+      // add the routes to the nitro config
+      nitroConfig.prerender.routes.push(...slugs);
+    },
   },
   modules: [
     '@nuxtjs/tailwindcss',

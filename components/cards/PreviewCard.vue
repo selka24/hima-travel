@@ -39,7 +39,7 @@
 <!--        <div class="mt-11 font-bold text-lg mb-12">-->
 <!--            {{travelPackage.description}}-->
 <!--        </div>-->
-        <nuxt-link :to="`/recommendations?destinationId=${travelPackage.id}`" class="px-5 w-full absolute left-1/2 -translate-x-1/2 -bottom-3.5 sm:-bottom-5 flex justify-center">
+        <nuxt-link :to="`/recommendations-${travelPackage.id}`" class="px-5 w-full absolute left-1/2 -translate-x-1/2 -bottom-3.5 sm:-bottom-5 flex justify-center">
             <button-default class="uppercase flex gap-1 justify-center items-center text-center px-1 py-1.5 sm:py-4 w-full font-normal !text-sm !rounded-[5px] sm:text-base max-w-[150px] sm:max-w-[260px]">
                 <span class="hidden sm:block">zbulo</span>
                 <nuxt-icon name="eye-solid" class="text-lg text-white block sm:hidden"/>

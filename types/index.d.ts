@@ -15,7 +15,8 @@ declare global {
         pivot: {
             origin_id: number
             destination_id: number
-        }
+        },
+        destination_photos: DestinationPhoto[]
     }
 
     interface DestinationPhoto {
