@@ -58,6 +58,8 @@ const getOGImage = () => {
 
 if(process.server){
     await getDestinationInfo();
+} else if (!mainStore.allDestinations.length){
+    await getDestinationInfo();
 }
 
 onMounted(() => {
