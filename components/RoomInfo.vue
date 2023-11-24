@@ -15,7 +15,7 @@ const sampleFacilities = [
 
 <template>
     <div class="flex flex-wrap justify-between gap-y-5">
-        <nuxt-img format="webp" width="575" height="383" src="/package-sample/bed.png"/>
+        <nuxt-img format="webp" width="575" height="383" src="/images/bg4.png"/>
         <div class="flex flex-col gap-y-2">
             <div>Sleeps: Minimum 2 | Maximum 3</div>
             <div class="font-bold">Room facilities include</div>

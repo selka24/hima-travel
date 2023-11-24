@@ -3,7 +3,7 @@ import OfferCard from "~/components/cards/OfferCard.vue";
 import PreviewCardLoading from "~/components/cards/PreviewCardLoading.vue";
 
 const runtimeConfig = useRuntimeConfig()
-const img = useImage()
+const ogNuxtImage = useImage()
 const route = useRoute();
 const mainStore = useMainStore();
 const {params} = route;
@@ -37,17 +37,8 @@ const getDestinationInfo = async () => {
 }
 
 
-if(process.server){
-    await getDestinationInfo();
-}
-
-onMounted(() => {
-    getRecommends();
-})
-
 const getOGImage = () => {
-    const size = img.getSizes(`${runtimeConfig.public.storageUrl}/${destination.value?.destination_photos[0].file_path}`, {
-        sizes: 'xl:100vw',
+    const {srcset} = ogNuxtImage.getSizes(`${runtimeConfig.public.storageUrl}/${destination.value?.destination_photos[0].file_path}`, {
         modifiers: {
             format: 'webp',
             quality: 70,
@@ -56,11 +47,22 @@ const getOGImage = () => {
             fit: 'cover'
         }
     })
+
+    const imageUrl = srcset.split(' ')[0]
+
     if(process.env.NODE_ENV === 'development'){
-        return `localhost:3001${size.srcset.split(' ')[0]}`;
+        return `localhost:3001${imageUrl}`;
     }
-    return `${runtimeConfig.public.prodUrl}${size.srcset.split(' ')[0]}`;
+    return `${runtimeConfig.public.prodUrl}${imageUrl}`;
 }
+
+if(process.server){
+    await getDestinationInfo();
+}
+
+onMounted(() => {
+    getRecommends();
+})
 
 useSeoMeta({
     title: () => `Udhëtim në ${destination.value?.name || 'Error Destination'}`,

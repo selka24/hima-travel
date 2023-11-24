@@ -15,8 +15,8 @@ definePageMeta({
 })
 
 useSeoMeta({
-    title: 'Rezervo Destinacionin tuaj te preferuar me HimaTrips.com',
-    ogTitle: 'Rezervo Destinacionin tuaj te preferuar me HimaTrips.com',
+    title: 'HimaTrips: Rezervo Destinacionin tuaj te preferuar',
+    ogTitle: 'HimaTrips: Rezervo Destinacionin tuaj te preferuar',
     ogUrl: () => `${runtimeConfig.public.prodUrl}`,
     description: 'Perfitoni Nga Ofertat e udhetimit me HimaTrips',
     ogDescription: 'Perfitoni Nga Ofertat e udhetimit me HimaTrips',
